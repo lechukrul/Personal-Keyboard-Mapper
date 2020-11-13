@@ -1,0 +1,11 @@
+D:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\bin\Debug\Personal_Keybard_Mapper.Lib.dll
+D:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\bin\Debug\Personal_Keybard_Mapper.Lib.pdb
+D:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\bin\Debug\Newtonsoft.Json.dll
+D:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\bin\Debug\WindowsInput.dll
+D:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\bin\Debug\Newtonsoft.Json.xml
+D:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\bin\Debug\WindowsInput.xml
+D:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keybard_Mapper.Lib.csprojAssemblyReference.cache
+D:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keybard_Mapper.Lib.csproj.CoreCompileInputs.cache
+D:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keybard_Mapper.Lib.csproj.CopyComplete
+D:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keybard_Mapper.Lib.dll
+D:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keybard_Mapper.Lib.pdb

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1231556F-8E26-49F6-89BF-ABC93E84428B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Personal_Keyboard_Mapper.Lib</RootNamespace>
+    <AssemblyName>Personal_Keyboard_Mapper.Lib</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PInvoke.Kernel32, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.Kernel32.0.3.152\lib\net40\PInvoke.Kernel32.dll</HintPath>
+    </Reference>
+    <Reference Include="PInvoke.User32, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.User32.0.3.152\lib\net40\PInvoke.User32.dll</HintPath>
+    </Reference>
+    <Reference Include="PInvoke.Windows.Core, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.Windows.Core.0.3.152\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.Windows.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PInvoke.Windows.ShellScalingApi, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.Windows.ShellScalingApi.0.3.152\lib\net40\PInvoke.Windows.ShellScalingApi.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsInput, Version=1.0.4.0, Culture=neutral, PublicKeyToken=9b287f7dc5073cad, processorArchitecture=MSIL">
+      <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionTypeConverter.cs" />
+    <Compile Include="Comparers\KeyCombinationsComparer.cs" />
+    <Compile Include="Converters\CombinationsConfigurationConverter.cs" />
+    <Compile Include="Converters\OutputKeysConverter.cs" />
+    <Compile Include="Enums\HookType.cs" />
+    <Compile Include="Enums\KeyState.cs" />
+    <Compile Include="Enums\MouseButtonAction.cs" />
+    <Compile Include="Enums\MouseKeysCodes.cs" />
+    <Compile Include="Enums\NumericKeysCodes.cs" />
+    <Compile Include="Enums\SoundAction.cs" />
+    <Compile Include="Exceptions\ConfigurationException.cs" />
+    <Compile Include="Extensions\CombinationsExtensions.cs" />
+    <Compile Include="Extensions\VirtualKeyCodeExtensions.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="Hooks\KeyboardHook.cs" />
+    <Compile Include="Hooks\MouseHook.cs" />
+    <Compile Include="Interfaces\IConfigSource.cs" />
+    <Compile Include="Interfaces\IHook.cs" />
+    <Compile Include="Interfaces\IKeyCombination.cs" />
+    <Compile Include="KeysSoundEffects.cs" />
+    <Compile Include="Model\Action.cs" />
+    <Compile Include="Enums\ActionType.cs" />
+    <Compile Include="Interfaces\IKeyboardKey.cs" />
+    <Compile Include="Interfaces\IOutputAction.cs" />
+    <Compile Include="Model\EmptyAction.cs" />
+    <Compile Include="Model\JsonConfigSource.cs" />
+    <Compile Include="Model\KeyboardAction.cs" />
+    <Compile Include="Model\KeyboardKey.cs" />
+    <Compile Include="Model\KeyboardLayout\KeyboardLayoutScope.cs" />
+    <Compile Include="Model\KeyboardLayout\KeyboardLayout.cs" />
+    <Compile Include="Model\KeyboardLayout\KeyboardLayoutFlags.cs" />
+    <Compile Include="Model\KeyCombinationsConfiguration.cs" />
+    <Compile Include="Enums\KeyCombinationPosition.cs" />
+    <Compile Include="Model\MouseAction.cs" />
+    <Compile Include="Model\ThreeKeysCombination.cs" />
+    <Compile Include="Model\TwoKeysCombination.cs" />
+    <Compile Include="PInvokeApFunctions\ApiFunctions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\GlobalHookService.cs" />
+    <Compile Include="Structures\HookStructure.cs" />
+    <Compile Include="Structures\KeyboardHookStructure.cs" />
+    <Compile Include="Structures\MouseHookStructure.cs" />
+    <Compile Include="Structures\VKeyScanHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
