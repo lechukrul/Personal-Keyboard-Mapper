@@ -24,7 +24,8 @@ namespace Personal_Keyboard_Mapper.Lib.Interfaces
         /// </summary>
         /// <param name="config">The configuration.</param>
         /// <returns></returns>
-        KeyCombinationsConfiguration ReadConfigFromDbSet(DbSet config);
+        KeyCombinationsConfiguration ReadConfigFromDbSet(
+            DbSet config);
 
         /// <summary>
         /// Writes the configuration to string.
