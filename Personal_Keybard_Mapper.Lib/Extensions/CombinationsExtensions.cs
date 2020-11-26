@@ -152,5 +152,28 @@ namespace Personal_Keyboard_Mapper.Lib.Extensions
 
             return result;
         }
+
+        /// <summary>
+        /// Determines whether the source combination has specified keys.
+        /// </summary>
+        /// <param name="sourceCombination">The source combination.</param>
+        /// <param name="firstKey">string representation of first key.</param>
+        /// <param name="secondKey">string representation of second key.</param>
+        /// <param name="thirdKey">string representation of third key (optional).</param>
+        /// <returns>
+        ///   <c>true</c> if the source combination has specified keys; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool HasKeys(this IKeyCombination sourceCombination, string firstKey, string secondKey,
+            string thirdKey = default)
+        {
+            if (thirdKey != default)
+            {
+                return sourceCombination.Keys[0].ToString() == firstKey
+                       && sourceCombination.Keys[1].ToString() == secondKey
+                       && sourceCombination.Keys[2].ToString() == thirdKey;
+            }
+            return sourceCombination.Keys[0].ToString() == firstKey
+                   && sourceCombination.Keys[1].ToString() == secondKey;
+        }
     }
 }

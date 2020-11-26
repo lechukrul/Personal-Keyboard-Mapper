@@ -26,10 +26,6 @@ E:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Pers
 E:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keyboard_Mapper.Lib.csproj.CopyComplete
 E:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keyboard_Mapper.Lib.dll
 E:\moje pliki\Personal_Keybard_Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keyboard_Mapper.Lib.pdb
-E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keyboard_Mapper.Lib.csprojAssemblyReference.cache
-E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keyboard_Mapper.Lib.csproj.CoreCompileInputs.cache
-E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keyboard_Mapper.Lib.dll
-E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keyboard_Mapper.Lib.pdb
 E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\bin\Debug\Personal_Keyboard_Mapper.Lib.dll.config
 E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\bin\Debug\Personal_Keyboard_Mapper.Lib.dll
 E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\bin\Debug\Personal_Keyboard_Mapper.Lib.pdb
@@ -53,4 +49,8 @@ E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\bin\Debug
 E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\bin\Debug\PInvoke.Windows.ShellScalingApi.xml
 E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\bin\Debug\System.ValueTuple.xml
 E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\bin\Debug\WindowsInput.xml
+E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keyboard_Mapper.Lib.csprojAssemblyReference.cache
+E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keyboard_Mapper.Lib.csproj.CoreCompileInputs.cache
 E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keyboard_Mapper.Lib.csproj.CopyComplete
+E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keyboard_Mapper.Lib.dll
+E:\moje pliki\git\Personal-Keyboard-Mapper\Personal_Keybard_Mapper.Lib\obj\Debug\Personal_Keyboard_Mapper.Lib.pdb
