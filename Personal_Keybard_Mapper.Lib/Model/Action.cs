@@ -26,6 +26,9 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         [JsonConverter(typeof(StringEnumConverter))]
         public ActionType Type { get; set; }
 
+        [JsonProperty("OutputVirtualKeys")]
+        public IEnumerable<string> ActionStringKeys { get; set; }
+
         [JsonConverter(typeof(OutputKeysConverter))]
         [JsonProperty("OutputVirtualKeys")]
         public IEnumerable<VirtualKeyCode> OutputVirtualKeys { get; set; }
