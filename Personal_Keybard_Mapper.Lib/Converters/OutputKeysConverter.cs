@@ -53,7 +53,7 @@ namespace Personal_Keyboard_Mapper.Lib.Converters
             var keys = JArray.Load(reader);
             foreach (var key in keys)
             {
-                var stringKey = key.ToObject<string>().Replace("/'", "\"");
+                var stringKey = key.ToObject<string>()?.Replace("/'", "\"");
                 var culture = new CultureInfo("pl-PL");
                 if (stringKey.Length == 1)
                 {

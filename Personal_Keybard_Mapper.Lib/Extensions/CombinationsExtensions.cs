@@ -4,6 +4,7 @@ using System.Linq;
 using WindowsInput.Native;
 using log4net;
 using Personal_Keyboard_Mapper.Lib.Interfaces;
+using Personal_Keyboard_Mapper.Lib.Model;
 
 namespace Personal_Keyboard_Mapper.Lib.Extensions
 {
@@ -97,7 +98,7 @@ namespace Personal_Keyboard_Mapper.Lib.Extensions
                 return false;
             }
 
-            return combination.Action.OutputVirtualKeys.Any();
+            return combination.Action.VirtualKeys.Any();
         }
 
         /// <summary>
@@ -168,12 +169,12 @@ namespace Personal_Keyboard_Mapper.Lib.Extensions
         {
             if (thirdKey != default)
             {
-                return sourceCombination.Keys[0].ToString() == firstKey
-                       && sourceCombination.Keys[1].ToString() == secondKey
-                       && sourceCombination.Keys[2].ToString() == thirdKey;
+                return ((ThreeKeysCombination)sourceCombination).FirstKeyVirtualCode == firstKey
+                       && ((ThreeKeysCombination)sourceCombination).SecondKeyVirtualCode == secondKey
+                       && ((ThreeKeysCombination)sourceCombination).ThirdKeyVirtualCode == thirdKey;
             }
-            return sourceCombination.Keys[0].ToString() == firstKey
-                   && sourceCombination.Keys[1].ToString() == secondKey;
+            return ((TwoKeysCombination)sourceCombination).FirstKeyVirtualCode == firstKey
+                   && ((TwoKeysCombination)sourceCombination).SecondKeyVirtualCode == secondKey;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -7,7 +8,9 @@ using WindowsInput;
 using WindowsInput.Native;
 using log4net;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Bson;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using Personal_Keyboard_Mapper.Lib.Converters;
 using Personal_Keyboard_Mapper.Lib.Enums;
 using Personal_Keyboard_Mapper.Lib.Interfaces;
@@ -27,11 +30,38 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         public ActionType Type { get; set; }
 
         [JsonProperty("OutputVirtualKeys")]
-        public IEnumerable<string> ActionStringKeys { get; set; }
+        public IEnumerable<string> Keys
+        {
+            get { return ActionStringKeys; }
+            set
+            {
+                ActionStringKeys ??= new List<string>();
+                VirtualKeys ??= new List<VirtualKeyCode>();
+                ActionStringKeys.AddRange(value ?? new List<string>());
+                ReplaceStringAliases();
+                var desValue = JToken.FromObject(value);
+                var vkArray = JsonConvert.DeserializeObject<IEnumerable<VirtualKeyCode>>(
+                    desValue.ToString(),
+                    new OutputKeysConverter()
+                    );
+                VirtualKeys.AddRange(vkArray ?? Array.Empty<VirtualKeyCode>());
+            }
+        }
 
-        [JsonConverter(typeof(OutputKeysConverter))]
-        [JsonProperty("OutputVirtualKeys")]
-        public IEnumerable<VirtualKeyCode> OutputVirtualKeys { get; set; }
+        /// <summary>
+        /// Replaces the string aliases.
+        /// In some cases an action string in configuration file has to be specified by an alias.
+        /// </summary>
+        private void ReplaceStringAliases()
+        {
+            ActionStringKeys = ActionStringKeys.Select(x => x.Replace("backslash", "\\")).ToList();
+            ActionStringKeys = ActionStringKeys.Select(x => x.Replace(@"/'/'", @"""""")).ToList();
+        }
+
+        public List<string> ActionStringKeys { get; set; }
+
+        //[JsonConverter(typeof(OutputKeysConverter))]
+        public List<VirtualKeyCode> VirtualKeys { get; set; }
 
         /// <summary>
         /// Determines whether an action is to send CRTL key.
@@ -41,11 +71,11 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         /// </returns>
         public bool IsCrtlAction()
         {
-            if (Type == ActionType.Keyboard && OutputVirtualKeys.Count() == 1)
+            if (Type == ActionType.Keyboard && VirtualKeys.Count() == 1)
             {
                 try
                 {
-                    var virtKey = OutputVirtualKeys.First();
+                    var virtKey = VirtualKeys.First();
                     if (virtKey == VirtualKeyCode.CONTROL)
                     {
                         return true;
@@ -68,11 +98,11 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         /// </returns>
         public bool IsShiftAction()
         {
-            if (Type == ActionType.Keyboard && OutputVirtualKeys.Count() == 1)
+            if (Type == ActionType.Keyboard && VirtualKeys.Count() == 1)
             {
                 try
                 {
-                    var virtKey = OutputVirtualKeys.First();
+                    var virtKey = VirtualKeys.First();
                     if (virtKey == VirtualKeyCode.SHIFT)
                     {
                         return true;
@@ -95,11 +125,11 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         /// </returns>
         public bool IsRightAltAction()
         {
-            if (Type == ActionType.Keyboard && OutputVirtualKeys.Count() == 1)
+            if (Type == ActionType.Keyboard && VirtualKeys.Count() == 1)
             {
                 try
                 {
-                    var virtKey = OutputVirtualKeys.First();
+                    var virtKey = VirtualKeys.First();
                     if (virtKey == VirtualKeyCode.RMENU)
                     {
                         return true;
@@ -122,11 +152,11 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         /// </returns>
         public bool IsLeftAltAction()
         {
-            if (Type == ActionType.Keyboard && OutputVirtualKeys.Count() == 1)
+            if (Type == ActionType.Keyboard && VirtualKeys.Count() == 1)
             {
                 try
                 {
-                    var virtKey = OutputVirtualKeys.First();
+                    var virtKey = VirtualKeys.First();
                     if (virtKey == VirtualKeyCode.LMENU)
                     {
                         return true;
@@ -149,11 +179,11 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         /// </returns>
         public bool IsLeftWinAction()
         {
-            if (Type == ActionType.Keyboard && OutputVirtualKeys.Count() == 1)
+            if (Type == ActionType.Keyboard && VirtualKeys.Count() == 1)
             {
                 try
                 {
-                    var virtKey = OutputVirtualKeys.First();
+                    var virtKey = VirtualKeys.First();
                     if (virtKey == VirtualKeyCode.LWIN)
                     {
                         return true;
@@ -176,11 +206,11 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         /// </returns>
         public bool IsRightWinAction()
         {
-            if (Type == ActionType.Keyboard && OutputVirtualKeys.Count() == 1)
+            if (Type == ActionType.Keyboard && VirtualKeys.Count() == 1)
             {
                 try
                 {
-                    var virtKey = OutputVirtualKeys.First();
+                    var virtKey = VirtualKeys.First();
                     if (virtKey == VirtualKeyCode.RWIN)
                     {
                         return true;
@@ -209,12 +239,12 @@ namespace Personal_Keyboard_Mapper.Lib.Model
 
         public bool IsThisVirtualCode(VirtualKeyCode key)
         {
-            if (OutputVirtualKeys.Count() != 1)
+            if (VirtualKeys.Count() != 1)
             {
                 return false;
             }
 
-            return OutputVirtualKeys.First() == key;
+            return VirtualKeys.First() == key;
         }
 
         private bool  IsModKey(VirtualKeyCode key)
@@ -236,14 +266,14 @@ namespace Personal_Keyboard_Mapper.Lib.Model
                 {
                     case ActionType.Keyboard: 
                         action = new KeyboardAction(); 
-                        modKeys = OutputVirtualKeys.Where(x => IsModKey(x));
-                        noModKeys = OutputVirtualKeys.Where(x => !IsModKey(x)); 
+                        modKeys = VirtualKeys.Where(x => IsModKey(x));
+                        noModKeys = VirtualKeys.Where(x => !IsModKey(x)); 
                         action.SendKeyboardAction(new InputSimulator(), modKeys, noModKeys);
                         return action.OnlyModKeyAction;
                     case ActionType.Mouse:
                         action = new MouseAction();
-                        modKeys = OutputVirtualKeys.Where(x => IsModKey(x));
-                        noModKeys = OutputVirtualKeys.Where(x => !IsModKey(x));
+                        modKeys = VirtualKeys.Where(x => IsModKey(x));
+                        noModKeys = VirtualKeys.Where(x => !IsModKey(x));
                         action.SendMouseAction(new InputSimulator(), modKeys, noModKeys);
                         return action.OnlyModKeyAction;
                     default:
@@ -268,7 +298,7 @@ namespace Personal_Keyboard_Mapper.Lib.Model
             {
                 log = this.log,
                 Type = this.Type, 
-                OutputVirtualKeys = this.OutputVirtualKeys.ToList()
+                VirtualKeys = this.VirtualKeys.ToList()
             };
         }
     }

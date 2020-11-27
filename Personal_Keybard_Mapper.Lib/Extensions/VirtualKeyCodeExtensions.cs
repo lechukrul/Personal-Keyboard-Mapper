@@ -1,4 +1,5 @@
-﻿using WindowsInput.Native;
+﻿using System.Windows.Forms;
+using WindowsInput.Native;
 
 namespace Personal_Keyboard_Mapper.Lib.Extensions
 {
@@ -39,6 +40,17 @@ namespace Personal_Keyboard_Mapper.Lib.Extensions
                 default:
                     return key;
             }
+        }
+
+        /// <summary>
+        /// Converts the virtual key code to string.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
+        public static string VirtualKeyCodeToString(this VirtualKeyCode key)
+        {
+            var keyConverter = new KeysConverter();
+            return keyConverter.ConvertToString(key);
         }
     }
 }
