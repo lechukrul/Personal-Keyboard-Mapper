@@ -1,0 +1,23 @@
+2020-12-07 10:14:53,784 [1] INFO : Loading configuration
+2020-12-07 10:14:54,105 [1] INFO : configuration loaded
+2020-12-07 10:14:54,138 [1] INFO : Loading configuration
+2020-12-07 10:14:54,247 [1] INFO : configuration loaded
+2020-12-07 10:14:54,254 [1] INFO : Keyboard hook started
+2020-12-07 10:14:54,311 [1] INFO : Keyboard hook started
+2020-12-07 10:15:42,682 [1] INFO : Stop keyboard and mouse hook
+2020-12-07 10:16:09,090 [1] INFO : Loading configuration
+2020-12-07 10:16:09,297 [1] INFO : configuration loaded
+2020-12-07 10:16:09,297 [1] INFO : Keyboard hook started
+2020-12-07 10:16:09,297 [1] INFO : Keyboard hook started
+2020-12-07 10:16:12,671 [1] DEBUG: vk=A0
+2020-12-07 10:16:12,672 [1] DEBUG: sk=0
+2020-12-07 10:16:12,673 [1] DEBUG: vk=39
+2020-12-07 10:16:12,673 [1] DEBUG: sk=0
+2020-12-07 10:16:12,674 [1] DEBUG: vk=39
+2020-12-07 10:16:12,675 [1] DEBUG: sk=0
+2020-12-07 10:16:12,675 [1] DEBUG: vk=30
+2020-12-07 10:16:12,676 [1] DEBUG: sk=0
+2020-12-07 10:16:12,677 [1] DEBUG: vk=30
+2020-12-07 10:16:12,677 [1] DEBUG: sk=0
+2020-12-07 10:16:12,678 [1] DEBUG: vk=A0
+2020-12-07 10:16:12,678 [1] DEBUG: sk=0

@@ -1,0 +1,48 @@
+2021-02-22 11:36:01,600 [1] INFO : Loading configuration
+2021-02-22 11:36:01,903 [1] INFO : configuration loaded
+2021-02-22 11:36:01,933 [1] INFO : Loading configuration
+2021-02-22 11:36:02,021 [1] INFO : configuration loaded
+2021-02-22 11:36:02,027 [1] INFO : Keyboard hook started
+2021-02-22 11:36:02,060 [1] INFO : Keyboard hook started
+2021-02-22 11:36:50,098 [1] ERROR: newConfigName
+2021-02-22 11:39:55,316 [1] WARN : No such combination
+2021-02-22 13:16:39,002 [1] INFO : Loading configuration
+2021-02-22 13:16:39,349 [1] INFO : configuration loaded
+2021-02-22 13:16:39,380 [1] INFO : Loading configuration
+2021-02-22 13:16:39,469 [1] INFO : configuration loaded
+2021-02-22 13:16:39,475 [1] INFO : Keyboard hook started
+2021-02-22 13:16:39,481 [1] INFO : Keyboard hook started
+2021-02-22 13:22:01,656 [1] INFO : Loading configuration
+2021-02-22 13:22:02,037 [1] INFO : configuration loaded
+2021-02-22 13:22:02,076 [1] INFO : Loading configuration
+2021-02-22 13:22:02,173 [1] INFO : configuration loaded
+2021-02-22 13:22:02,179 [1] INFO : Keyboard hook started
+2021-02-22 13:22:02,184 [1] INFO : Keyboard hook started
+2021-02-22 13:24:16,594 [1] INFO : Loading configuration
+2021-02-22 13:24:16,924 [1] INFO : configuration loaded
+2021-02-22 13:24:16,958 [1] INFO : Loading configuration
+2021-02-22 13:24:17,074 [1] INFO : configuration loaded
+2021-02-22 13:24:17,081 [1] INFO : Keyboard hook started
+2021-02-22 13:24:17,087 [1] INFO : Keyboard hook started
+2021-02-22 13:26:32,787 [1] WARN : No such combination
+2021-02-22 13:26:33,777 [1] WARN : No such combination
+2021-02-22 13:26:39,358 [1] DEBUG: KEY DEBUG START
+2021-02-22 13:26:39,359 [1] DEBUG: position = 0
+2021-02-22 13:26:39,359 [1] DEBUG: key state = 256, key vk code = 16, key sk code = 54
+2021-02-22 13:26:39,359 [1] DEBUG: KEY DEBUG END
+2021-02-22 13:26:43,002 [1] DEBUG: vk=BC
+2021-02-22 13:26:43,002 [1] DEBUG: sk=33
+2021-02-22 13:26:43,336 [1] DEBUG: vk=BC
+2021-02-22 13:26:43,336 [1] DEBUG: sk=33
+2021-02-22 13:26:43,338 [1] DEBUG: vk=A1
+2021-02-22 13:26:43,338 [1] DEBUG: sk=36
+2021-02-22 13:26:45,924 [1] DEBUG: KEY DEBUG START
+2021-02-22 13:26:45,924 [1] DEBUG: position = 1
+2021-02-22 13:26:45,924 [1] DEBUG: key state = 256, key vk code = 16, key sk code = 54
+2021-02-22 13:26:45,924 [1] DEBUG: KEY DEBUG END
+2021-02-22 13:26:49,108 [1] DEBUG: vk=BE
+2021-02-22 13:26:49,108 [1] DEBUG: sk=34
+2021-02-22 13:26:49,505 [1] DEBUG: vk=BE
+2021-02-22 13:26:49,505 [1] DEBUG: sk=34
+2021-02-22 13:26:49,506 [1] DEBUG: vk=A1
+2021-02-22 13:26:49,506 [1] DEBUG: sk=36

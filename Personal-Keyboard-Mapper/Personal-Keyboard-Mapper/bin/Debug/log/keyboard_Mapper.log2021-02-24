@@ -1,0 +1,214 @@
+2021-02-24 18:36:13,533 [1] INFO : Loading configuration
+2021-02-24 18:36:13,844 [1] INFO : configuration loaded
+2021-02-24 18:36:13,876 [1] INFO : Loading configuration
+2021-02-24 18:36:13,975 [1] INFO : configuration loaded
+2021-02-24 18:36:13,980 [1] INFO : Keyboard hook started
+2021-02-24 18:36:14,017 [1] INFO : Keyboard hook started
+2021-02-24 18:36:52,843 [1] DEBUG: vk=A0
+2021-02-24 18:36:52,843 [1] DEBUG: sk=0
+2021-02-24 18:36:52,845 [1] DEBUG: vk=39
+2021-02-24 18:36:52,845 [1] DEBUG: sk=0
+2021-02-24 18:36:52,845 [1] DEBUG: vk=39
+2021-02-24 18:36:52,846 [1] DEBUG: sk=0
+2021-02-24 18:36:52,846 [1] DEBUG: vk=30
+2021-02-24 18:36:52,846 [1] DEBUG: sk=0
+2021-02-24 18:36:52,846 [1] DEBUG: vk=30
+2021-02-24 18:36:52,847 [1] DEBUG: sk=0
+2021-02-24 18:36:52,847 [1] DEBUG: vk=A0
+2021-02-24 18:36:52,847 [1] DEBUG: sk=0
+2021-02-24 18:36:55,925 [1] DEBUG: vk=A0
+2021-02-24 18:36:55,925 [1] DEBUG: sk=0
+2021-02-24 18:36:55,926 [1] DEBUG: vk=DB
+2021-02-24 18:36:55,926 [1] DEBUG: sk=0
+2021-02-24 18:36:55,926 [1] DEBUG: vk=DB
+2021-02-24 18:36:55,926 [1] DEBUG: sk=0
+2021-02-24 18:36:55,926 [1] DEBUG: vk=DD
+2021-02-24 18:36:55,926 [1] DEBUG: sk=0
+2021-02-24 18:36:55,927 [1] DEBUG: vk=DD
+2021-02-24 18:36:55,927 [1] DEBUG: sk=0
+2021-02-24 18:36:55,927 [1] DEBUG: vk=A0
+2021-02-24 18:36:55,927 [1] DEBUG: sk=0
+2021-02-24 18:37:10,003 [1] DEBUG: vk=25
+2021-02-24 18:37:10,003 [1] DEBUG: sk=0
+2021-02-24 18:37:10,006 [1] DEBUG: vk=25
+2021-02-24 18:37:10,006 [1] DEBUG: sk=0
+2021-02-24 18:37:10,007 [1] DEBUG: vk=A0
+2021-02-24 18:37:10,007 [1] DEBUG: sk=0
+2021-02-24 18:37:51,036 [1] WARN : No such combination
+2021-02-24 18:38:02,356 [1] WARN : No such combination
+2021-02-24 18:39:40,990 [1] INFO : Stop keyboard and mouse hook
+2021-02-24 18:42:26,213 [1] INFO : Loading configuration
+2021-02-24 18:42:26,529 [1] INFO : configuration loaded
+2021-02-24 18:42:26,562 [1] INFO : Loading configuration
+2021-02-24 18:42:26,678 [1] INFO : configuration loaded
+2021-02-24 18:42:26,685 [1] INFO : Keyboard hook started
+2021-02-24 18:42:26,690 [1] INFO : Keyboard hook started
+2021-02-24 18:42:30,694 [1] INFO : Stop keyboard and mouse hook
+2021-02-24 18:42:48,174 [1] INFO : Loading configuration
+2021-02-24 18:42:48,385 [1] INFO : configuration loaded
+2021-02-24 18:42:48,385 [1] INFO : Keyboard hook started
+2021-02-24 18:42:48,385 [1] INFO : Keyboard hook started
+2021-02-24 18:43:27,542 [1] INFO : Stop keyboard and mouse hook
+2021-02-24 18:47:43,364 [1] INFO : Loading configuration
+2021-02-24 18:47:43,596 [1] INFO : configuration loaded
+2021-02-24 18:47:43,629 [1] INFO : Loading configuration
+2021-02-24 18:47:43,634 [1] INFO : configuration loaded
+2021-02-24 18:47:43,640 [1] INFO : Keyboard hook started
+2021-02-24 18:47:43,644 [1] INFO : Keyboard hook started
+2021-02-24 18:47:56,553 [1] DEBUG: vk=A0
+2021-02-24 18:47:56,553 [1] DEBUG: sk=0
+2021-02-24 18:47:56,553 [1] DEBUG: vk=BC
+2021-02-24 18:47:56,553 [1] DEBUG: sk=0
+2021-02-24 18:47:56,553 [1] DEBUG: vk=BC
+2021-02-24 18:47:56,553 [1] DEBUG: sk=0
+2021-02-24 18:47:56,553 [1] DEBUG: vk=BE
+2021-02-24 18:47:56,553 [1] DEBUG: sk=0
+2021-02-24 18:47:56,554 [1] DEBUG: vk=BE
+2021-02-24 18:47:56,554 [1] DEBUG: sk=0
+2021-02-24 18:47:56,554 [1] DEBUG: vk=A0
+2021-02-24 18:47:56,554 [1] DEBUG: sk=0
+2021-02-24 18:54:31,731 [1] INFO : Loading configuration
+2021-02-24 18:54:32,048 [1] INFO : configuration loaded
+2021-02-24 18:54:32,090 [1] INFO : Loading configuration
+2021-02-24 18:54:32,201 [1] INFO : configuration loaded
+2021-02-24 18:54:32,207 [1] INFO : Keyboard hook started
+2021-02-24 18:54:32,217 [1] INFO : Keyboard hook started
+2021-02-24 18:54:40,578 [1] DEBUG: vk=A0
+2021-02-24 18:54:40,578 [1] DEBUG: sk=0
+2021-02-24 18:54:40,579 [1] DEBUG: vk=BC
+2021-02-24 18:54:40,579 [1] DEBUG: sk=0
+2021-02-24 18:54:40,579 [1] DEBUG: vk=BC
+2021-02-24 18:54:40,579 [1] DEBUG: sk=0
+2021-02-24 18:54:40,580 [1] DEBUG: vk=BE
+2021-02-24 18:54:40,580 [1] DEBUG: sk=0
+2021-02-24 18:54:40,580 [1] DEBUG: vk=BE
+2021-02-24 18:54:40,580 [1] DEBUG: sk=0
+2021-02-24 18:54:40,581 [1] DEBUG: vk=A0
+2021-02-24 18:54:40,581 [1] DEBUG: sk=0
+2021-02-24 18:54:44,683 [1] DEBUG: vk=BF
+2021-02-24 18:54:44,683 [1] DEBUG: sk=0
+2021-02-24 18:54:44,685 [1] DEBUG: vk=BF
+2021-02-24 18:54:44,685 [1] DEBUG: sk=0
+2021-02-24 18:54:44,687 [1] DEBUG: vk=A0
+2021-02-24 18:54:44,687 [1] DEBUG: sk=0
+2021-02-24 18:54:58,285 [1] WARN : No such combination
+2021-02-24 19:48:07,835 [1] INFO : Loading configuration
+2021-02-24 19:48:08,151 [1] INFO : configuration loaded
+2021-02-24 19:48:08,180 [1] INFO : Loading configuration
+2021-02-24 19:48:08,263 [1] INFO : configuration loaded
+2021-02-24 19:48:08,269 [1] INFO : Keyboard hook started
+2021-02-24 19:48:08,274 [1] INFO : Keyboard hook started
+2021-02-24 19:48:26,912 [1] WARN : No such combination
+2021-02-24 21:37:57,841 [1] INFO : Loading configuration
+2021-02-24 21:37:58,210 [1] INFO : configuration loaded
+2021-02-24 21:37:58,246 [1] INFO : Loading configuration
+2021-02-24 21:37:58,340 [1] INFO : configuration loaded
+2021-02-24 21:37:58,347 [1] INFO : Keyboard hook started
+2021-02-24 21:37:58,351 [1] INFO : Keyboard hook started
+2021-02-24 21:38:56,684 [1] INFO : START CONFIG RELOAD
+2021-02-24 21:38:56,684 [1] INFO : Stop keyboard and mouse hook
+2021-02-24 21:38:56,684 [1] INFO : Loading configuration
+2021-02-24 21:41:23,603 [1] INFO : Loading configuration
+2021-02-24 21:41:23,917 [1] INFO : configuration loaded
+2021-02-24 21:41:23,950 [1] INFO : Loading configuration
+2021-02-24 21:41:24,038 [1] INFO : configuration loaded
+2021-02-24 21:41:24,044 [1] INFO : Keyboard hook started
+2021-02-24 21:41:24,048 [1] INFO : Keyboard hook started
+2021-02-24 21:42:48,370 [1] INFO : START CONFIG RELOAD
+2021-02-24 21:42:48,370 [1] INFO : Stop keyboard and mouse hook
+2021-02-24 21:43:07,855 [1] INFO : Loading configuration
+2021-02-24 22:13:48,973 [1] INFO : Loading configuration
+2021-02-24 22:13:49,075 [1] INFO : configuration loaded
+2021-02-24 22:13:49,110 [1] INFO : Loading configuration
+2021-02-24 22:13:49,208 [1] INFO : configuration loaded
+2021-02-24 22:13:49,215 [1] INFO : Keyboard hook started
+2021-02-24 22:13:49,220 [1] INFO : Keyboard hook started
+2021-02-24 22:15:03,984 [1] INFO : START CONFIG RELOAD
+2021-02-24 22:15:03,985 [1] INFO : Stop keyboard and mouse hook
+2021-02-24 22:15:27,542 [1] INFO : Loading configuration
+2021-02-24 22:16:40,914 [1] INFO : configuration loaded
+2021-02-24 22:16:41,028 [1] INFO : Loading configuration
+2021-02-24 22:16:41,033 [1] INFO : configuration loaded
+2021-02-24 22:16:41,033 [1] INFO : Keyboard hook started
+2021-02-24 22:16:41,033 [1] INFO : Keyboard hook started
+2021-02-24 22:16:41,040 [1] INFO : CONFIG RELOAD SUCCESSFULLY ENDS
+2021-02-24 22:16:59,492 [1] WARN : No such combination
+2021-02-24 22:17:01,412 [1] WARN : No such combination
+2021-02-24 22:17:03,964 [1] WARN : No such combination
+2021-02-24 22:17:09,332 [1] WARN : No such combination
+2021-02-24 22:20:55,644 [1] ERROR: Config file is missing
+2021-02-24 22:35:04,183 [1] INFO : Loading configuration
+2021-02-24 22:35:04,193 [1] INFO : configuration loaded
+2021-02-24 22:35:04,230 [1] INFO : Loading configuration
+2021-02-24 22:35:04,232 [1] INFO : configuration loaded
+2021-02-24 22:35:04,238 [1] INFO : Keyboard hook started
+2021-02-24 22:35:04,242 [1] INFO : Keyboard hook started
+2021-02-24 23:25:25,131 [1] INFO : Loading configuration
+2021-02-24 23:25:25,237 [1] INFO : configuration loaded
+2021-02-24 23:25:25,373 [1] INFO : START CONFIG RELOAD
+2021-02-24 23:25:25,374 [1] INFO : Stop keyboard and mouse hook
+2021-02-24 23:25:25,374 [1] INFO : Loading configuration
+2021-02-24 23:25:25,467 [1] INFO : configuration loaded
+2021-02-24 23:25:25,686 [1] INFO : Loading configuration
+2021-02-24 23:25:25,810 [1] INFO : configuration loaded
+2021-02-24 23:25:25,817 [1] INFO : Keyboard hook started
+2021-02-24 23:25:25,824 [1] INFO : Keyboard hook started
+2021-02-24 23:25:25,841 [1] INFO : CONFIG RELOAD SUCCESSFULLY ENDS
+2021-02-24 23:25:25,841 [1] INFO : Loading configuration
+2021-02-24 23:25:25,946 [1] INFO : configuration loaded
+2021-02-24 23:25:25,946 [1] INFO : Keyboard hook started
+2021-02-24 23:25:25,946 [1] INFO : Keyboard hook started
+2021-02-24 23:26:50,922 [1] INFO : Loading configuration
+2021-02-24 23:26:51,044 [1] INFO : configuration loaded
+2021-02-24 23:32:17,344 [1] INFO : Loading configuration
+2021-02-24 23:32:17,452 [1] INFO : configuration loaded
+2021-02-24 23:34:42,890 [1] INFO : Loading configuration
+2021-02-24 23:34:42,997 [1] INFO : configuration loaded
+2021-02-24 23:34:43,142 [1] INFO : START CONFIG RELOAD
+2021-02-24 23:34:43,142 [1] INFO : Stop keyboard and mouse hook
+2021-02-24 23:34:43,142 [1] INFO : Loading configuration
+2021-02-24 23:34:43,245 [1] INFO : configuration loaded
+2021-02-24 23:34:43,482 [1] INFO : Loading configuration
+2021-02-24 23:34:43,591 [1] INFO : configuration loaded
+2021-02-24 23:34:43,597 [1] INFO : Keyboard hook started
+2021-02-24 23:34:43,602 [1] INFO : Keyboard hook started
+2021-02-24 23:34:43,616 [1] INFO : CONFIG RELOAD SUCCESSFULLY ENDS
+2021-02-24 23:34:43,617 [1] INFO : Loading configuration
+2021-02-24 23:34:43,727 [1] INFO : configuration loaded
+2021-02-24 23:34:43,727 [1] INFO : Keyboard hook started
+2021-02-24 23:34:43,727 [1] INFO : Keyboard hook started
+2021-02-24 23:35:02,375 [1] INFO : START CONFIG RELOAD
+2021-02-24 23:35:02,375 [1] INFO : Stop keyboard and mouse hook
+2021-02-24 23:35:02,375 [1] INFO : Loading configuration
+2021-02-24 23:35:02,381 [1] INFO : configuration loaded
+2021-02-24 23:35:02,487 [1] INFO : Loading configuration
+2021-02-24 23:35:02,495 [1] INFO : configuration loaded
+2021-02-24 23:35:02,495 [1] INFO : Keyboard hook started
+2021-02-24 23:35:02,495 [1] INFO : Keyboard hook started
+2021-02-24 23:35:02,500 [1] INFO : CONFIG RELOAD SUCCESSFULLY ENDS
+2021-02-24 23:37:12,409 [1] INFO : Loading configuration
+2021-02-24 23:37:12,420 [1] INFO : configuration loaded
+2021-02-24 23:37:12,462 [1] INFO : Stop keyboard and mouse hook
+2021-02-24 23:37:12,574 [1] INFO : START CONFIG RELOAD
+2021-02-24 23:37:12,574 [1] INFO : Stop keyboard and mouse hook
+2021-02-24 23:37:12,574 [1] INFO : Loading configuration
+2021-02-24 23:37:12,685 [1] INFO : configuration loaded
+2021-02-24 23:37:12,820 [1] INFO : Loading configuration
+2021-02-24 23:37:12,950 [1] INFO : configuration loaded
+2021-02-24 23:37:12,957 [1] INFO : Keyboard hook started
+2021-02-24 23:37:12,984 [1] INFO : Keyboard hook started
+2021-02-24 23:37:13,011 [1] INFO : CONFIG RELOAD SUCCESSFULLY ENDS
+2021-02-24 23:37:13,012 [1] INFO : Loading configuration
+2021-02-24 23:37:13,126 [1] INFO : configuration loaded
+2021-02-24 23:37:13,126 [1] INFO : Keyboard hook started
+2021-02-24 23:37:13,126 [1] INFO : Keyboard hook started
+2021-02-24 23:37:18,230 [1] INFO : Stop keyboard and mouse hook
+2021-02-24 23:37:18,237 [1] INFO : START CONFIG RELOAD
+2021-02-24 23:37:18,237 [1] INFO : Stop keyboard and mouse hook
+2021-02-24 23:37:18,237 [1] INFO : Loading configuration
+2021-02-24 23:37:18,243 [1] INFO : configuration loaded
+2021-02-24 23:37:18,346 [1] INFO : Loading configuration
+2021-02-24 23:37:18,353 [1] INFO : configuration loaded
+2021-02-24 23:37:18,354 [1] INFO : Keyboard hook started
+2021-02-24 23:37:18,354 [1] INFO : Keyboard hook started
+2021-02-24 23:37:18,359 [1] INFO : CONFIG RELOAD SUCCESSFULLY ENDS

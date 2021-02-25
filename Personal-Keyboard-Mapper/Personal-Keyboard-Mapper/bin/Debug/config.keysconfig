@@ -1,0 +1,627 @@
+﻿{
+	"CombinationSize":2,
+	"Combinations": 
+	[
+		{
+			"FirstKey": 0,
+			"SecondKey": 0,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": [" "]
+			}
+		},
+		{
+			"FirstKey": 0,
+			"SecondKey": 1,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["crtl", "c"]
+			}
+		},
+		{
+			"FirstKey": 0,
+			"SecondKey": 2,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["alt"]
+			}
+		},
+		{
+			"FirstKey": 0,
+			"SecondKey": 3,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["shift"]
+			}
+		},
+		{
+			"FirstKey": 0,
+			"SecondKey": 4,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["\"\""]
+			}
+		},
+		{
+			"FirstKey": 0,
+			"SecondKey": 5,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["."]
+			}
+		},
+		{
+			"FirstKey": 0,
+			"SecondKey": 7,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["end"]
+			}
+		},
+		{
+			"FirstKey": 0,
+			"SecondKey": 8,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["home"]
+			}
+		},
+		{
+			"FirstKey": 0,
+			"SecondKey": 9,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["shift", "crtl", "esc"]
+			}
+		},
+		{
+			"FirstKey": 1,
+			"SecondKey": 0,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["crtl", "v"]
+			}
+		},
+		{
+			"FirstKey": 1,
+			"SecondKey": 1,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["a"]
+			}
+		},
+		{
+			"FirstKey": 1,
+			"SecondKey": 2,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["z"]
+			}
+		},
+		{
+			"FirstKey": 1,
+			"SecondKey": 3,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["n"]
+			}
+		},
+		{
+			"FirstKey": 1,
+			"SecondKey": 4,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["r"]
+			}
+		},
+		{
+			"FirstKey": 1,
+			"SecondKey": 5,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["w"]
+			}
+		},
+		{
+			"FirstKey": 1,
+			"SecondKey": 7,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["h"]
+			}
+		},
+		{
+			"FirstKey": 1,
+			"SecondKey": 9,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["q"]
+			}
+		},
+		{
+			"FirstKey": 2,
+			"SecondKey": 0,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["crtl"]
+			}
+		},
+		{
+			"FirstKey": 2,
+			"SecondKey": 1,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["c"]
+			}
+		},
+		{
+			"FirstKey": 2,
+			"SecondKey": 2,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["e"]
+			}
+		},
+		{
+			"FirstKey": 2,
+			"SecondKey": 3,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["s"]
+			}
+		},
+		{
+			"FirstKey": 2,
+			"SecondKey": 4,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["d"]
+			}
+		},
+		{
+			"FirstKey": 2,
+			"SecondKey": 5,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["k"]
+			}
+		},
+		{
+			"FirstKey": 2,
+			"SecondKey": 7,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["g"]
+			}
+		},
+		{
+			"FirstKey": 2,
+			"SecondKey": 8,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["ins"]
+			}
+		},
+		{
+			"FirstKey": 2,
+			"SecondKey": 9,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["v"]
+			}
+		},
+		{
+			"FirstKey": 3,
+			"SecondKey": 0,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": [";"]
+			}
+		},
+		{
+			"FirstKey": 3,
+			"SecondKey": 1,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["m"]
+			}
+		},
+		{
+			"FirstKey": 3,
+			"SecondKey": 2,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["t"]
+			}
+		},
+		{
+			"FirstKey": 3,
+			"SecondKey": 3,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["i"]
+			}
+		},
+		{
+			"FirstKey": 3,
+			"SecondKey": 4,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["j"]
+			}
+		},
+		{
+			"FirstKey": 3,
+			"SecondKey": 5,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["l"]
+			}
+		},
+		{
+			"FirstKey": 3,
+			"SecondKey": 7,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["f"]
+			}
+		},
+		{
+			"FirstKey": 3,
+			"SecondKey": 8,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["x"]
+			}
+		},
+		{
+			"FirstKey": 4,
+			"SecondKey": 0,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["''"]
+			}
+		},
+		{
+			"FirstKey": 4,
+			"SecondKey": 1,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["()"]
+			}
+		},
+		{
+			"FirstKey": 4,
+			"SecondKey": 2,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["{}"]
+			}
+		},
+		{
+			"FirstKey": 4,
+			"SecondKey": 3,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["[]"]
+			}
+		},
+		{
+			"FirstKey": 4,
+			"SecondKey": 4,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["o"]
+			}
+		},
+		{
+			"FirstKey": 4,
+			"SecondKey": 5,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["b"]
+			}
+		},
+		{
+			"FirstKey": 5,
+			"SecondKey": 0,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["backslash"]
+			}
+		},
+		{
+			"FirstKey": 5,
+			"SecondKey": 1,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["p"]
+			}
+		},
+		{
+			"FirstKey": 5,
+			"SecondKey": 2,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["tab"]
+			}
+		},
+		{
+			"FirstKey": 5,
+			"SecondKey": 3,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["="]
+			}
+		},
+		{
+			"FirstKey": 5,
+			"SecondKey": 4,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["y"]
+			}
+		},
+		{
+			"FirstKey": 5,
+			"SecondKey": 5,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["u"]
+			}
+		},
+		{
+			"FirstKey": 6,
+			"SecondKey": 1,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["up"]
+			}
+		},
+		{
+			"FirstKey": 6,
+			"SecondKey": 2,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["down"]
+			}
+		},
+		{
+			"FirstKey": 6,
+			"SecondKey": 3,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["left"]
+			}
+		},
+		{
+			"FirstKey": 6,
+			"SecondKey": 4,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["right"]
+			}
+		},
+		{
+			"FirstKey": 7,
+			"SecondKey": 0,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["0"]
+			}
+		},
+		{
+			"FirstKey": 7,
+			"SecondKey": 1,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["1"]
+			}
+		},
+		{
+			"FirstKey": 7,
+			"SecondKey": 2,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["2"]
+			}
+		},
+		{
+			"FirstKey": 7,
+			"SecondKey": 3,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["3"]
+			}
+		},
+		{
+			"FirstKey": 7,
+			"SecondKey": 4,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["4"]
+			}
+		},
+		{
+			"FirstKey": 7,
+			"SecondKey": 5,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["5"]
+			}
+		},
+		{
+			"FirstKey": 7,
+			"SecondKey": 6,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["6"]
+			}
+		},
+		{
+			"FirstKey": 7,
+			"SecondKey": 7,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["7"]
+			}
+		},
+		{
+			"FirstKey": 7,
+			"SecondKey": 8,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["8"]
+			}
+		},
+		{
+			"FirstKey": 7,
+			"SecondKey": 9,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["9"]
+			}
+		},
+		{
+			"FirstKey": 8,
+			"SecondKey": 8,
+			"Action": 
+			{
+				"Type": "mouse",
+				"OutputVirtualKeys": ["rdclick"]
+			}
+		},
+		{
+			"FirstKey": 8,
+			"SecondKey": 9,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["win"]
+			}
+		},
+		{
+			"FirstKey": 9,
+			"SecondKey": 1,
+			"Action": 
+			{
+				"Type": "mouse",
+				"OutputVirtualKeys": ["lclick"]
+			}
+		},
+		{
+			"FirstKey": 9,
+			"SecondKey": 2,
+			"Action": 
+			{
+				"Type": "mouse",
+				"OutputVirtualKeys": ["rclick"]
+			}
+		},
+		{
+			"FirstKey": 9,
+			"SecondKey": 3,
+			"Action": 
+			{
+				"Type": "mouse",
+				"OutputVirtualKeys": ["lhclick"]
+			}
+		},
+		{
+			"FirstKey": 9,
+			"SecondKey": 4,
+			"Action": 
+			{
+				"Type": "mouse",
+				"OutputVirtualKeys": ["rhclick"]
+			}
+		},
+		{
+			"FirstKey": 9,
+			"SecondKey": 7,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["?"]
+			}
+		},
+		{
+			"FirstKey": 9,
+			"SecondKey": 8,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["<>"]
+			}
+		},
+		{
+			"FirstKey": 9,
+			"SecondKey": 9,
+			"Action": 
+			{
+				"Type": "keyboard",
+				"OutputVirtualKeys": ["`"]
+			}
+		}
+	]
+}
