@@ -17,30 +17,50 @@ namespace Personal_Keyboard_Mapper.Lib.Converters
     public class OutputKeysConverter : JsonConverter<IEnumerable<VirtualKeyCode>>
     {
         private Dictionary<string, VirtualKeyCode> keyboardCommandsDict;
-        private Dictionary<string, (MouseButtonAction mouseButtonAction, IEnumerable<VirtualKeyCode> mouseVirtualKeyCodes)> mouseCommandsDict;
-        private List<(string sign, VirtualKeyCode[] keys)> bracesKeyCodes;
+        private Dictionary<string, (MouseButtonAction mouseButtonAction, IEnumerable<VirtualKeyCode> mouseVirtualKeyCodes)> mouseCommandsDict; 
         private IEnumerable<string> leftArrowRequireStrings;
         public OutputKeysConverter()
         {
             SetKeyboardCommandsDict();
-            SetMouseCommandsDict();
-            SetBracesList();
+            SetMouseCommandsDict(); 
             SetLeftArrowRequireStringList();
         }
 
         public override void WriteJson(JsonWriter writer, IEnumerable<VirtualKeyCode> value, JsonSerializer serializer)
         {
+            var keyString = "";
             foreach (var key in value.Select(x => x.ToString()))
             {
                 if (key.StartsWith("VK_") || key.StartsWith("NUMPAD"))
                 {
-                    var character = key.ToLower().Last();
-                    writer.WriteValue(character);
+                    keyString = key.ToLower().Last().ToString();
+                    writer.WriteValue(keyString);
                 }
                 else
                 {
-                    writer.WriteValue(key.ToLower());
+                    keyString = Globals.OpenCloseBrackets
+                        .Where(x => x.keys.SequenceEqual(value))
+                        .Select(x => x.sign)
+                        .FirstOrDefault();
+                    if (!string.IsNullOrEmpty(keyString))
+                    {
+                        writer.WriteValue(keyString);
+                        break;
+                    }
+                    else
+                    {
+                        keyString = keyboardCommandsDict
+                            .Where(x => x.Value.ToString() == key)
+                            .Select(x => x.Key)
+                            .FirstOrDefault();
+                        if (!string.IsNullOrEmpty(keyString))
+                        {
+                            writer.WriteValue(keyString);
+                        }
+                    }
                 }
+
+                keyString = "";
             }
         }
 
@@ -58,7 +78,8 @@ namespace Personal_Keyboard_Mapper.Lib.Converters
                 if (stringKey.Length == 1)
                 {
                     var charKey = stringKey[0];
-                    var bracket = bracesKeyCodes.FirstOrDefault(x => x.sign == charKey.ToString());
+                    var bracket = Globals.BracketsKeyCodes
+                        .FirstOrDefault(x => x.sign == charKey.ToString());
                     if (!bracket.Equals(default))
                     {
                         result.AddRange(bracket.keys);
@@ -95,7 +116,7 @@ namespace Personal_Keyboard_Mapper.Lib.Converters
         /// <param name="charKey">The character key.</param>
         /// <param name="culture">The culture.</param>
         /// <returns>List of <see cref="VirtualKeyCode"/>, which represents a converted character</returns>
-        private static IEnumerable<VirtualKeyCode> CharToVirtualCode(char charKey, CultureInfo culture)
+        public static IEnumerable<VirtualKeyCode> CharToVirtualCode(char charKey, CultureInfo culture)
         {
             List<VirtualKeyCode> result = new List<VirtualKeyCode>();
             using (var keyboardLayout = new KeyboardLayoutScope(culture))
@@ -133,6 +154,7 @@ namespace Personal_Keyboard_Mapper.Lib.Converters
         {
             keyboardCommandsDict = new Dictionary<string, VirtualKeyCode>()
             {
+                [ConfigurationManager.AppSettings["spaceAlias"]] = VirtualKeyCode.SPACE,
                 [ConfigurationManager.AppSettings["enterAlias"]] = VirtualKeyCode.RETURN,
                 [ConfigurationManager.AppSettings["shiftAlias"]] = VirtualKeyCode.SHIFT,
                 [ConfigurationManager.AppSettings["crtlAlias"]] = VirtualKeyCode.CONTROL,
@@ -146,9 +168,11 @@ namespace Personal_Keyboard_Mapper.Lib.Converters
                 [ConfigurationManager.AppSettings["tabAlias"]] = VirtualKeyCode.TAB,
                 [ConfigurationManager.AppSettings["delAlias"]] = VirtualKeyCode.DELETE,
                 [ConfigurationManager.AppSettings["insAlias"]] = VirtualKeyCode.INSERT,
-                [ConfigurationManager.AppSettings["backslashAlias"]] = VirtualKeyCode.OEM_102,
+                [ConfigurationManager.AppSettings["backslashAlias"]] = VirtualKeyCode.OEM_102, 
                 [ConfigurationManager.AppSettings["homeAlias"]] = VirtualKeyCode.HOME,
-                [ConfigurationManager.AppSettings["endAlias"]] = VirtualKeyCode.END
+                [ConfigurationManager.AppSettings["endAlias"]] = VirtualKeyCode.END,
+                [ConfigurationManager.AppSettings["priorAlias"]] = VirtualKeyCode.PRIOR,
+                [ConfigurationManager.AppSettings["nextAlias"]] = VirtualKeyCode.NEXT
             };
             for (int i = (int)VirtualKeyCode.F1; i <= (int)VirtualKeyCode.F12; i++)
             {
@@ -206,21 +230,6 @@ namespace Personal_Keyboard_Mapper.Lib.Converters
                     VirtualKeyCode.MBUTTON
                 })
             }; 
-        }
-
-        private void SetBracesList()
-        {
-            bracesKeyCodes = new List<(string sign, VirtualKeyCode[] keys)>()
-            {
-                ("(", new[] {VirtualKeyCode.SHIFT, VirtualKeyCode.VK_9}),
-                (")", new[] {VirtualKeyCode.SHIFT, VirtualKeyCode.VK_0}),
-                ("[", new[] {VirtualKeyCode.OEM_4}),
-                ("]", new[] {VirtualKeyCode.OEM_6}),
-                ("{", new[] {VirtualKeyCode.SHIFT, VirtualKeyCode.OEM_4}),
-                ("}", new[] {VirtualKeyCode.SHIFT, VirtualKeyCode.OEM_6}),
-                ("<", new[] {VirtualKeyCode.SHIFT, VirtualKeyCode.DECIMAL}),
-                (">", new[] {VirtualKeyCode.SHIFT, VirtualKeyCode.OEM_COMMA}),
-            };
         }
 
         private void SetLeftArrowRequireStringList()

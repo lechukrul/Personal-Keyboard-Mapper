@@ -16,23 +16,26 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         public string ConfigString { get; set; }
 
         public string ConfigFilePath { get; set; }
-        public JsonConfigSource(string path)
+        public JsonConfigSource(ILog log)
         {
-            ConfigFilePath = path;
-            ReadConfigStringFromFile(ConfigFilePath);
+            logger = log;
         }
 
         public JsonConfigSource(ILog log, string path)
         {
-            logger = log;
-            ConfigFilePath = path;
-            ReadConfigStringFromFile(ConfigFilePath);
+            logger = log; 
+            ReadConfigFromFile(path);
         }
 
-        private void ReadConfigStringFromFile(string path)
+        public KeyCombinationsConfiguration ReadConfigFromFile(string path = "")
         {
-            ConfigString = (String.Join("", File.ReadLines(path))
+            if (!string.IsNullOrEmpty(path))
+            {
+                ConfigFilePath = path;
+            }
+            ConfigString = (String.Join("", File.ReadLines(ConfigFilePath))
                 .Replace("\\\"", "/'"));
+            return ReadConfigFromString(ConfigString);
         }
 
 
@@ -70,9 +73,9 @@ namespace Personal_Keyboard_Mapper.Lib.Model
             throw new NotImplementedException();
         }
 
-        public void WriteConfigToString(KeyCombinationsConfiguration configuration, string configFileName = "")
+        public void WriteConfigToFile(KeyCombinationsConfiguration configuration, string configFileName = "")
         {
-            if (configFileName != "")
+            if (!string.IsNullOrEmpty(configFileName))
             {
                 ConfigFilePath = configFileName; 
             }
@@ -80,9 +83,11 @@ namespace Personal_Keyboard_Mapper.Lib.Model
             var result = JsonConvert.SerializeObject(configuration, new JsonSerializerSettings()
             {
                 Formatting = Formatting.Indented,
-                Converters = new List<JsonConverter>(){new CombinationsConfigurationConverter()}
+                Converters = new List<JsonConverter>(){new CombinationsConfigurationConverter()},
+                PreserveReferencesHandling = PreserveReferencesHandling.All
+
             });
-            using (var file = File.CreateText("config.txt"))
+            using (var file = File.CreateText(configFileName))
             {
                 file.Write(result.ToCharArray());
             }

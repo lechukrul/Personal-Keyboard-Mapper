@@ -34,6 +34,65 @@ namespace Personal_Keyboard_Mapper.Lib.Converters
             {
                 throw new ConfigurationException(ConfigurationManager.AppSettings["DuplicateConfigError"]);
             }
+
+            writer.WriteStartObject();
+
+            writer.WritePropertyName(nameof(value.CombinationSize));
+            serializer.Serialize(writer, value.CombinationSize); 
+
+            writer.WritePropertyName(nameof(value.Combinations));
+            writer.WriteStartArray();
+
+            WriteCombinationsNode(writer, serializer, value);
+
+            writer.WriteEndArray();
+
+            writer.WriteEndObject();
+        }
+
+        private void WriteCombinationsNode(JsonWriter writer, JsonSerializer serializer, KeyCombinationsConfiguration value)
+        {
+            foreach (var combination in value.Combinations)
+            {
+                writer.WriteStartObject();
+
+                writer.WritePropertyName("FirstKey");
+                serializer.Serialize(writer, int.Parse(((TwoKeysCombination)combination).FirstKeyVirtualCode));
+
+                writer.WritePropertyName("SecondKey");
+                serializer.Serialize(writer, int.Parse(((TwoKeysCombination)combination).SecondKeyVirtualCode));
+                
+                if (value.CombinationSize == 3)
+                {
+                    writer.WritePropertyName("ThirdKey");
+                    serializer.Serialize(writer, int.Parse(((ThreeKeysCombination)combination).ThirdKeyVirtualCode));
+                }
+
+                WriteCombinationActionNode(writer, serializer, combination);
+
+                writer.WriteEndObject();
+            }
+        }
+
+        private static void WriteCombinationActionNode(JsonWriter writer, JsonSerializer serializer,
+            IKeyCombination combination)
+        {
+            writer.WritePropertyName(nameof(combination.Action));
+
+            writer.WriteStartObject();
+
+            writer.WritePropertyName(nameof(combination.Action.Type));
+            serializer.Serialize(writer, combination.Action.Type.ToString());
+
+            writer.WritePropertyName("OutputVirtualKeys");
+            writer.WriteStartArray();
+
+            serializer.Converters.Add(new OutputKeysConverter());
+            serializer.Serialize(writer, combination.Action.VirtualKeys);
+
+            writer.WriteEndArray();
+
+            writer.WriteEndObject();
         }
 
         public override KeyCombinationsConfiguration ReadJson(JsonReader reader, Type objectType,

@@ -253,6 +253,24 @@ namespace Personal_Keyboard_Mapper.Lib.Model
                    key == VirtualKeyCode.LMENU || key == VirtualKeyCode.RWIN || key == VirtualKeyCode.LWIN;
         }
 
+        /// <summary>
+        /// Gets the action modification keys.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<VirtualKeyCode> GetActionModKeys()
+        {
+            return VirtualKeys.Where(x => IsModKey(x));
+        }
+
+        /// <summary>
+        /// Gets the action no modification keys.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<VirtualKeyCode> GetActionNoModKeys()
+        {
+            return VirtualKeys.Where(x => !IsModKey(x));
+        }
+
         public bool Run()
         {
             IOutputAction action;
@@ -265,15 +283,15 @@ namespace Personal_Keyboard_Mapper.Lib.Model
                 switch (Type)
                 {
                     case ActionType.Keyboard: 
-                        action = new KeyboardAction(); 
-                        modKeys = VirtualKeys.Where(x => IsModKey(x));
-                        noModKeys = VirtualKeys.Where(x => !IsModKey(x)); 
+                        action = new KeyboardAction();
+                        modKeys = GetActionModKeys();
+                        noModKeys = GetActionNoModKeys(); 
                         action.SendKeyboardAction(new InputSimulator(), modKeys, noModKeys);
                         return action.OnlyModKeyAction;
                     case ActionType.Mouse:
                         action = new MouseAction();
-                        modKeys = VirtualKeys.Where(x => IsModKey(x));
-                        noModKeys = VirtualKeys.Where(x => !IsModKey(x));
+                        modKeys = GetActionModKeys();
+                        noModKeys = GetActionNoModKeys();
                         action.SendMouseAction(new InputSimulator(), modKeys, noModKeys);
                         return action.OnlyModKeyAction;
                     default:

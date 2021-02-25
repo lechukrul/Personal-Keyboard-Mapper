@@ -14,7 +14,7 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
     /// <summary>
     /// an implementation of mouse hook used in this app.
     /// </summary>
-    public class MouseHook : IHook
+    public class MouseHook : IHook, IDisposable
     {
         public delegate IntPtr MouseHookProc(int code, int wParam, ref MouseHookStructure.HookStruct lParam);
 
@@ -138,13 +138,18 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
             }
 
             mouseHookHandler = ApiFunctions.SetWindowsHookEx(HookType.WH_MOUSE_LL, mouseHookProc, hInstance, 0);
-            logger.Info("Keyboard hook started");
+            logger.Info("Mouse hook started");
 
         }
 
         public void StopHook()
         {
                 ApiFunctions.UnhookWindowsHookEx(mouseHookHandler);
+        }
+
+        public void Dispose()
+        {
+
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Personal_Keyboard_Mapper.Lib.Interfaces
         public ILog logger { get; set; }
 
         public string ConfigString { get; set; }
+        public string ConfigFilePath { get; set; }
 
         /// <summary>
         /// Reads the configuration from string.
@@ -28,11 +29,17 @@ namespace Personal_Keyboard_Mapper.Lib.Interfaces
             DbSet config);
 
         /// <summary>
+        /// Reads the configuration from file.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        KeyCombinationsConfiguration ReadConfigFromFile(string path = "");
+
+        /// <summary>
         /// Writes the configuration to string.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
         /// <param name="configString">The source.</param> 
-        void WriteConfigToString(KeyCombinationsConfiguration configuration, string configString = "");
+        void WriteConfigToFile(KeyCombinationsConfiguration configuration, string configString = "");
 
         /// <summary>
         /// Writes the configuration To database set.

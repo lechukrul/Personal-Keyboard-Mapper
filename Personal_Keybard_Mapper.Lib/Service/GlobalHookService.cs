@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using log4net;
 using Personal_Keyboard_Mapper.Lib.Enums;
 using Personal_Keyboard_Mapper.Lib.Hooks;
@@ -40,20 +41,14 @@ namespace Personal_Keyboard_Mapper.Lib.Service
             }
 
             logger.Info("Loading configuration");
-            combinationsConfig = configSource.ReadConfigFromString();
+            combinationsConfig = configSource.ReadConfigFromFile();
             logger.Info("configuration loaded");
         }
 
         public void StartHookService(IConfigSource config = null, ActionType actionHookType = ActionType.Both)
         {
-            try
-            {
-                LoadCombinationsConfiguration(config); 
-            }
-            catch (Exception e)
-            {
-                logger.Error(e.StackTrace);
-            }
+            LoadCombinationsConfiguration(config);
+
             switch (actionHookType)
             {
                 case ActionType.Keyboard:
@@ -67,7 +62,6 @@ namespace Personal_Keyboard_Mapper.Lib.Service
                     MouseHook = new MouseHook(logger);
                     break;
             }
-
             KeyboardHook?.StartHook();
             MouseHook?.StartHook();
         }
@@ -90,6 +84,8 @@ namespace Personal_Keyboard_Mapper.Lib.Service
                     MouseHook?.StopHook();
                     break;
             }
+            KeyboardHook = null;
+            MouseHook = null;
         }
     }
 }

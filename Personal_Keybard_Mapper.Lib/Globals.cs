@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using WindowsInput;
 using WindowsInput.Native;
 
@@ -107,6 +109,42 @@ namespace Personal_Keyboard_Mapper.Lib
             VirtualKeyCode.VK_8,
             VirtualKeyCode.VK_9
         };
+
+        public static List<(string sign, VirtualKeyCode[] keys)> BracketsKeyCodes { get; } = new List<(string sign, VirtualKeyCode[] keys)>()
+        {
+            ("(", new[] {VirtualKeyCode.SHIFT, VirtualKeyCode.VK_9}),
+            (")", new[] {VirtualKeyCode.SHIFT, VirtualKeyCode.VK_0}),
+            ("[", new[] {VirtualKeyCode.OEM_4}),
+            ("]", new[] {VirtualKeyCode.OEM_6}),
+            ("{", new[] {VirtualKeyCode.SHIFT, VirtualKeyCode.OEM_4}),
+            ("}", new[] {VirtualKeyCode.SHIFT, VirtualKeyCode.OEM_6}),
+            ("<", new[] {VirtualKeyCode.SHIFT, VirtualKeyCode.OEM_COMMA}),
+            (">", new[] {VirtualKeyCode.SHIFT, VirtualKeyCode.OEM_PERIOD}),
+        };
+
+        public static IEnumerable<(string sign, VirtualKeyCode[] keys)> OpenCloseBrackets
+        {
+            get { return _OpenCloseBracketsList(); }
+        }
+
+        private static IEnumerable<(string sign, VirtualKeyCode[] keys)> _OpenCloseBracketsList()
+        {
+            var roundBracketsKeysCodes = BracketsKeyCodes[0].keys.ToList();
+            roundBracketsKeysCodes.AddRange(BracketsKeyCodes[1].keys);
+            var squareBracesKeysCodes = BracketsKeyCodes[2].keys.ToList();
+            squareBracesKeysCodes.AddRange(BracketsKeyCodes[3].keys);
+            var curlyBracketsKeysCodes = BracketsKeyCodes[4].keys.ToList();
+            curlyBracketsKeysCodes.AddRange(BracketsKeyCodes[5].keys);
+            var angleBracesKeysCodes = BracketsKeyCodes[6].keys.ToList();
+            angleBracesKeysCodes.AddRange(BracketsKeyCodes[7].keys);
+            return new List<(string sign, VirtualKeyCode[] keys)>()
+            {
+                ("()", roundBracketsKeysCodes.ToArray()),
+                ("{}", curlyBracketsKeysCodes.ToArray()),
+                ("[]", squareBracesKeysCodes.ToArray()),
+                ("<>", angleBracesKeysCodes.ToArray()),
+            };
+        }
 
         /// <summary>
         /// Gets the mod keys to press once.
