@@ -35,6 +35,7 @@ namespace Personal_Keyboard_Mapper
         private Array actionItems;
         private int currentRowIndex;
         private int currentColumnIndex;
+        private bool keyActionPanelVisible = true;
         ComponentResourceManager resources = new ComponentResourceManager(typeof(ConfigEditor));
         public ConfigEditor(ILog log, MainWindow form)
         {
@@ -48,7 +49,7 @@ namespace Personal_Keyboard_Mapper
             combinationsConfiguration.CombinationSize = 2;
             InitializeComponent();
         }
-        public ConfigEditor(ILog log, MainWindow form, KeyCombinationsConfiguration configuration)
+        public ConfigEditor(ILog log, MainWindow form, KeyCombinationsConfiguration configuration, string configFileName)
         {
             logger = log;
             mainWindow = form;
@@ -58,6 +59,8 @@ namespace Personal_Keyboard_Mapper
             currentCombination = new TwoKeysCombination();
             newCombinations = configuration.Combinations.ToList();
             InitializeComponent();
+            this.ConfigNameTxtBox.Text = configFileName.Split('.')[0];
+            newConfigName = configFileName; 
         }
 
         private static Keys[] ActionComboBoxKeys()
@@ -83,34 +86,28 @@ namespace Personal_Keyboard_Mapper
             ActionComboBox.DisplayMember = "A";
             Helper.AddNumericRowsToGrid(ConfigGrid);
             ShowConfigPanel(false);
-        }
-
-        private void FillRow()
-        {
-            var numItems = Globals.NumericKeypadVirtualKeyCodes
-                .Select(x => x.ToString())
-                .Select(x => x.Last())
-                .ToArray();
-            if (ConfigGrid.RowCount > 0 && ConfigGrid.SelectedRows[0] != null)
+            if (!string.IsNullOrEmpty(this.ConfigNameTxtBox.Text))
             {
-                var firstKeyCell = (DataGridViewComboBoxCell) ConfigGrid.SelectedRows[0].Cells[0];
-                var secondKeyCell = (DataGridViewComboBoxCell) ConfigGrid.SelectedRows[0].Cells[1];
+                logger.Info("Load combination for edit");
+                Helper.FillCombinationsTable(logger, this.ConfigGrid, combinationsConfiguration);
             }
         }
-
+         
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             AltCheckBox.Checked = false;
             CrtlCheckBox.Checked = false;
             ShiftCheckBox.Checked = false;
+            KeyActionPanel.Visible = keyActionPanelVisible;
+            TextActionPanel.Visible = !keyActionPanelVisible;
             ActionComboBox.ResetText();
             currentRowIndex = e.RowIndex;
             currentColumnIndex = e.ColumnIndex;
             if (currentRowIndex >= 0 && currentColumnIndex >= 0)
             {
                 ShowConfigPanel(true);
-                var firstKey = new KeyboardKey(Globals.NumericKeypadVirtualKeyCodes.ElementAt(currentRowIndex), KeyCombinationPosition.First);
-                var SecondKey = new KeyboardKey(Globals.NumericKeypadVirtualKeyCodes.ElementAt(currentColumnIndex), KeyCombinationPosition.First);
+                var firstKey = new KeyboardKey(Globals.NumericVirtualKeyCodes.ElementAt(currentRowIndex), KeyCombinationPosition.First);
+                var SecondKey = new KeyboardKey(Globals.NumericVirtualKeyCodes.ElementAt(currentColumnIndex), KeyCombinationPosition.Second);
                 currentCombination = new TwoKeysCombination();
                 currentCombination.Keys = new[] { firstKey, SecondKey };
                 currentCombination.logger = logger; 
@@ -132,14 +129,7 @@ namespace Personal_Keyboard_Mapper
         /// <param name="show">if set to <c>true</c> [show].</param>
         private void ShowConfigPanel(bool show)
         {
-            foreach (Control panelControl in ConfigPanel.Controls)
-            {
-                panelControl.Enabled = show;
-            }
-        }
-
-        private void ConfigGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+            ConfigPanel.Visible = show;
         }
 
         private void saveActionBtn_Click(object sender, EventArgs e)
@@ -161,36 +151,55 @@ namespace Personal_Keyboard_Mapper
                 if (!newCombinations.Contains(addedCombination, new KeyCombinationsComparer()))
                 {
                     newCombinations.Add(addedCombination);
-                    var openCloseBrackets = Globals.OpenCloseBrackets
-                        .Where(x => x.keys.SequenceEqual(addedCombination.Action.VirtualKeys))
-                        .Select(x => x.sign)
-                        .FirstOrDefault();
-                    if (!string.IsNullOrEmpty(openCloseBrackets))
-                    {
-                        ConfigGrid.CurrentCell.Value = openCloseBrackets;
-                    }
-                    else
-                    {
-                        ConfigGrid.CurrentCell.Value = cellContent;
-                    }
+                    CellUpdate(addedCombination, cellContent);
                 }
                 else
                 {
-                    MessageBox.Show(Resources.Resources.CombinationExistsMsg);
-                    logger.Error("Duplicate comb error");
+                    var editedConfig = combinationsConfiguration.Combinations
+                        .FirstOrDefault(x => x.Equals(addedCombination));
+                    if (editedConfig != null)
+                    {
+                        editedConfig.Action = addedCombination.Action;
+                        CellUpdate(addedCombination, editedConfig.Action.ToString());
+                    }
+                }
+                {
+                    
                 }
                 currentCombination.Clear();
+            }
+        }
+
+        private void CellUpdate(TwoKeysCombination addedCombination, string cellContent)
+        {
+            var openCloseBrackets = Globals.OpenCloseBrackets
+                .Where(x => x.keys.SequenceEqual(addedCombination.Action.VirtualKeys))
+                .Select(x => x.sign)
+                .FirstOrDefault();
+            if (!string.IsNullOrEmpty(openCloseBrackets))
+            {
+                ConfigGrid.CurrentCell.Value = openCloseBrackets;
+            }
+            else
+            {
+                ConfigGrid.CurrentCell.Value = cellContent.TrimStart('-').ToLowerInvariant();
             }
         }
 
         private void KeyActionRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             TextActionRadioBtn.Checked = !KeyActionRadioBtn.Checked;
+            keyActionPanelVisible = true;
+            KeyActionPanel.Visible = keyActionPanelVisible;
+            TextActionPanel.Visible = !keyActionPanelVisible;
         }
 
         private void TextActionRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             KeyActionRadioBtn.Checked = !TextActionRadioBtn.Checked;
+            keyActionPanelVisible = false;
+            KeyActionPanel.Visible = keyActionPanelVisible;
+            TextActionPanel.Visible = !keyActionPanelVisible;
         }
 
         private void ActionComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -213,7 +222,7 @@ namespace Personal_Keyboard_Mapper
 
             action.VirtualKeys = new List<VirtualKeyCode>() {actionKey};
             action.ActionStringKeys = new List<string>(){actionKey.ToString()};
-            currentCombination.Action = action;
+            currentCombination.Action = action; 
         }
 
         private void ActionTextBox_Leave(object sender, EventArgs e)
@@ -354,13 +363,14 @@ namespace Personal_Keyboard_Mapper
                 combinationsConfiguration.Combinations = newCombinations;
                 try
                 {
-                    if (!File.Exists(newConfigName))
+                    var newConfigFileName = newConfigName + ".keysconfig";
+                    if (!File.Exists(newConfigFileName))
                     {
-                        File.Create(newConfigName);
+                        File.Create(newConfigFileName);
                         logger.Info("Create new config file");
                     }
                     var configSource = new JsonConfigSource(logger);
-                    configSource.WriteConfigToFile(combinationsConfiguration, newConfigName);
+                    configSource.WriteConfigToFile(combinationsConfiguration, newConfigFileName);
                     mainWindow.ReloadConfig(configSource);
                     this.Close();
                 }
@@ -371,5 +381,38 @@ namespace Personal_Keyboard_Mapper
             }
         }
 
+        //private void KeyActionPanel_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    keyActionPanelVisible = true;
+        //    KeyActionPanel.Visible = keyActionPanelVisible;
+        //    TextActionPanel.Visible = !keyActionPanelVisible;
+        //}
+
+        //private void KeyActionPanel_MouseHover(object sender, EventArgs e)
+        //{ 
+        //    KeyActionRadioBtn.ForeColor = Color.DeepSkyBlue;
+        //}
+
+        //private void KeyActionPanel_MouseLeave(object sender, EventArgs e)
+        //{
+        //    KeyActionRadioBtn.ForeColor = default;
+        //}
+
+        //private void TextActionPanel_MouseHover(object sender, EventArgs e)
+        //{
+        //    TextActionRadioBtn.ForeColor = Color.DeepSkyBlue;
+        //}
+
+        //private void TextActionPanel_MouseLeave(object sender, EventArgs e)
+        //{
+        //    TextActionRadioBtn.ForeColor = default;
+        //}
+
+        //private void TextActionPanel_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    keyActionPanelVisible = false;
+        //    KeyActionPanel.Visible = keyActionPanelVisible;
+        //    TextActionPanel.Visible = !keyActionPanelVisible;
+        //}
     }
 }

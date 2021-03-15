@@ -84,6 +84,8 @@ namespace Personal_Keyboard_Mapper
             // SoundChckBox
             // 
             resources.ApplyResources(this.SoundChckBox, "SoundChckBox");
+            this.SoundChckBox.Checked = true;
+            this.SoundChckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SoundChckBox.Name = "SoundChckBox";
             this.SoundChckBox.UseVisualStyleBackColor = true;
             this.SoundChckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
@@ -273,32 +275,6 @@ namespace Personal_Keyboard_Mapper
         private Button EditConfigBtn;
         private Button NewConfigBtn;
         #endregion
-        public void FillCombinationsTable(KeyCombinationsConfiguration loadedConfiguration)
-        {
-            if (loadedConfiguration == null)
-            {
-                logger.Warn(ConfigurationManager.AppSettings["NoConfigurationLoadedError"]);
-                MessageBox.Show(ConfigurationManager.AppSettings["NoConfigurationLoadedError"]);
-            }
-            else
-            {
-            var combinations = loadedConfiguration.Combinations;
-                for (int i = 0; i < 10; i++)
-                {
-                    for (int j = 0; j < 10; j++)
-                    {
-                        combinationsTable.Rows[i].Cells[j + 1].Value = "";
-                        var searchedCombination = combinations
-                            .FirstOrDefault(x => x.HasKeys(i.ToString(), j.ToString()));
-                        if (searchedCombination != null)
-                        {
-                            combinationsTable.Rows[i].Cells[j + 1].Value = string.Join(" ",
-                                searchedCombination.Action.ActionStringKeys.ToList());
-                        }
-                    }
-                }
-            }
-        }
 
         private ComboBox ExistingConfigsComboBox;
         private Label label1;

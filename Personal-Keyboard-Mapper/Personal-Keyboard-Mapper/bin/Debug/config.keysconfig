@@ -601,7 +601,7 @@
 			"SecondKey": 7,
 			"Action": 
 			{
-				"Type": "keyboard",
+				"Type": "mouse",
 				"OutputVirtualKeys": ["?"]
 			}
 		},
@@ -610,7 +610,7 @@
 			"SecondKey": 8,
 			"Action": 
 			{
-				"Type": "keyboard",
+				"Type": "mouse",
 				"OutputVirtualKeys": ["<>"]
 			}
 		},
@@ -619,7 +619,7 @@
 			"SecondKey": 9,
 			"Action": 
 			{
-				"Type": "keyboard",
+				"Type": "mouse",
 				"OutputVirtualKeys": ["`"]
 			}
 		}

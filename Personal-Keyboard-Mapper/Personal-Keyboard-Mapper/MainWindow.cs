@@ -34,6 +34,7 @@ namespace Personal_Keyboard_Mapper
             keysSounds = new KeysSoundEffects(logger, Resources.Resources.key1, Resources.Resources.key2,
                 Resources.Resources.ctrl, Resources.Resources.shift, Resources.Resources.win,
                 Resources.Resources.alt);
+            Globals.IsSoundOn = true;
             existingConfigs = new List<string>();
             if (!File.Exists(configFileName))
             {
@@ -62,9 +63,8 @@ namespace Personal_Keyboard_Mapper
             try
             {
                 hookService.StartHookService(config);
-                FillCombinationsTable(hookService.combinationsConfig);
-                startAppBtn.Enabled = false;
-                SoundChckBox.Checked = true;
+                Helper.FillCombinationsTable(logger, this.combinationsTable, hookService.combinationsConfig);
+                startAppBtn.Enabled = false; 
             }
             catch (Exception e)
             {
@@ -105,7 +105,7 @@ namespace Personal_Keyboard_Mapper
                     hookService = new GlobalHookService(logger, config, keysSounds, true);
                 }
                 hookService.StartHookService(config);
-                FillCombinationsTable(hookService.combinationsConfig);
+                Helper.FillCombinationsTable(logger, this.combinationsTable, hookService.combinationsConfig);
                 AddUpdateAppSettings("DefaultConfigFileName", config.ConfigFilePath);
                 logger.Info("CONFIG RELOAD SUCCESSFULLY ENDS");
             }
@@ -180,7 +180,7 @@ namespace Personal_Keyboard_Mapper
 
         private void EditConfigBtn_Click(object sender, EventArgs e)
         {
-            var configEditor = new ConfigEditor(logger, this);
+            var configEditor = new ConfigEditor(logger, this, hookService.combinationsConfig, (string)this.ExistingConfigsComboBox.SelectedItem);
             configEditor.Show();
         }
 

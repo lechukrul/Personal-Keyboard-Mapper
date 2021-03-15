@@ -49,24 +49,24 @@ namespace Personal_Keyboard_Mapper
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ConfigPanel = new System.Windows.Forms.Panel();
             this.saveActionBtn = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.TextActionPanel = new System.Windows.Forms.Panel();
             this.ActionTextBox = new System.Windows.Forms.TextBox();
             this.TextActionRadioBtn = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.KeyActionPanel = new System.Windows.Forms.Panel();
             this.ActionComboBox = new System.Windows.Forms.ComboBox();
             this.CrtlCheckBox = new System.Windows.Forms.CheckBox();
             this.AltCheckBox = new System.Windows.Forms.CheckBox();
             this.ShiftCheckBox = new System.Windows.Forms.CheckBox();
             this.KeyActionRadioBtn = new System.Windows.Forms.RadioButton();
-            this.ConfigNameTxtBox = new Personal_Keyboard_Mapper.Custom_Controls.PlaceHolderTextBox();
             this.windowsInputDeviceStateAdaptorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.inputSimulatorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SaveConfigBtn = new System.Windows.Forms.Button();
+            this.ConfigNameTxtBox = new System.Windows.Forms.TextBox();
             this.ConfigGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConfigGrid)).BeginInit();
             this.ConfigPanel.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.TextActionPanel.SuspendLayout();
+            this.KeyActionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windowsInputDeviceStateAdaptorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputSimulatorBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -208,9 +208,9 @@ namespace Personal_Keyboard_Mapper
             // ConfigPanel
             // 
             this.ConfigPanel.Controls.Add(this.saveActionBtn);
-            this.ConfigPanel.Controls.Add(this.panel2);
+            this.ConfigPanel.Controls.Add(this.TextActionPanel);
             this.ConfigPanel.Controls.Add(this.TextActionRadioBtn);
-            this.ConfigPanel.Controls.Add(this.panel1);
+            this.ConfigPanel.Controls.Add(this.KeyActionPanel);
             this.ConfigPanel.Controls.Add(this.KeyActionRadioBtn);
             this.ConfigPanel.Location = new System.Drawing.Point(53, 77);
             this.ConfigPanel.Name = "ConfigPanel";
@@ -227,13 +227,16 @@ namespace Personal_Keyboard_Mapper
             this.saveActionBtn.UseVisualStyleBackColor = true;
             this.saveActionBtn.Click += new System.EventHandler(this.saveActionBtn_Click);
             // 
-            // panel2
+            // TextActionPanel
             // 
-            this.panel2.Controls.Add(this.ActionTextBox);
-            this.panel2.Location = new System.Drawing.Point(384, 55);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(153, 79);
-            this.panel2.TabIndex = 7;
+            this.TextActionPanel.Controls.Add(this.ActionTextBox);
+            this.TextActionPanel.Location = new System.Drawing.Point(384, 55);
+            this.TextActionPanel.Name = "TextActionPanel";
+            this.TextActionPanel.Size = new System.Drawing.Size(153, 79);
+            this.TextActionPanel.TabIndex = 7;
+            //this.TextActionPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextActionPanel_MouseClick);
+            //this.TextActionPanel.MouseLeave += new System.EventHandler(this.TextActionPanel_MouseLeave);
+            //this.TextActionPanel.MouseHover += new System.EventHandler(this.TextActionPanel_MouseHover);
             // 
             // ActionTextBox
             // 
@@ -254,16 +257,19 @@ namespace Personal_Keyboard_Mapper
             this.TextActionRadioBtn.UseVisualStyleBackColor = true;
             this.TextActionRadioBtn.CheckedChanged += new System.EventHandler(this.TextActionRadioBtn_CheckedChanged);
             // 
-            // panel1
+            // KeyActionPanel
             // 
-            this.panel1.Controls.Add(this.ActionComboBox);
-            this.panel1.Controls.Add(this.CrtlCheckBox);
-            this.panel1.Controls.Add(this.AltCheckBox);
-            this.panel1.Controls.Add(this.ShiftCheckBox);
-            this.panel1.Location = new System.Drawing.Point(61, 52);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(201, 83);
-            this.panel1.TabIndex = 5;
+            this.KeyActionPanel.Controls.Add(this.ActionComboBox);
+            this.KeyActionPanel.Controls.Add(this.CrtlCheckBox);
+            this.KeyActionPanel.Controls.Add(this.AltCheckBox);
+            this.KeyActionPanel.Controls.Add(this.ShiftCheckBox);
+            this.KeyActionPanel.Location = new System.Drawing.Point(61, 52);
+            this.KeyActionPanel.Name = "KeyActionPanel";
+            this.KeyActionPanel.Size = new System.Drawing.Size(201, 83);
+            this.KeyActionPanel.TabIndex = 5;
+            //this.KeyActionPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.KeyActionPanel_MouseClick);
+            //this.KeyActionPanel.MouseLeave += new System.EventHandler(this.KeyActionPanel_MouseLeave);
+            //this.KeyActionPanel.MouseHover += new System.EventHandler(this.KeyActionPanel_MouseHover);
             // 
             // ActionComboBox
             // 
@@ -309,6 +315,7 @@ namespace Personal_Keyboard_Mapper
             // 
             // KeyActionRadioBtn
             // 
+            this.KeyActionRadioBtn.AutoEllipsis = true;
             this.KeyActionRadioBtn.AutoSize = true;
             this.KeyActionRadioBtn.Checked = true;
             this.KeyActionRadioBtn.Location = new System.Drawing.Point(61, 24);
@@ -320,17 +327,6 @@ namespace Personal_Keyboard_Mapper
             this.KeyActionRadioBtn.UseVisualStyleBackColor = true;
             this.KeyActionRadioBtn.CheckedChanged += new System.EventHandler(this.KeyActionRadioBtn_CheckedChanged);
             // 
-            // ConfigNameTxtBox
-            // 
-            this.ConfigNameTxtBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic);
-            this.ConfigNameTxtBox.ForeColor = System.Drawing.Color.Gray;
-            this.ConfigNameTxtBox.Location = new System.Drawing.Point(199, 35);
-            this.ConfigNameTxtBox.Name = "ConfigNameTxtBox";
-            this.ConfigNameTxtBox.PlaceHolderText = null;
-            this.ConfigNameTxtBox.Size = new System.Drawing.Size(100, 22);
-            this.ConfigNameTxtBox.TabIndex = 0;
-            this.ConfigNameTxtBox.Leave += new System.EventHandler(this.ConfigNameTxtBox_Leave);
-            // 
             // SaveConfigBtn
             // 
             this.SaveConfigBtn.Location = new System.Drawing.Point(307, 611);
@@ -341,16 +337,24 @@ namespace Personal_Keyboard_Mapper
             this.SaveConfigBtn.UseVisualStyleBackColor = true;
             this.SaveConfigBtn.Click += new System.EventHandler(this.SaveConfigBtn_Click);
             // 
+            // ConfigNameTxtBox
+            // 
+            this.ConfigNameTxtBox.Location = new System.Drawing.Point(188, 32);
+            this.ConfigNameTxtBox.Name = "ConfigNameTxtBox";
+            this.ConfigNameTxtBox.Size = new System.Drawing.Size(100, 22);
+            this.ConfigNameTxtBox.TabIndex = 5;
+            this.ConfigNameTxtBox.Leave += new System.EventHandler(this.ConfigNameTxtBox_Leave);
+            // 
             // ConfigEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 683);
+            this.Controls.Add(this.ConfigNameTxtBox);
             this.Controls.Add(this.SaveConfigBtn);
             this.Controls.Add(this.ConfigPanel);
             this.Controls.Add(this.ConfigGroupBox);
             this.Controls.Add(this.ConfigNameLabel);
-            this.Controls.Add(this.ConfigNameTxtBox);
             this.Name = "ConfigEditor";
             this.Text = "ConfigEditor";
             this.Load += new System.EventHandler(this.ConfigEditor_Load);
@@ -358,10 +362,10 @@ namespace Personal_Keyboard_Mapper
             ((System.ComponentModel.ISupportInitialize)(this.ConfigGrid)).EndInit();
             this.ConfigPanel.ResumeLayout(false);
             this.ConfigPanel.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.TextActionPanel.ResumeLayout(false);
+            this.TextActionPanel.PerformLayout();
+            this.KeyActionPanel.ResumeLayout(false);
+            this.KeyActionPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windowsInputDeviceStateAdaptorBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputSimulatorBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -370,8 +374,6 @@ namespace Personal_Keyboard_Mapper
         }
 
         #endregion
-
-        private Custom_Controls.PlaceHolderTextBox ConfigNameTxtBox;
         private System.Windows.Forms.Label ConfigNameLabel;
         private System.Windows.Forms.GroupBox ConfigGroupBox;
         private System.Windows.Forms.DataGridView ConfigGrid;
@@ -392,13 +394,14 @@ namespace Personal_Keyboard_Mapper
         private System.Windows.Forms.CheckBox AltCheckBox;
         private System.Windows.Forms.ComboBox ActionComboBox;
         private System.Windows.Forms.RadioButton KeyActionRadioBtn;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel TextActionPanel;
         private System.Windows.Forms.TextBox ActionTextBox;
         private System.Windows.Forms.RadioButton TextActionRadioBtn;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel KeyActionPanel;
         private System.Windows.Forms.Button saveActionBtn;
         private System.Windows.Forms.BindingSource windowsInputDeviceStateAdaptorBindingSource;
         private System.Windows.Forms.BindingSource inputSimulatorBindingSource;
         private System.Windows.Forms.Button SaveConfigBtn;
+        private System.Windows.Forms.TextBox ConfigNameTxtBox;
     }
 }

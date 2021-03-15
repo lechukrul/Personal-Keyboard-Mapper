@@ -1,4 +1,10 @@
-﻿using System.Windows.Forms;
+﻿using log4net.Repository.Hierarchy;
+using Personal_Keyboard_Mapper.Lib.Model;
+using System.Configuration;
+using System.Linq;
+using System.Windows.Forms;
+using log4net;
+using Personal_Keyboard_Mapper.Lib.Extensions;
 
 namespace Personal_Keyboard_Mapper
 {
@@ -13,6 +19,39 @@ namespace Personal_Keyboard_Mapper
             for (int i = 0; i < 10; i++)
             {
                 dataGrid.Rows.Add(i.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Fills the combinations table.
+        /// </summary>
+        /// <param name="logger">The logger.</param>
+        /// <param name="combinationsTable">The combinations table.</param>
+        /// <param name="loadedConfiguration">The loaded configuration.</param>
+        public static void FillCombinationsTable(ILog logger, DataGridView combinationsTable, KeyCombinationsConfiguration loadedConfiguration)
+        {
+            if (loadedConfiguration == null)
+            {
+                logger.Warn(ConfigurationManager.AppSettings["NoConfigurationLoadedError"]);
+                MessageBox.Show(ConfigurationManager.AppSettings["NoConfigurationLoadedError"]);
+            }
+            else
+            {
+                var combinations = loadedConfiguration.Combinations;
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        combinationsTable.Rows[i].Cells[j + 1].Value = "";
+                        var searchedCombination = combinations
+                            .FirstOrDefault(x => x.HasKeys(i.ToString(), j.ToString()));
+                        if (searchedCombination != null)
+                        {
+                            combinationsTable.Rows[i].Cells[j + 1].Value = string.Join(" ",
+                                searchedCombination.Action.ActionStringKeys.ToList());
+                        }
+                    }
+                }
             }
         }
 
