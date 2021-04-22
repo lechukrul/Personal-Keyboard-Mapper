@@ -6,10 +6,12 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using log4net;
+using Personal_Keyboard_Mapper.Gui;
 using Personal_Keyboard_Mapper.Lib;
 using Personal_Keyboard_Mapper.Lib.Enums;
 using Personal_Keyboard_Mapper.Lib.Interfaces;
@@ -26,43 +28,49 @@ namespace Personal_Keyboard_Mapper
         static private KeysSoundEffects keysSounds;
         static private GlobalHookService hookService;
         static private List<string> existingConfigs;
+        static private HelpWindow helperWindow;
         public MainWindow(ILog log)
         {
             InitializeComponent();
             logger = log;
+            helperWindow = new HelpWindow(logger); 
             configFileName = ConfigurationManager.AppSettings["DefaultConfigFileName"];
+            Globals.AliasResources = new ResXResourceSet(ConfigurationManager.AppSettings["KeyAliasesResxFileName"]);
             keysSounds = new KeysSoundEffects(logger, Resources.Resources.key1, Resources.Resources.key2,
                 Resources.Resources.ctrl, Resources.Resources.shift, Resources.Resources.win,
                 Resources.Resources.alt);
-            Globals.IsSoundOn = true;
+            Globals.IsSoundOn = true;  
             existingConfigs = new List<string>();
             if (!File.Exists(configFileName))
             {
                 logger.Error("Config file is missing");
-                MessageBox.Show("Config file is missing");
+                CollectExistingConfigs();
+                configFileName = existingConfigs[0];
             }
-            else
+            try
             {
-                try
-                {
-                    config = new JsonConfigSource(logger, configFileName);
-                    hookService = new GlobalHookService(logger, config, keysSounds, true);
-                    Helper.AddNumericRowsToGrid(combinationsTable);
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e.StackTrace);
-                }
+                config = new JsonConfigSource(logger, configFileName);
+                hookService = new GlobalHookService(logger, config, keysSounds, true);
+                Helper.AddNumericRowsToGrid(combinationsTable); 
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.StackTrace);
             }
         }
+         
 
         private void On_Load(object sender, EventArgs args)
         {
-            CollectExistingConfigs();
-            ExistingConfigsComboBox.DataSource = existingConfigs.ToArray(); 
+            if (!existingConfigs.Any())
+            {
+                CollectExistingConfigs();
+            }
+            ExistingConfigsComboBox.DataSource = existingConfigs.ToArray();
+            ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName);
             try
             {
-                hookService.StartHookService(config);
+                hookService.StartHookService(config, helperWindow);
                 Helper.FillCombinationsTable(logger, this.combinationsTable, hookService.combinationsConfig);
                 startAppBtn.Enabled = false; 
             }
@@ -104,10 +112,13 @@ namespace Personal_Keyboard_Mapper
                 {
                     hookService = new GlobalHookService(logger, config, keysSounds, true);
                 }
-                hookService.StartHookService(config);
+                hookService.StartHookService(config, helperWindow);
                 Helper.FillCombinationsTable(logger, this.combinationsTable, hookService.combinationsConfig);
                 AddUpdateAppSettings("DefaultConfigFileName", config.ConfigFilePath);
+                ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == config.ConfigFilePath);
                 logger.Info("CONFIG RELOAD SUCCESSFULLY ENDS");
+                this.startAppBtn.Enabled = false;
+                this.stopAppBtn.Enabled = true;
             }
             catch (Exception e)
             {
@@ -188,6 +199,27 @@ namespace Personal_Keyboard_Mapper
         {
             var selectedConfig = (string)ExistingConfigsComboBox.SelectedItem;
             ReloadConfig(new JsonConfigSource(logger, selectedConfig));
+        }
+
+        private void HelpWndChckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Globals.IsHelpWindowOn)
+            {
+                helperWindow.Hide();
+            }
+
+            Globals.IsHelpWindowOn = !Globals.IsHelpWindowOn;
+        }
+
+        private void OnClosing(object sender, CancelEventArgs e)
+        {
+            helperWindow.Close();
+        }
+
+        private void MainWindow_Resize(object sender, EventArgs e)
+        {
+            this.CombinationsPanel.Width = this.Width;
+            this.combinationsTable.Width = this.Width;
         }
     }
 }

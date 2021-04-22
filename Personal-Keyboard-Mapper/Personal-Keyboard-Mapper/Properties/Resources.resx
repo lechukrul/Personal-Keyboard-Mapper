@@ -120,17 +120,8 @@
   <data name="CombinationList" xml:space="preserve">
     <value>Lista kombinacji</value>
   </data>
-  <data name="Options" xml:space="preserve">
-    <value>Opcje</value>
-  </data>
-  <data name="SoundOn" xml:space="preserve">
-    <value>Włącz dźwięk klawiszy</value>
-  </data>
   <data name="HelpWindowOn" xml:space="preserve">
     <value>Pokazuj okno pomocy dla kombinacji</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>Okno główne</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="alt" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -159,5 +150,86 @@
   </data>
   <data name="CombinationExistsMsg" xml:space="preserve">
     <value>Wybrana akcja już istnieje, proszę wybrać inną</value>
+  </data>
+  <data name="stopAppBtn.Text" xml:space="preserve">
+    <value>Zatrzymaj działanie  </value>
+  </data>
+  <data name="startAppBtn.Text" xml:space="preserve">
+    <value>Wznów działanie</value>
+  </data>
+  <data name="SoundChckBox.Text" xml:space="preserve">
+    <value>Włącz drzwięk klawiszy</value>
+  </data>
+  <data name="OptionsGroup.Text" xml:space="preserve">
+    <value>Opcje</value>
+  </data>
+  <data name="HelpWndChckBox.Text" xml:space="preserve">
+    <value>Okno pomocy</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Okno główne</value>
+  </data>
+  <data name="NewConfigBtn.Text" xml:space="preserve">
+    <value>Nowa konfiguracja</value>
+  </data>
+  <data name="EditConfigBtn.Text" xml:space="preserve">
+    <value>Edycja konfiguracji</value>
+  </data>
+  <data name="avaliableConfigLabel.Text" xml:space="preserve">
+    <value>Dostępne konfiguracje</value>
+  </data>
+  <data name="CombinationsPanel.Text" xml:space="preserve">
+    <value>Aktualna konfiguracja</value>
+  </data>
+  <data name="Column9.HeaderText" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="Column8.HeaderText" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="Column7.HeaderText" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="Column6.HeaderText" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="Column5.HeaderText" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="Column4.HeaderText" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="Column3.HeaderText" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="Column2.HeaderText" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="Column1.HeaderText" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Column0.HeaderText" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="KeyActionRadioBtn.Text" xml:space="preserve">
+    <value>Akcja naciśnięcia klawisza</value>
+  </data>
+  <data name="TextActionRadioBtn.Text" xml:space="preserve">
+    <value>Akcja wprowadzania tekstu</value>
+  </data>
+  <data name="ConfigGroupBox.Text" xml:space="preserve">
+    <value>Konfiguracja</value>
+  </data>
+  <data name="ConfigNameLabel.Text" xml:space="preserve">
+    <value>Nazwa konfiguracji</value>
+  </data>
+  <data name="saveActionBtn.Text" xml:space="preserve">
+    <value>Zapisz akcję</value>
+  </data>
+  <data name="SaveConfigBtn.Text" xml:space="preserve">
+    <value>Zapisz konfigurację</value>
+  </data>
+  <data name="MouseActionRadioBtn.Text" xml:space="preserve">
+    <value>Akcja naciśnięcia klawisza myszy</value>
   </data>
 </root>

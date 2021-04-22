@@ -73,12 +73,6 @@
       <DependentUpon>PlaceHolderTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper.cs" />
-    <Compile Include="HelpWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HelpWindow.Designer.cs">
-      <DependentUpon>HelpWindow.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,33 +80,53 @@
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Properties\aliases.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>aliases.resx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="ConfigEditor.en-US.resx">
+      <DependentUpon>ConfigEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfigEditor.resx">
       <DependentUpon>ConfigEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HelpWindow.resx">
-      <DependentUpon>HelpWindow.cs</DependentUpon>
+    <EmbeddedResource Include="MainWindow.en-US.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\aliases.en-US.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\aliases.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>aliases.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.en-US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
       <CustomToolNamespace>Resources</CustomToolNamespace>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <None Include="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -126,6 +140,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.en-US.resx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -140,6 +155,10 @@
     <ProjectReference Include="..\..\Personal_Keybard_Mapper.Lib\Personal_Keyboard_Mapper.Lib.csproj">
       <Project>{1231556f-8e26-49f6-89bf-abc93e84428b}</Project>
       <Name>Personal_Keyboard_Mapper.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Personal-Keyboard-Mapper.Gui\Personal-Keyboard-Mapper.Gui.csproj">
+      <Project>{64a7fcd3-bbc3-4236-a124-b0041a99f1bd}</Project>
+      <Name>Personal-Keyboard-Mapper.Gui</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

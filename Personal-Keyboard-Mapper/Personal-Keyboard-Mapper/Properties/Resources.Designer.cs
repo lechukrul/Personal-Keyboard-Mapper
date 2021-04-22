@@ -79,6 +79,105 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dostępne konfiguracje.
+        /// </summary>
+        internal static string avaliableConfigLabel_Text {
+            get {
+                return ResourceManager.GetString("avaliableConfigLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.
+        /// </summary>
+        internal static string Column0_HeaderText {
+            get {
+                return ResourceManager.GetString("Column0.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        internal static string Column1_HeaderText {
+            get {
+                return ResourceManager.GetString("Column1.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        internal static string Column2_HeaderText {
+            get {
+                return ResourceManager.GetString("Column2.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        internal static string Column3_HeaderText {
+            get {
+                return ResourceManager.GetString("Column3.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4.
+        /// </summary>
+        internal static string Column4_HeaderText {
+            get {
+                return ResourceManager.GetString("Column4.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5.
+        /// </summary>
+        internal static string Column5_HeaderText {
+            get {
+                return ResourceManager.GetString("Column5.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6.
+        /// </summary>
+        internal static string Column6_HeaderText {
+            get {
+                return ResourceManager.GetString("Column6.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7.
+        /// </summary>
+        internal static string Column7_HeaderText {
+            get {
+                return ResourceManager.GetString("Column7.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8.
+        /// </summary>
+        internal static string Column8_HeaderText {
+            get {
+                return ResourceManager.GetString("Column8.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 9.
+        /// </summary>
+        internal static string Column9_HeaderText {
+            get {
+                return ResourceManager.GetString("Column9.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wybrana akcja już istnieje, proszę wybrać inną.
         /// </summary>
         internal static string CombinationExistsMsg {
@@ -97,11 +196,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aktualna konfiguracja.
+        /// </summary>
+        internal static string CombinationsPanel_Text {
+            get {
+                return ResourceManager.GetString("CombinationsPanel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Konfiguracja.
+        /// </summary>
+        internal static string ConfigGroupBox_Text {
+            get {
+                return ResourceManager.GetString("ConfigGroupBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dodaj nazwę konfiguracji.
         /// </summary>
         internal static string ConfigNameEmpty {
             get {
                 return ResourceManager.GetString("ConfigNameEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nazwa konfiguracji.
+        /// </summary>
+        internal static string ConfigNameLabel_Text {
+            get {
+                return ResourceManager.GetString("ConfigNameLabel.Text", resourceCulture);
             }
         }
         
@@ -115,11 +241,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edycja konfiguracji.
+        /// </summary>
+        internal static string EditConfigBtn_Text {
+            get {
+                return ResourceManager.GetString("EditConfigBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pokazuj okno pomocy dla kombinacji.
         /// </summary>
         internal static string HelpWindowOn {
             get {
                 return ResourceManager.GetString("HelpWindowOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Okno pomocy.
+        /// </summary>
+        internal static string HelpWndChckBox_Text {
+            get {
+                return ResourceManager.GetString("HelpWndChckBox.Text", resourceCulture);
             }
         }
         
@@ -142,11 +286,56 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Akcja naciśnięcia klawisza.
+        /// </summary>
+        internal static string KeyActionRadioBtn_Text {
+            get {
+                return ResourceManager.GetString("KeyActionRadioBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Akcja naciśnięcia klawisza myszy.
+        /// </summary>
+        internal static string MouseActionRadioBtn_Text {
+            get {
+                return ResourceManager.GetString("MouseActionRadioBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nowa konfiguracja.
+        /// </summary>
+        internal static string NewConfigBtn_Text {
+            get {
+                return ResourceManager.GetString("NewConfigBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opcje.
         /// </summary>
-        internal static string Options {
+        internal static string OptionsGroup_Text {
             get {
-                return ResourceManager.GetString("Options", resourceCulture);
+                return ResourceManager.GetString("OptionsGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zapisz akcję.
+        /// </summary>
+        internal static string saveActionBtn_Text {
+            get {
+                return ResourceManager.GetString("saveActionBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zapisz konfigurację.
+        /// </summary>
+        internal static string SaveConfigBtn_Text {
+            get {
+                return ResourceManager.GetString("SaveConfigBtn.Text", resourceCulture);
             }
         }
         
@@ -160,11 +349,38 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Włącz dźwięk klawiszy.
+        ///   Looks up a localized string similar to Włącz drzwięk klawiszy.
         /// </summary>
-        internal static string SoundOn {
+        internal static string SoundChckBox_Text {
             get {
-                return ResourceManager.GetString("SoundOn", resourceCulture);
+                return ResourceManager.GetString("SoundChckBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wznów działanie.
+        /// </summary>
+        internal static string startAppBtn_Text {
+            get {
+                return ResourceManager.GetString("startAppBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zatrzymaj działanie  .
+        /// </summary>
+        internal static string stopAppBtn_Text {
+            get {
+                return ResourceManager.GetString("stopAppBtn.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Akcja wprowadzania tekstu.
+        /// </summary>
+        internal static string TextActionRadioBtn_Text {
+            get {
+                return ResourceManager.GetString("TextActionRadioBtn.Text", resourceCulture);
             }
         }
         
@@ -174,15 +390,6 @@ namespace Resources {
         internal static System.IO.UnmanagedMemoryStream win {
             get {
                 return ResourceManager.GetStream("win", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Okno główne.
-        /// </summary>
-        internal static string WindowTitle {
-            get {
-                return ResourceManager.GetString("WindowTitle", resourceCulture);
             }
         }
     }

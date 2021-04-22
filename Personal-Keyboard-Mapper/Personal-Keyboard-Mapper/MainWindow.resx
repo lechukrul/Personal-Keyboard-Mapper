@@ -123,16 +123,20 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="HelpWndChckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 50</value>
+    <value>5, 41</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="HelpWndChckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="HelpWndChckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 21</value>
+    <value>92, 17</value>
   </data>
   <data name="HelpWndChckBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="HelpWndChckBox.Text" xml:space="preserve">
-    <value>Help Window</value>
+    <value>Okno pomocy</value>
   </data>
   <data name="&gt;&gt;HelpWndChckBox.Name" xml:space="preserve">
     <value>HelpWndChckBox</value>
@@ -150,16 +154,19 @@
     <value>True</value>
   </data>
   <data name="SoundChckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 22</value>
+    <value>5, 18</value>
+  </data>
+  <data name="SoundChckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="SoundChckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 21</value>
+    <value>139, 17</value>
   </data>
   <data name="SoundChckBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="SoundChckBox.Text" xml:space="preserve">
-    <value>Sound On</value>
+    <value>Włącz drzwięk klawiszy</value>
   </data>
   <data name="&gt;&gt;SoundChckBox.Name" xml:space="preserve">
     <value>SoundChckBox</value>
@@ -174,16 +181,22 @@
     <value>1</value>
   </data>
   <data name="OptionsGroup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 52</value>
+    <value>28, 42</value>
+  </data>
+  <data name="OptionsGroup.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="OptionsGroup.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="OptionsGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 100</value>
+    <value>150, 81</value>
   </data>
   <data name="OptionsGroup.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="OptionsGroup.Text" xml:space="preserve">
-    <value>Options</value>
+    <value>Opcje</value>
   </data>
   <data name="&gt;&gt;OptionsGroup.Name" xml:space="preserve">
     <value>OptionsGroup</value>
@@ -200,21 +213,23 @@
   <data name="CombinationsPanel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="EditConfigBtn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="EditConfigBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 354</value>
+    <value>201, 288</value>
+  </data>
+  <data name="EditConfigBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="EditConfigBtn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 51</value>
+    <value>74, 41</value>
   </data>
   <data name="EditConfigBtn.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="EditConfigBtn.Text" xml:space="preserve">
-    <value>Edit configuration</value>
+    <value>Edycja konfiguracji</value>
   </data>
   <data name="&gt;&gt;EditConfigBtn.Name" xml:space="preserve">
     <value>EditConfigBtn</value>
@@ -229,16 +244,19 @@
     <value>0</value>
   </data>
   <data name="NewConfigBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 354</value>
+    <value>115, 288</value>
+  </data>
+  <data name="NewConfigBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="NewConfigBtn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 51</value>
+    <value>74, 41</value>
   </data>
   <data name="NewConfigBtn.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="NewConfigBtn.Text" xml:space="preserve">
-    <value>New configuration</value>
+    <value>Nowa konfiguracja</value>
   </data>
   <data name="&gt;&gt;NewConfigBtn.Name" xml:space="preserve">
     <value>NewConfigBtn</value>
@@ -255,14 +273,11 @@
   <data name="combinationsTable.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="Rows.HeaderText" xml:space="preserve">
-    <value />
-  </data>
   <data name="Rows.MinimumWidth" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
   <data name="Rows.Width" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>59</value>
   </data>
   <data name="Column0.HeaderText" xml:space="preserve">
     <value>0</value>
@@ -271,7 +286,7 @@
     <value>6</value>
   </data>
   <data name="Column0.Width" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>38</value>
   </data>
   <data name="Column1.HeaderText" xml:space="preserve">
     <value>1</value>
@@ -280,7 +295,7 @@
     <value>6</value>
   </data>
   <data name="Column1.Width" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>38</value>
   </data>
   <data name="Column2.HeaderText" xml:space="preserve">
     <value>2</value>
@@ -289,7 +304,7 @@
     <value>6</value>
   </data>
   <data name="Column2.Width" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>38</value>
   </data>
   <data name="Column3.HeaderText" xml:space="preserve">
     <value>3</value>
@@ -298,7 +313,7 @@
     <value>6</value>
   </data>
   <data name="Column3.Width" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>38</value>
   </data>
   <data name="Column4.HeaderText" xml:space="preserve">
     <value>4</value>
@@ -307,7 +322,7 @@
     <value>6</value>
   </data>
   <data name="Column4.Width" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>38</value>
   </data>
   <data name="Column5.HeaderText" xml:space="preserve">
     <value>5</value>
@@ -316,7 +331,7 @@
     <value>6</value>
   </data>
   <data name="Column5.Width" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>38</value>
   </data>
   <data name="Column6.HeaderText" xml:space="preserve">
     <value>6</value>
@@ -325,7 +340,7 @@
     <value>6</value>
   </data>
   <data name="Column6.Width" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>38</value>
   </data>
   <data name="Column7.HeaderText" xml:space="preserve">
     <value>7</value>
@@ -334,7 +349,7 @@
     <value>6</value>
   </data>
   <data name="Column7.Width" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>38</value>
   </data>
   <data name="Column8.HeaderText" xml:space="preserve">
     <value>8</value>
@@ -343,7 +358,7 @@
     <value>6</value>
   </data>
   <data name="Column8.Width" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>38</value>
   </data>
   <data name="Column9.HeaderText" xml:space="preserve">
     <value>9</value>
@@ -352,16 +367,19 @@
     <value>6</value>
   </data>
   <data name="Column9.Width" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>38</value>
   </data>
   <data name="combinationsTable.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 22</value>
+    <value>7, 18</value>
+  </data>
+  <data name="combinationsTable.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="combinationsTable.RowHeadersWidth" type="System.Int32, mscorlib">
     <value>51</value>
   </data>
   <data name="combinationsTable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>528, 328</value>
+    <value>396, 266</value>
   </data>
   <data name="combinationsTable.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -379,16 +397,22 @@
     <value>2</value>
   </data>
   <data name="CombinationsPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 230</value>
+    <value>3, 187</value>
+  </data>
+  <data name="CombinationsPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="CombinationsPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="CombinationsPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>544, 426</value>
+    <value>408, 346</value>
   </data>
   <data name="CombinationsPanel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="CombinationsPanel.Text" xml:space="preserve">
-    <value>Stored combinations</value>
+    <value>Aktualna konfiguracja</value>
   </data>
   <data name="&gt;&gt;CombinationsPanel.Name" xml:space="preserve">
     <value>CombinationsPanel</value>
@@ -403,16 +427,19 @@
     <value>4</value>
   </data>
   <data name="stopAppBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 154</value>
+    <value>108, 125</value>
+  </data>
+  <data name="stopAppBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="stopAppBtn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 70</value>
+    <value>98, 57</value>
   </data>
   <data name="stopAppBtn.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="stopAppBtn.Text" xml:space="preserve">
-    <value>Stop listen Keys</value>
+    <value>Zatrzymaj działanie  </value>
   </data>
   <data name="&gt;&gt;stopAppBtn.Name" xml:space="preserve">
     <value>stopAppBtn</value>
@@ -430,16 +457,19 @@
     <value>NoControl</value>
   </data>
   <data name="startAppBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>295, 154</value>
+    <value>221, 125</value>
+  </data>
+  <data name="startAppBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="startAppBtn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 70</value>
+    <value>98, 57</value>
   </data>
   <data name="startAppBtn.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="startAppBtn.Text" xml:space="preserve">
-    <value>Start listen Keys</value>
+    <value>Wznów działanie</value>
   </data>
   <data name="&gt;&gt;startAppBtn.Name" xml:space="preserve">
     <value>startAppBtn</value>
@@ -454,10 +484,13 @@
     <value>2</value>
   </data>
   <data name="ExistingConfigsComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>380, 27</value>
+    <value>285, 22</value>
+  </data>
+  <data name="ExistingConfigsComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="ExistingConfigsComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 24</value>
+    <value>92, 21</value>
   </data>
   <data name="ExistingConfigsComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -474,44 +507,50 @@
   <data name="&gt;&gt;ExistingConfigsComboBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="avaliableConfigLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>214, 27</value>
+  <data name="avaliableConfigLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>158, 22</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 17</value>
+  <data name="avaliableConfigLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
   </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+  <data name="avaliableConfigLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 13</value>
+  </data>
+  <data name="avaliableConfigLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>availiable configurations</value>
+  <data name="avaliableConfigLabel.Text" xml:space="preserve">
+    <value>Dostępne konfiguracje</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
+  <data name="&gt;&gt;avaliableConfigLabel.Name" xml:space="preserve">
+    <value>avaliableConfigLabel</value>
   </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+  <data name="&gt;&gt;avaliableConfigLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;avaliableConfigLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;avaliableConfigLabel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+    <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>548, 665</value>
+    <value>411, 540</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Main window</value>
+    <value>Okno główne</value>
   </data>
   <data name="&gt;&gt;Rows.Name" xml:space="preserve">
     <value>Rows</value>

@@ -61,7 +61,7 @@ namespace Personal_Keyboard_Mapper
             this.stopAppBtn = new System.Windows.Forms.Button();
             this.startAppBtn = new System.Windows.Forms.Button();
             this.ExistingConfigsComboBox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.avaliableConfigLabel = new System.Windows.Forms.Label();
             this.OptionsGroup.SuspendLayout();
             this.CombinationsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.combinationsTable)).BeginInit();
@@ -80,6 +80,7 @@ namespace Personal_Keyboard_Mapper
             resources.ApplyResources(this.HelpWndChckBox, "HelpWndChckBox");
             this.HelpWndChckBox.Name = "HelpWndChckBox";
             this.HelpWndChckBox.UseVisualStyleBackColor = true;
+            this.HelpWndChckBox.CheckedChanged += new System.EventHandler(this.HelpWndChckBox_CheckedChanged);
             // 
             // SoundChckBox
             // 
@@ -225,16 +226,16 @@ namespace Personal_Keyboard_Mapper
             this.ExistingConfigsComboBox.Name = "ExistingConfigsComboBox";
             this.ExistingConfigsComboBox.SelectionChangeCommitted += new System.EventHandler(this.ExistingConfigsComboBox_SelectionChangeCommitted);
             // 
-            // label1
+            // avaliableConfigLabel
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.avaliableConfigLabel, "avaliableConfigLabel");
+            this.avaliableConfigLabel.Name = "avaliableConfigLabel";
             // 
             // MainWindow
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.avaliableConfigLabel);
             this.Controls.Add(this.ExistingConfigsComboBox);
             this.Controls.Add(this.startAppBtn);
             this.Controls.Add(this.stopAppBtn);
@@ -242,6 +243,7 @@ namespace Personal_Keyboard_Mapper
             this.Controls.Add(this.OptionsGroup);
             this.Name = "MainWindow";
             this.Load += new System.EventHandler(this.On_Load);
+            this.Resize += new System.EventHandler(this.MainWindow_Resize);
             this.OptionsGroup.ResumeLayout(false);
             this.OptionsGroup.PerformLayout();
             this.CombinationsPanel.ResumeLayout(false);
@@ -277,7 +279,7 @@ namespace Personal_Keyboard_Mapper
         #endregion
 
         private ComboBox ExistingConfigsComboBox;
-        private Label label1;
+        private Label avaliableConfigLabel;
     }
 }
 

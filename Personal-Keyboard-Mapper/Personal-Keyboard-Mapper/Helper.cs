@@ -48,7 +48,7 @@ namespace Personal_Keyboard_Mapper
                         if (searchedCombination != null)
                         {
                             combinationsTable.Rows[i].Cells[j + 1].Value = string.Join(" ",
-                                searchedCombination.Action.ActionStringKeys.ToList());
+                                searchedCombination.Action.ToString());
                         }
                     }
                 }
