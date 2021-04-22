@@ -1,10 +1,12 @@
-﻿using log4net.Repository.Hierarchy;
+﻿using System.Collections.Generic;
+using log4net.Repository.Hierarchy;
 using Personal_Keyboard_Mapper.Lib.Model;
 using System.Configuration;
 using System.Linq;
 using System.Windows.Forms;
 using log4net;
 using Personal_Keyboard_Mapper.Lib.Extensions;
+using Personal_Keyboard_Mapper.Lib.Interfaces;
 
 namespace Personal_Keyboard_Mapper
 {
@@ -30,30 +32,30 @@ namespace Personal_Keyboard_Mapper
         /// <param name="loadedConfiguration">The loaded configuration.</param>
         public static void FillCombinationsTable(ILog logger, DataGridView combinationsTable, KeyCombinationsConfiguration loadedConfiguration)
         {
+            IEnumerable<IKeyCombination> combinations;
             if (loadedConfiguration == null)
             {
-                logger.Warn(ConfigurationManager.AppSettings["NoConfigurationLoadedError"]);
-                MessageBox.Show(ConfigurationManager.AppSettings["NoConfigurationLoadedError"]);
+                logger.Warn(ConfigurationManager.AppSettings["NoConfigurationLoadedError"]);  
+                combinations = new List<IKeyCombination>();
             }
             else
+            { 
+                combinations = loadedConfiguration.Combinations;
+            }
+            for (int i = 0; i < 10; i++)
             {
-                var combinations = loadedConfiguration.Combinations;
-                for (int i = 0; i < 10; i++)
+                for (int j = 0; j < 10; j++)
                 {
-                    for (int j = 0; j < 10; j++)
+                    combinationsTable.Rows[i].Cells[j + 1].Value = "";
+                    var searchedCombination = combinations
+                        .FirstOrDefault(x => x.HasKeys(i.ToString(), j.ToString()));
+                    if (searchedCombination != null)
                     {
-                        combinationsTable.Rows[i].Cells[j + 1].Value = "";
-                        var searchedCombination = combinations
-                            .FirstOrDefault(x => x.HasKeys(i.ToString(), j.ToString()));
-                        if (searchedCombination != null)
-                        {
-                            combinationsTable.Rows[i].Cells[j + 1].Value = string.Join(" ",
-                                searchedCombination.Action.ToString());
-                        }
+                        combinationsTable.Rows[i].Cells[j + 1].Value = string.Join(" ",
+                            searchedCombination.Action.ToString());
                     }
                 }
             }
         }
-
     }
 }

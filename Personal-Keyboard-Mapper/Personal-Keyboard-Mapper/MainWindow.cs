@@ -41,17 +41,25 @@ namespace Personal_Keyboard_Mapper
                 Resources.Resources.alt);
             Globals.IsSoundOn = true;  
             existingConfigs = new List<string>();
-            if (!File.Exists(configFileName))
-            {
-                logger.Error("Config file is missing");
-                CollectExistingConfigs();
-                configFileName = existingConfigs[0];
-            }
             try
             {
-                config = new JsonConfigSource(logger, configFileName);
-                hookService = new GlobalHookService(logger, config, keysSounds, true);
-                Helper.AddNumericRowsToGrid(combinationsTable); 
+                if (!File.Exists(configFileName))
+                {
+                    logger.Error("Config file is missing");
+                    CollectExistingConfigs();
+                    configFileName = existingConfigs[0] ?? "";
+                }
+
+                if (existingConfigs.Any())
+                {
+                    config = new JsonConfigSource(logger, configFileName);
+                    hookService = new GlobalHookService(logger, config, keysSounds, true);
+                }
+                Helper.AddNumericRowsToGrid(combinationsTable);
+            }
+            catch (ArgumentOutOfRangeException outRangeException)
+            {
+                Helper.AddNumericRowsToGrid(combinationsTable);
             }
             catch (Exception e)
             {
@@ -70,9 +78,12 @@ namespace Personal_Keyboard_Mapper
             ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName);
             try
             {
-                hookService.StartHookService(config, helperWindow);
-                Helper.FillCombinationsTable(logger, this.combinationsTable, hookService.combinationsConfig);
-                startAppBtn.Enabled = false; 
+                if (config != null)
+                {
+                    hookService.StartHookService(config, helperWindow); 
+                    startAppBtn.Enabled = false;
+                }
+                Helper.FillCombinationsTable(logger, this.combinationsTable, hookService?.combinationsConfig);
             }
             catch (Exception e)
             {
