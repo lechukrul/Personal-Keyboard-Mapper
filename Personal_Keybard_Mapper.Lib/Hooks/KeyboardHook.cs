@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Media;
+using System.Windows.Forms;
 using WindowsInput;
 using WindowsInput.Native;
 using log4net;
+using Personal_Keyboard_Mapper.Gui;
 using Personal_Keyboard_Mapper.Lib.Enums;
 using Personal_Keyboard_Mapper.Lib.Interfaces;
 using Personal_Keyboard_Mapper.Lib.PInvokeApFunctions;
 using Personal_Keyboard_Mapper.Lib.Structures;
 using Personal_Keyboard_Mapper.Lib.Extensions;
 using Personal_Keyboard_Mapper.Lib.Model;
+using Action = Personal_Keyboard_Mapper.Lib.Model.Action;
 
 namespace Personal_Keyboard_Mapper.Lib.Hooks
 {
@@ -39,15 +42,17 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
         IntPtr keyboardHookHandler;
         private KeysSoundEffects soundEffects;
         private KeyCombinationsConfiguration baseConfiguration;
-        private int  keyCombinationPositionCounter;
-        
+        private HelpWindow helperWindow;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyboardHook" /> class.
         /// </summary>
+        /// <param name="log"></param>
         /// <param name="combinationsConfiguration">The combinations configuration.</param>
         /// <param name="effects">The sounds effects.</param>
-        public KeyboardHook(ILog log, KeyCombinationsConfiguration combinationsConfiguration, KeysSoundEffects effects)
+        /// <param name="helpWindow">Gui helper window</param>
+        public KeyboardHook(ILog log, KeyCombinationsConfiguration combinationsConfiguration, KeysSoundEffects effects, 
+            HelpWindow helpWindow = null)
         {
             logger = log;
             hookInstance = LoadPInvokeKernel32Library("User32");
@@ -64,14 +69,12 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
             KeysStateChecker = new WindowsInputDeviceStateAdaptor();
             inputSimulator = new InputSimulator();
             soundEffects = effects;
-            keyCombinationPositionCounter = -1;
+            helperWindow = helpWindow;
         }
 
         public KeyboardHook()
         {
         }
-
-
            
         public IntPtr ConfigHook(int code, int wParam, ref KeyboardHookStructure.HookStruct lParam)
         {
@@ -160,15 +163,26 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                         if (Globals.IsSoundOn)
                         {
                             try
-                            {
+                            { 
                                 switch (key.CombinationPosition)
                                 {
                                     case KeyCombinationPosition.First:
                                         soundEffects.PlaySound(SoundAction.FirstKey);
+                                        Globals.FirstKeyInCombination = key.ToString();
+                                        if (Globals.IsHelpWindowOn)
+                                        {
+                                            var possibleOutputActions = configCombinations
+                                                                .Where(x => x.Keys[0].KeyCode.ConvertNumericKeyCodeToNumericKeypadKeyCode() == key.KeyCode)
+                                                                .Select(x => x.Action.ToString()) 
+                                                                .ToList();
+                                            helperWindow.FillHelperRow(possibleOutputActions);
+                                            helperWindow.TopMost = true;
+                                            helperWindow.Show();
+                                        }
                                         break;
 
                                     case KeyCombinationPosition.Second:
-                                        soundEffects.PlaySound(SoundAction.SecondKey);
+                                        soundEffects.PlaySound(SoundAction.SecondKey); 
                                         break;
 
                                     case KeyCombinationPosition.Third:
@@ -199,6 +213,8 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                                     Globals.ResetKeysFlags();
                                     ResetPositionCounter();
                                     PlayLastKeySound(key);
+                                    helperWindow.ClearHelperRow();
+                                    helperWindow.Hide();
                                     return (IntPtr)1;
                                 }
                                 if (!currentCombination.IsNotEmptyActionCombination(logger))
@@ -387,6 +403,8 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                                         ReleasePressedOnceModKey();
                                     }
                                     currentCombination.Clear();
+                                    helperWindow.ClearHelperRow();
+                                    helperWindow.Hide();
                                     configCombinations = baseConfiguration.Combinations;
 
                                 }
@@ -484,16 +502,20 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
 
         private void PlayLastKeySound(KeyboardKey key)
         {
-            switch (key.CombinationPosition)
+            if (Globals.IsSoundOn)
             {
-                case KeyCombinationPosition.Second:
-                    soundEffects.PlaySound(SoundAction.SecondKey);
-                    break;
+                switch (key.CombinationPosition)
+                {
+                    case KeyCombinationPosition.Second:
+                        soundEffects.PlaySound(SoundAction.SecondKey);
+                        break;
 
-                case KeyCombinationPosition.Third:
-                    soundEffects.PlaySound(SoundAction.ThirdKey);
-                    break;
+                    case KeyCombinationPosition.Third:
+                        soundEffects.PlaySound(SoundAction.ThirdKey);
+                        break;
+                } 
             }
+            Globals.FirstKeyInCombination = String.Empty;
         }
 
         private bool IsFullCombination()

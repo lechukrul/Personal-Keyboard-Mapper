@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using log4net;
+using Personal_Keyboard_Mapper.Gui;
 using Personal_Keyboard_Mapper.Lib.Enums;
 using Personal_Keyboard_Mapper.Lib.Hooks;
 using Personal_Keyboard_Mapper.Lib.Interfaces;
@@ -18,14 +19,14 @@ namespace Personal_Keyboard_Mapper.Lib.Service
         private IHook KeyboardHook;
         private IHook MouseHook;
         private IConfigSource configSource;
-        private KeysSoundEffects keysSounds;
+        private KeysSoundEffects keysSounds; 
 
         public GlobalHookService(ILog log, IConfigSource config, KeysSoundEffects soundEffects, bool keySoundOn = false)
         {
             Globals.IsSoundOn = keySoundOn;
             logger = log;
             configSource = config;
-            keysSounds = soundEffects;
+            keysSounds = soundEffects; 
         }
 
         public void LoadCombinationsConfiguration(IConfigSource config = null)
@@ -45,20 +46,21 @@ namespace Personal_Keyboard_Mapper.Lib.Service
             logger.Info("configuration loaded");
         }
 
-        public void StartHookService(IConfigSource config = null, ActionType actionHookType = ActionType.Both)
+        public void StartHookService(IConfigSource config = null, HelpWindow helpWindow = null, 
+            ActionType actionHookType = ActionType.Both)
         {
             LoadCombinationsConfiguration(config);
 
             switch (actionHookType)
             {
                 case ActionType.Keyboard:
-                    KeyboardHook = new KeyboardHook(logger, combinationsConfig, keysSounds);
+                    KeyboardHook = new KeyboardHook(logger, combinationsConfig, keysSounds, helpWindow);
                     break;
                 case ActionType.Mouse:
                     MouseHook = new MouseHook(logger);
                     break;
                 default:
-                    KeyboardHook = new KeyboardHook(logger, combinationsConfig, keysSounds);
+                    KeyboardHook = new KeyboardHook(logger, combinationsConfig, keysSounds, helpWindow);
                     MouseHook = new MouseHook(logger);
                     break;
             }

@@ -65,7 +65,5 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         [JsonProperty]
         [JsonRequired]
         public IEnumerable<IKeyCombination> Combinations { get; set; }
-
-
     }
 }

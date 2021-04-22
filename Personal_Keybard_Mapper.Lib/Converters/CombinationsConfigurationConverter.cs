@@ -6,6 +6,7 @@ using log4net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Personal_Keyboard_Mapper.Lib.Comparers;
+using Personal_Keyboard_Mapper.Lib.Enums;
 using Personal_Keyboard_Mapper.Lib.Interfaces;
 using Personal_Keyboard_Mapper.Lib.Model;
 using ConfigurationException = Personal_Keyboard_Mapper.Lib.Exceptions.ConfigurationException;
@@ -88,7 +89,26 @@ namespace Personal_Keyboard_Mapper.Lib.Converters
             writer.WriteStartArray();
 
             serializer.Converters.Add(new OutputKeysConverter());
-            serializer.Serialize(writer, combination.Action.VirtualKeys);
+            serializer.PreserveReferencesHandling = PreserveReferencesHandling.None;
+            switch (combination.Action.Type)
+            {
+                case ActionType.Keyboard:
+                    if (combination.Action.IsActionWithLeftArrowAdded() || combination.Action.IsDotOrSemiColonAction())
+                    {
+                        serializer.Serialize(writer, string.Join("", combination.Action.ActionStringKeys));
+                    }
+                    else
+                    {
+                        serializer.Serialize(writer, combination.Action.VirtualKeys);
+                    }
+                    break;
+                case ActionType.Mouse:
+                    serializer.Serialize(writer, combination.Action.ActionStringKeys[0]);
+                    break;
+
+                default:
+                    throw new Exception("Could not serialize action, uknow action type");
+            }
 
             writer.WriteEndArray();
 

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Resources;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WindowsInput;
 using WindowsInput.Native;
@@ -54,7 +57,22 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         /// </summary>
         private void ReplaceStringAliases()
         {
+            var resources = new ResXResourceSet(ConfigurationManager.AppSettings["KeyAliasesResxFileName"]);
             ActionStringKeys = ActionStringKeys.Select(x => x.Replace("backslash", "\\")).ToList();
+            ActionStringKeys = ActionStringKeys.Select(x => 
+                x.Replace("lclick", resources.GetString("leftMouseClick"))).ToList();
+            ActionStringKeys = ActionStringKeys.Select(x =>
+                x.Replace("ldclick", resources.GetString("leftMouseDoubleClick"))).ToList();
+            ActionStringKeys = ActionStringKeys.Select(x =>
+                x.Replace("lhclick", resources.GetString("leftMouseHoldClick"))).ToList();
+            ActionStringKeys = ActionStringKeys.Select(x => 
+                x.Replace("rclick", resources.GetString("rightMouseClick"))).ToList();
+            ActionStringKeys = ActionStringKeys.Select(x =>
+                x.Replace("rdclick", resources.GetString("rightMouseDoubleClick"))).ToList();
+            ActionStringKeys = ActionStringKeys.Select(x =>
+                x.Replace("rhclick", resources.GetString("rightMouseHoldClick"))).ToList();
+            ActionStringKeys = ActionStringKeys.Select(x => 
+                Regex.Replace(x, "^ $", resources.GetString("spacebar") ?? "spacebar")).ToList();
             ActionStringKeys = ActionStringKeys.Select(x => x.Replace(@"/'/'", @"""""")).ToList();
         }
 
@@ -305,6 +323,21 @@ namespace Personal_Keyboard_Mapper.Lib.Model
             }
         }
 
+        public bool IsBracketAction()
+        {
+            var bracketsKeys = Globals.BracketsKeyCodes.SelectMany(x => x.keys);
+            return bracketsKeys.Any(x => VirtualKeys.Contains(x));
+        }
+
+        public bool IsActionWithLeftArrowAdded()
+        {
+            return Globals.ActionsWithLeftArrow.Any(x => x == string.Join("", ActionStringKeys));
+        }
+
+        public bool IsDotOrSemiColonAction()
+        {
+            return Globals.DotOrSemiColon.Any(x => x == string.Join("", ActionStringKeys));
+        }
         public Task RunAsync()
         {
             throw new NotImplementedException();
@@ -318,6 +351,34 @@ namespace Personal_Keyboard_Mapper.Lib.Model
                 Type = this.Type, 
                 VirtualKeys = this.VirtualKeys.ToList()
             };
+        }
+
+        public override string ToString()
+        {
+            if (!ActionStringKeys.Any())
+            {
+                return string.Empty;
+            }
+
+            var spacebarAlias = Globals.AliasResources.GetString("spacebar") ?? "spacebar";
+            if (ActionStringKeys.Count == 1)
+            {
+                return (ActionStringKeys[0].StartsWith("vk")) ? ActionStringKeys[0].Split('_')[1]
+                    : ActionStringKeys[0];
+            }
+
+            var copyActionList = ActionStringKeys.ToList();
+            if (Globals.ModKeysVirtualKeyCodes.Any(x => VirtualKeys.Contains(x))
+                && VirtualKeys.Count > 1 && !Globals.ModKeysVirtualKeyCodes.Contains(VirtualKeys[0]))
+            {
+                copyActionList.Reverse();
+            }
+            return (VirtualKeys
+                .Any(x => Globals.ModKeysVirtualKeyCodes.Any(y => y == x)))
+                ? String.Join(" + ", copyActionList).Replace("-", "")
+                    .Replace(spacebarAlias, " ")
+                :string.Join("", ActionStringKeys)
+                    .Replace(spacebarAlias, " ");
         }
     }
 }

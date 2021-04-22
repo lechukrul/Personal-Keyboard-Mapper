@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Resources;
 using WindowsInput;
 using WindowsInput.Native;
+using Personal_Keyboard_Mapper.Lib.Interfaces;
+using Action = Personal_Keyboard_Mapper.Lib.Model.Action;
 
 namespace Personal_Keyboard_Mapper.Lib
 {
@@ -17,6 +21,7 @@ namespace Personal_Keyboard_Mapper.Lib
         public static int LeftWinPressCounter { get; set; }
 
         public static bool IsSoundOn { get; set; }
+        public static bool IsHelpWindowOn { get; set; }
 
         public static bool IsShiftPressedOnce { get; set; }
 
@@ -45,13 +50,17 @@ namespace Personal_Keyboard_Mapper.Lib
         public static bool IsLeftMouseButtonHoldDown { get; set; }
         public static bool IsMouseButtonWithModKey { get; set; }
 
-        /// <summary>
-        /// Gets the numeric keypad virtual key codes.
-        /// </summary>
-        /// <value>
-        /// The numeric keypad virtual key codes.
-        /// </value>
-        public static IEnumerable<VirtualKeyCode> NumericKeypadVirtualKeyCodes { get; } = new List<VirtualKeyCode>()
+        public static string FirstKeyInCombination { get; set; }
+
+        public static ResXResourceSet AliasResources { get; set; }
+
+    /// <summary>
+    /// Gets the numeric keypad virtual key codes.
+    /// </summary>
+    /// <value>
+    /// The numeric keypad virtual key codes.
+    /// </value>
+    public static IEnumerable<VirtualKeyCode> NumericKeypadVirtualKeyCodes { get; } = new List<VirtualKeyCode>()
         {
             VirtualKeyCode.NUMPAD0,
             VirtualKeyCode.NUMPAD1,
@@ -64,6 +73,8 @@ namespace Personal_Keyboard_Mapper.Lib
             VirtualKeyCode.NUMPAD8, 
             VirtualKeyCode.NUMPAD9
         };
+
+
 
         public static IEnumerable<VirtualKeyCode> NumericKeypadWithShiftVirtualKeyCodes { get; } = new List<VirtualKeyCode>()
         {
@@ -108,6 +119,38 @@ namespace Personal_Keyboard_Mapper.Lib
             VirtualKeyCode.VK_7,
             VirtualKeyCode.VK_8,
             VirtualKeyCode.VK_9
+        };
+
+        public static IEnumerable<string> OpeningBraces { get; } = new List<string>
+        {
+            "(",
+            "{",
+            "[",
+            "<"
+        };
+
+        public static IEnumerable<string> Braces { get; } = new List<string>
+        {
+            "()",
+            "{}",
+            "[]",
+            "<>"
+        };
+
+        public static IEnumerable<string> ActionsWithLeftArrow { get; } = new List<string>
+        {
+            "()",
+            "{}",
+            "[]",
+            "<>",
+            "''",
+            @""""""
+        };
+
+        public static IEnumerable<string> DotOrSemiColon { get; } = new List<string>
+        {
+            ".",
+            ";"
         };
 
         public static List<(string sign, VirtualKeyCode[] keys)> BracketsKeyCodes { get; } = new List<(string sign, VirtualKeyCode[] keys)>()
