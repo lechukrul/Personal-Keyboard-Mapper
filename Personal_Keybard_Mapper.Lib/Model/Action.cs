@@ -384,6 +384,10 @@ namespace Personal_Keyboard_Mapper.Lib.Model
             var spacebarAlias = Globals.AliasResources.GetString("spacebar") ?? "spacebar";
             if (ActionStringKeys.Count == 1)
             {
+                if (ActionStringKeys[0] == " ")
+                {
+                    return spacebarAlias;
+                }
                 return (ActionStringKeys[0].StartsWith("vk")) ? ActionStringKeys[0].Split('_')[1]
                     : ActionStringKeys[0];
             }
