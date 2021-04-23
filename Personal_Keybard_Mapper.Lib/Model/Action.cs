@@ -394,12 +394,24 @@ namespace Personal_Keyboard_Mapper.Lib.Model
             {
                 copyActionList.Reverse();
             }
-            return (VirtualKeys
-                .Any(x => Globals.ModKeysVirtualKeyCodes.Any(y => y == x)))
+
+            var last = copyActionList.Last();
+            if (last.Contains("_"))
+            {
+                if (last.Split('_').Any())
+                {
+                    copyActionList[copyActionList.Count - 1] = last.Split('_')[1];
+                }
+
+            }
+            var result = (VirtualKeys
+                               .Any(x => Globals.ModKeysVirtualKeyCodes.Any(y => y == x))
+                           && !IsActionWithLeftArrowAdded())
                 ? String.Join(" + ", copyActionList).Replace("-", "")
-                    .Replace(spacebarAlias, " ")
+                    .Replace(spacebarAlias, " ") 
                 :string.Join("", ActionStringKeys)
-                    .Replace(spacebarAlias, " ");
+                    .Replace(spacebarAlias, " "); 
+            return result;
         }
     }
 }
