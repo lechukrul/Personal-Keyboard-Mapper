@@ -222,6 +222,9 @@ namespace Personal_Keyboard_Mapper
                 ConfigGrid.CurrentCell = ConfigGrid[iColumn + 1, iRow];
 
             this.KeyActionRadioBtn.Checked = true;
+            this.AltCheckBox.Checked = false;
+            this.CrtlCheckBox.Checked = false;
+            this.ShiftCheckBox.Checked = false;
             this.ActionComboBox.SelectedIndex = 0;
         }
 
