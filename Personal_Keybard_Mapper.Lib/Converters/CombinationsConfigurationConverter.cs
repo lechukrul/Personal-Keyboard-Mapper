@@ -93,7 +93,14 @@ namespace Personal_Keyboard_Mapper.Lib.Converters
             switch (combination.Action.Type)
             {
                 case ActionType.Keyboard:
-                    if (combination.Action.IsActionWithLeftArrowAdded() || combination.Action.IsDotOrSemiColonAction())
+                    if (combination.Action.IsActionWithLeftArrowAdded() 
+                        || combination.Action.IsDotOrSemiColonAction()
+                        || combination.Action.IsBackslashAction()
+                        || combination.Action.IsLeftAltAction()
+                        || combination.Action.IsRightAltAction()
+                        || combination.Action.IsQuestionMarkAction()
+                        || combination.Action.IsUnderscoreAction()
+                        || combination.Action.IsApostropheAction())
                     {
                         serializer.Serialize(writer, string.Join("", combination.Action.ActionStringKeys));
                     }
