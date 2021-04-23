@@ -338,6 +338,27 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         {
             return Globals.DotOrSemiColon.Any(x => x == string.Join("", ActionStringKeys));
         }
+
+        public bool IsBackslashAction()
+        {
+            return string.Join("", ActionStringKeys) == ConfigurationManager.AppSettings["backslashAlias"];
+        }
+
+        public bool IsQuestionMarkAction()
+        {
+            return string.Join("", ActionStringKeys) == "?";
+        }
+
+        public bool IsUnderscoreAction()
+        {
+            return string.Join("", ActionStringKeys) == "_";
+        }
+
+        public bool IsApostropheAction()
+        {
+            return string.Join("", ActionStringKeys) == "`";
+        }
+
         public Task RunAsync()
         {
             throw new NotImplementedException();

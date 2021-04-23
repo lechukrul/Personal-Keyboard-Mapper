@@ -43,10 +43,10 @@ namespace Personal_Keyboard_Mapper
             existingConfigs = new List<string>();
             try
             {
+                CollectExistingConfigs();
                 if (!File.Exists(configFileName))
                 {
                     logger.Error("Config file is missing");
-                    CollectExistingConfigs();
                     configFileName = existingConfigs[0] ?? "";
                 }
 
@@ -128,6 +128,9 @@ namespace Personal_Keyboard_Mapper
                 AddUpdateAppSettings("DefaultConfigFileName", config.ConfigFilePath);
                 ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == config.ConfigFilePath);
                 logger.Info("CONFIG RELOAD SUCCESSFULLY ENDS");
+                CollectExistingConfigs();
+                ExistingConfigsComboBox.DataSource = existingConfigs.ToArray();
+                ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName);
                 this.startAppBtn.Enabled = false;
                 this.stopAppBtn.Enabled = true;
             }

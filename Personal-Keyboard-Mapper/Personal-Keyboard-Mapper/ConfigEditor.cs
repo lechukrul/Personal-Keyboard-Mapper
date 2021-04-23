@@ -47,7 +47,7 @@ namespace Personal_Keyboard_Mapper
             aliasResources = new ResXResourceSet(ConfigurationManager.AppSettings["KeyAliasesResxFileName"]);
             newCombinations = new List<IKeyCombination>(); 
             actionItems = ActionComboBoxKeys();
-            mouseActionItems = MouseActionsComboBoxItems();
+            mouseActionItems = MouseActionsComboBoxItems(); 
             currentCombination = new TwoKeysCombination();
             combinationsConfiguration = new KeyCombinationsConfiguration();
             combinationsConfiguration.CombinationSize = 2;
@@ -69,20 +69,21 @@ namespace Personal_Keyboard_Mapper
             newConfigName = this.ConfigNameTxtBox.Text; 
         }
 
-        private Keys[] ActionComboBoxKeys()
+        private string[] ActionComboBoxKeys()
         {
             var alphaNumReg = new Regex("^VK_[a-zA-Z0-9]$");
-            var functionKeysReg = new Regex("^F\\d\\d?");
-            var keys = Enum.GetValues(typeof(VirtualKeyCode)).Cast<VirtualKeyCode>()
+            var functionKeysReg = new Regex("^F\\d\\d?");  
+            var keyStrings = Enum.GetValues(typeof(VirtualKeyCode)).Cast<VirtualKeyCode>()
                 .Where(x => alphaNumReg.IsMatch(x.ToString())
                             || functionKeysReg.IsMatch(x.ToString())
                             || Globals.NumericKeypadWithShiftVirtualKeyCodes.Contains(x)
                             || x == VirtualKeyCode.TAB
                             || x == VirtualKeyCode.DELETE
                             || x == VirtualKeyCode.ESCAPE)
-                .Select(x => (Keys) x)
+                .Select(x => ((Keys)x).ToString())
                 .ToArray();
-            return keys;
+            var result = keyStrings.Prepend("");
+            return result.ToArray();
         }
 
         private string[] MouseActionsComboBoxItems()
@@ -100,11 +101,14 @@ namespace Personal_Keyboard_Mapper
 
         private void ConfigEditor_Load(object sender, EventArgs e)
         {
-            ActionComboBox.DataSource = actionItems;
+            ActionComboBox.DataSource = actionItems; 
             MouseActionComboBox.DataSource = mouseActionItems;
             ActionComboBox.SelectedIndex = 0;
             MouseActionComboBox.SelectedIndex = 0;
+            ConfigNameTxtBox.Focus();
             Helper.AddNumericRowsToGrid(ConfigGrid);
+            ConfigGrid.Width = this.Width;
+            ConfigGroupBox.Width = this.Width;
             ShowConfigPanel(false);
             if (!string.IsNullOrEmpty(this.ConfigNameTxtBox.Text))
             {
@@ -127,15 +131,23 @@ namespace Personal_Keyboard_Mapper
             ActionComboBox.ResetText();
             MouseActionComboBox.ResetText();
             currentRowIndex = e.RowIndex;
-            currentColumnIndex = e.ColumnIndex;
-            if (currentRowIndex >= 0 && currentColumnIndex >= 0)
+            currentColumnIndex = e.ColumnIndex; 
+            try
             {
-                ShowConfigPanel(true);
-                var firstKey = new KeyboardKey(Globals.NumericVirtualKeyCodes.ElementAt(currentRowIndex), KeyCombinationPosition.First);
-                var SecondKey = new KeyboardKey(Globals.NumericVirtualKeyCodes.ElementAt(currentColumnIndex - 1), KeyCombinationPosition.Second);
-                currentCombination = new TwoKeysCombination();
-                currentCombination.Keys = new[] { firstKey, SecondKey };
-                currentCombination.logger = logger; 
+
+                if (currentRowIndex >= 0 && currentColumnIndex >= 0)
+                {
+                    ShowConfigPanel(true);
+                    var firstKey = new KeyboardKey(Globals.NumericVirtualKeyCodes.ElementAt(currentRowIndex), KeyCombinationPosition.First);
+                    var SecondKey = new KeyboardKey(Globals.NumericVirtualKeyCodes.ElementAt(currentColumnIndex - 1), KeyCombinationPosition.Second);
+                    currentCombination = new TwoKeysCombination();
+                    currentCombination.Keys = new[] { firstKey, SecondKey };
+                    currentCombination.logger = logger;
+                }
+            }
+            catch (ArgumentOutOfRangeException )
+            {
+                logger.Warn("Row cell clicked");
             }
 
         }
@@ -165,8 +177,7 @@ namespace Personal_Keyboard_Mapper
                 {
                     var modKeys = currentCombination.Action.GetActionModKeys();
                     var noModKeys = currentCombination.Action.GetActionNoModKeys();
-                    var cellContent = $"{string.Join(" ", modKeys).Replace("LMENU", "ALT")}-" +
-                                      $"{string.Join("+", noModKeys.Select(x => (Keys)x))}".TrimStart('-');
+                    var cellContent = currentCombination.Action.ToString();
                     var addedCombination = new TwoKeysCombination()
                     {
                         Action = currentCombination.Action,
@@ -211,6 +222,7 @@ namespace Personal_Keyboard_Mapper
                 ConfigGrid.CurrentCell = ConfigGrid[iColumn + 1, iRow];
 
             this.KeyActionRadioBtn.Checked = true;
+            this.ActionComboBox.SelectedIndex = 0;
         }
 
         private void CellUpdate(TwoKeysCombination addedCombination, string cellContent)
@@ -250,6 +262,8 @@ namespace Personal_Keyboard_Mapper
                 KeyActionPanel.Visible = false;
                 TextActionPanel.Visible = true;
                 MouseActionPanel.Visible = false;
+                ActionTextBox.Focus();
+                ActionTextBox.Text = String.Empty;
             } 
         }
         private void MouseActionRadioBtn_CheckedChanged(object sender, EventArgs e)
@@ -269,21 +283,36 @@ namespace Personal_Keyboard_Mapper
             {
                 throw new NullReferenceException(nameof(currentCombination));
             }
-            var actionKey = (VirtualKeyCode)ActionComboBox.SelectedItem;
-            var action = new Action();
-            if (actionKey == VirtualKeyCode.MBUTTON || actionKey == VirtualKeyCode.LBUTTON ||
-                actionKey == VirtualKeyCode.RBUTTON)
+            try
             {
-                action.Type = ActionType.Mouse;
-            }
-            else
-            {
-                action.Type = ActionType.Keyboard;
-            }
 
-            action.VirtualKeys = new List<VirtualKeyCode>() {actionKey};
-            action.ActionStringKeys = new List<string>(){actionKey.ToString()};
-            currentCombination.Action = action;
+                var actionKey = (VirtualKeyCode)Enum.Parse(typeof(Keys), (string)ActionComboBox.SelectedItem);
+                var action = new Action();
+                if (actionKey == VirtualKeyCode.MBUTTON || actionKey == VirtualKeyCode.LBUTTON ||
+                    actionKey == VirtualKeyCode.RBUTTON)
+                {
+                    action.Type = ActionType.Mouse;
+                }
+                else
+                {
+                    action.Type = ActionType.Keyboard;
+                }
+
+                action.VirtualKeys = new List<VirtualKeyCode>() { actionKey };
+                action.ActionStringKeys = new List<string>() { actionKey.ToString() };
+                if (currentCombination.Action == null)
+                {
+                    currentCombination.Action = action;
+                }
+                else
+                {
+                    currentCombination.Action.VirtualKeys.AddRange(action.VirtualKeys);
+                    currentCombination.Action.ActionStringKeys.AddRange(action.ActionStringKeys);
+                }
+            }
+            catch (ArgumentException ae)
+            { 
+            }
         }
 
         private void ActionTextBox_Leave(object sender, EventArgs e)
@@ -305,7 +334,12 @@ namespace Personal_Keyboard_Mapper
             {
                 var signVirtualCodes = OutputKeysConverter.CharToVirtualCode(sign, culture);
                 action.VirtualKeys.AddRange(signVirtualCodes);
-                action.ActionStringKeys.Add(sign.ToString());
+                var stringKey = sign.ToString();
+                if (sign == '\\')
+                {
+                    stringKey = ConfigurationManager.AppSettings["backslashAlias"];
+                }
+                action.ActionStringKeys.Add(stringKey);
             }
 
             if (Globals.Braces.Contains(string.Join("", textAction)))
@@ -361,7 +395,9 @@ namespace Personal_Keyboard_Mapper
                 {
                     currentCombination.Action = new Action
                     {
-                        Type = ActionType.Keyboard
+                        Type = ActionType.Keyboard,
+                        VirtualKeys = new List<VirtualKeyCode>(),
+                        ActionStringKeys = new List<string>()
                     };
                 }
                 currentCombination.Action.VirtualKeys.Add(VirtualKeyCode.CONTROL);
@@ -434,12 +470,7 @@ namespace Personal_Keyboard_Mapper
                     {
                         newConfigFileName += ".keysconfig";
                     }
-
-                    if (!File.Exists(newConfigFileName))
-                    {
-                        File.CreateText(newConfigFileName);
-                        logger.Info("Create new config file");
-                    }
+                     
                     var configSource = new JsonConfigSource(logger);
                     configSource.WriteConfigToFile(combinationsConfiguration, newConfigFileName);
                     mainWindow.ReloadConfig(configSource);
@@ -513,12 +544,20 @@ namespace Personal_Keyboard_Mapper
 
         private void ActionTextBox_LostFocus(object sender, EventArgs e)
         {
-            SaveTextAction();
+            if (!this.SaveConfigBtn.Focused)
+            {
+                SaveTextAction();
+            }
         }
 
         private void ConfigPanel_MouseClick(object sender, MouseEventArgs e)
         {
             this.Focus();
+        }
+
+        private void TextActionPanel_MouseClick(object sender, MouseEventArgs e)
+        {
+            SaveTextAction();
         }
     }
 }

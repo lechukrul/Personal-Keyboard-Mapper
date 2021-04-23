@@ -269,6 +269,7 @@ namespace Personal_Keyboard_Mapper
             this.TextActionPanel.Name = "TextActionPanel";
             this.TextActionPanel.Size = new System.Drawing.Size(153, 79);
             this.TextActionPanel.TabIndex = 7;
+            this.TextActionPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TextActionPanel_MouseClick);
             // 
             // ActionTextBox
             // 
