@@ -100,7 +100,8 @@ namespace Personal_Keyboard_Mapper.Lib.Converters
                         || combination.Action.IsRightAltAction()
                         || combination.Action.IsQuestionMarkAction()
                         || combination.Action.IsUnderscoreAction()
-                        || combination.Action.IsApostropheAction())
+                        || combination.Action.IsApostropheAction() 
+                        || combination.Action.IsEqualitySignAction())
                     {
                         serializer.Serialize(writer, string.Join("", combination.Action.ActionStringKeys));
                     }

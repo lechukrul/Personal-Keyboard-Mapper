@@ -115,6 +115,7 @@ namespace Personal_Keyboard_Mapper
             {
                 logger.Info("START CONFIG RELOAD");
                 config = newConfig;
+                configFileName = config.ConfigFilePath;
                 if (hookService != null)
                 {
                     hookService.StopHookService(); 
@@ -126,9 +127,12 @@ namespace Personal_Keyboard_Mapper
                 hookService.StartHookService(config, helperWindow);
                 Helper.FillCombinationsTable(logger, this.combinationsTable, hookService.combinationsConfig);
                 AddUpdateAppSettings("DefaultConfigFileName", config.ConfigFilePath);
-                ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == config.ConfigFilePath);
+                ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName);
                 logger.Info("CONFIG RELOAD SUCCESSFULLY ENDS");
-                CollectExistingConfigs();
+                if (!existingConfigs.Any())
+                {
+                    CollectExistingConfigs(); 
+                }
                 ExistingConfigsComboBox.DataSource = existingConfigs.ToArray();
                 ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName);
                 this.startAppBtn.Enabled = false;

@@ -465,6 +465,7 @@ namespace Personal_Keyboard_Mapper
             }
             else
             {
+                UpdateMouseActionsOutputs(newCombinations.Where(x => x.Action.IsMouseAction()));
                 combinationsConfiguration.Combinations = newCombinations;
                 try
                 {
@@ -482,6 +483,44 @@ namespace Personal_Keyboard_Mapper
                 catch (Exception ex)
                 {
                     logger.Error(ex.StackTrace);
+                }
+            }
+        }
+
+        private void UpdateMouseActionsOutputs(IEnumerable<IKeyCombination> mouseCombinations)
+        {
+            foreach (var action in mouseCombinations.Select(x => x.Action))
+            {
+                var actionString = action.ToString();
+                if (actionString == aliasResources.GetString("leftMouseClick"))
+                {
+                    action.ActionStringKeys.Clear();
+                    action.ActionStringKeys.Add(ConfigurationManager.AppSettings["leftMouseClickAlias"]);
+                }
+                else if (actionString == aliasResources.GetString("rightMouseClick"))
+                {
+                    action.ActionStringKeys.Clear();
+                    action.ActionStringKeys.Add(ConfigurationManager.AppSettings["rightMouseClickAlias"]);
+                }
+                else if (actionString == aliasResources.GetString("leftMouseDoubleClick"))
+                {
+                    action.ActionStringKeys.Clear();
+                    action.ActionStringKeys.Add(ConfigurationManager.AppSettings["leftDoubleMouseClickAlias"]);
+                }
+                else if (actionString == aliasResources.GetString("rightMouseDoubleClick"))
+                {
+                    action.ActionStringKeys.Clear();
+                    action.ActionStringKeys.Add(ConfigurationManager.AppSettings["rightDoubleMouseClickAlias"]);
+                }
+                else if (actionString == aliasResources.GetString("leftMouseHoldClick"))
+                {
+                    action.ActionStringKeys.Clear();
+                    action.ActionStringKeys.Add(ConfigurationManager.AppSettings["leftHoldMouseClickAlias"]);
+                }
+                else if (actionString == aliasResources.GetString("rightMouseHoldClick"))
+                {
+                    action.ActionStringKeys.Clear();
+                    action.ActionStringKeys.Add(ConfigurationManager.AppSettings["rightHoldMouseClickAlias"]);
                 }
             }
         }

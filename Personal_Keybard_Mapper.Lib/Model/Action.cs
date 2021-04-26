@@ -359,6 +359,21 @@ namespace Personal_Keyboard_Mapper.Lib.Model
             return string.Join("", ActionStringKeys) == "`";
         }
 
+        public bool IsEqualitySignAction()
+        {
+            return string.Join("", ActionStringKeys) == "=";
+        }
+
+        public bool IsMouseAction()
+        {
+            return Type == ActionType.Mouse;
+        }
+
+        public bool IsKeyboardAction()
+        {
+            return Type == ActionType.Keyboard;
+        }
+
         public Task RunAsync()
         {
             throw new NotImplementedException();
