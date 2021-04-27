@@ -54,13 +54,15 @@ namespace Personal_Keyboard_Mapper.Lib
 
         public static ResXResourceSet AliasResources { get; set; }
 
-    /// <summary>
-    /// Gets the numeric keypad virtual key codes.
-    /// </summary>
-    /// <value>
-    /// The numeric keypad virtual key codes.
-    /// </value>
-    public static IEnumerable<VirtualKeyCode> NumericKeypadVirtualKeyCodes { get; } = new List<VirtualKeyCode>()
+        public static ResXResourceSet GlobalResources { get; set; }
+
+        /// <summary>
+        /// Gets the numeric keypad virtual key codes.
+        /// </summary>
+        /// <value>
+        /// The numeric keypad virtual key codes.
+        /// </value>
+        public static IEnumerable<VirtualKeyCode> NumericKeypadVirtualKeyCodes { get; } = new List<VirtualKeyCode>()
         {
             VirtualKeyCode.NUMPAD0,
             VirtualKeyCode.NUMPAD1,

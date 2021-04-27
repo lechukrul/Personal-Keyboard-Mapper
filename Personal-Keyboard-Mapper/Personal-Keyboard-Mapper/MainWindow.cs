@@ -28,7 +28,7 @@ namespace Personal_Keyboard_Mapper
         static private KeysSoundEffects keysSounds;
         static private GlobalHookService hookService;
         static private List<string> existingConfigs;
-        static private HelpWindow helperWindow;
+        static private HelpWindow helperWindow; 
         public MainWindow(ILog log)
         {
             InitializeComponent();
@@ -36,6 +36,7 @@ namespace Personal_Keyboard_Mapper
             helperWindow = new HelpWindow(logger); 
             configFileName = ConfigurationManager.AppSettings["DefaultConfigFileName"];
             Globals.AliasResources = new ResXResourceSet(ConfigurationManager.AppSettings["KeyAliasesResxFileName"]);
+            Globals.GlobalResources = new ResXResourceSet(ConfigurationManager.AppSettings["GlobalResxFileName"]);
             keysSounds = new KeysSoundEffects(logger, Resources.Resources.key1, Resources.Resources.key2,
                 Resources.Resources.ctrl, Resources.Resources.shift, Resources.Resources.win,
                 Resources.Resources.alt);
@@ -60,6 +61,8 @@ namespace Personal_Keyboard_Mapper
             catch (ArgumentOutOfRangeException outRangeException)
             {
                 Helper.AddNumericRowsToGrid(combinationsTable);
+                this.startAppBtn.Enabled = false;
+                this.stopAppBtn.Enabled = false;
             }
             catch (Exception e)
             {
@@ -124,19 +127,27 @@ namespace Personal_Keyboard_Mapper
                 {
                     hookService = new GlobalHookService(logger, config, keysSounds, true);
                 }
-                hookService.StartHookService(config, helperWindow);
-                Helper.FillCombinationsTable(logger, this.combinationsTable, hookService.combinationsConfig);
-                AddUpdateAppSettings("DefaultConfigFileName", config.ConfigFilePath);
-                ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName);
-                logger.Info("CONFIG RELOAD SUCCESSFULLY ENDS");
-                if (!existingConfigs.Any())
+                if (hookService.combinationsConfig != null && hookService.combinationsConfig.Combinations.Any())
                 {
-                    CollectExistingConfigs(); 
+                    hookService.StartHookService(config, helperWindow);
+                    Helper.FillCombinationsTable(logger, this.combinationsTable, hookService.combinationsConfig);
+                    AddUpdateAppSettings("DefaultConfigFileName", config.ConfigFilePath);
+                    ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName);
+                    logger.Info("CONFIG RELOAD SUCCESSFULLY ENDS");
+                    if (!existingConfigs.Any())
+                    {
+                        CollectExistingConfigs();
+                    }
+                    ExistingConfigsComboBox.DataSource = existingConfigs.ToArray();
+                    ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName);
+                    this.startAppBtn.Enabled = false;
+                    this.stopAppBtn.Enabled = true; 
                 }
-                ExistingConfigsComboBox.DataSource = existingConfigs.ToArray();
-                ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName);
-                this.startAppBtn.Enabled = false;
-                this.stopAppBtn.Enabled = true;
+                else
+                {
+                    this.startAppBtn.Enabled = false;
+                    this.stopAppBtn.Enabled = false;
+                }
             }
             catch (Exception e)
             {
@@ -209,8 +220,15 @@ namespace Personal_Keyboard_Mapper
 
         private void EditConfigBtn_Click(object sender, EventArgs e)
         {
-            var configEditor = new ConfigEditor(logger, this, hookService.combinationsConfig, (string)this.ExistingConfigsComboBox.SelectedItem);
-            configEditor.Show();
+            try
+            {
+                var configEditor = new ConfigEditor(logger, this, hookService.combinationsConfig, (string)this.ExistingConfigsComboBox.SelectedItem);
+                configEditor.Show();
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show(Globals.GlobalResources.GetString("EmptyConfiguratinMsg"));
+            }
         }
 
         private void ExistingConfigsComboBox_SelectionChangeCommitted(object sender, EventArgs e)

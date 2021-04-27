@@ -462,6 +462,7 @@ namespace Personal_Keyboard_Mapper
             if (string.IsNullOrEmpty(newConfigName))
             { 
                 logger.Error(nameof(newConfigName));
+                MessageBox.Show(Globals.GlobalResources.GetString("ConfigNameEmpty"));
             }
             else
             {

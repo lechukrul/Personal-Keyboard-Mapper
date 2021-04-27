@@ -213,4 +213,7 @@
   <data name="MouseActionRadioBtn.Text" xml:space="preserve">
     <value>Mouse key press action</value>
   </data>
+  <data name="EmptyConfiguratinMsg" xml:space="preserve">
+    <value>Configuration don`t exist, please create new one</value>
+  </data>
 </root>

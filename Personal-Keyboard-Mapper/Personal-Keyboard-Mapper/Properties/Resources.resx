@@ -232,4 +232,7 @@
   <data name="MouseActionRadioBtn.Text" xml:space="preserve">
     <value>Akcja naciśnięcia klawisza myszy</value>
   </data>
+  <data name="EmptyConfiguratinMsg" xml:space="preserve">
+    <value>Brak konfiguracji, proszę stworzyć nową</value>
+  </data>
 </root>

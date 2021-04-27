@@ -250,6 +250,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brak konfiguracji, proszę stworzyć nową.
+        /// </summary>
+        internal static string EmptyConfiguratinMsg {
+            get {
+                return ResourceManager.GetString("EmptyConfiguratinMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pokazuj okno pomocy dla kombinacji.
         /// </summary>
         internal static string HelpWindowOn {
