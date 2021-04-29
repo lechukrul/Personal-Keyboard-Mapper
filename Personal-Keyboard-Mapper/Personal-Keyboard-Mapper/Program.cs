@@ -18,11 +18,18 @@ namespace Personal_Keyboard_Mapper
         [STAThread]
         static void Main()
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("pl-PL");
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow(logger));
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("pl-PL");
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("pl-PL");
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new MainWindow(logger));
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.Message);
+            }
         }
     }
 }
