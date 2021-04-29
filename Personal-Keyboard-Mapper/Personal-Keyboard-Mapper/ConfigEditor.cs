@@ -370,16 +370,16 @@ namespace Personal_Keyboard_Mapper
                         ActionStringKeys = new List<string>()
                     };
                 }
-                currentCombination.Action.VirtualKeys.Add(VirtualKeyCode.LMENU);
+                currentCombination.Action.VirtualKeys.Add(VirtualKeyCode.RMENU);
                 currentCombination.Action.ActionStringKeys.Add(ConfigurationManager.AppSettings["altAlias"]);
             }
             else
             {
                 if (currentCombination.Action != null)
                 {
-                    if (currentCombination.Action.VirtualKeys.Contains(VirtualKeyCode.LMENU))
+                    if (currentCombination.Action.VirtualKeys.Contains(VirtualKeyCode.RMENU))
                     {
-                        currentCombination.Action.VirtualKeys.RemoveAll(x => x == VirtualKeyCode.LMENU);
+                        currentCombination.Action.VirtualKeys.RemoveAll(x => x == VirtualKeyCode.RMENU);
                         currentCombination.Action.ActionStringKeys.RemoveAll(x => x == ConfigurationManager.AppSettings["altAlias"]);
                     }
                 }
