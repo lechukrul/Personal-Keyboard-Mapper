@@ -157,7 +157,7 @@
     <value>Edit configuration</value>
   </data>
   <data name="HelpWndChckBox.Text" xml:space="preserve">
-    <value>Help Window</value>
+    <value>Hint Window</value>
   </data>
   <data name="NewConfigBtn.Text" xml:space="preserve">
     <value>New configuration</value>

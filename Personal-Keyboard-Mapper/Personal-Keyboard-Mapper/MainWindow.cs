@@ -46,8 +46,7 @@ namespace Personal_Keyboard_Mapper
             {
                 CollectExistingConfigs();
                 if (!File.Exists(configFileName))
-                {
-                    logger.Error("Config file is missing");
+                { 
                     configFileName = existingConfigs[0] ?? "";
                 }
 
@@ -55,7 +54,7 @@ namespace Personal_Keyboard_Mapper
                 {
                     config = new JsonConfigSource(logger, configFileName);
                     hookService = new GlobalHookService(logger, config, keysSounds, true);
-                }
+                } 
                 Helper.AddNumericRowsToGrid(combinationsTable);
             }
             catch (ArgumentOutOfRangeException outRangeException)
@@ -63,6 +62,7 @@ namespace Personal_Keyboard_Mapper
                 Helper.AddNumericRowsToGrid(combinationsTable);
                 this.startAppBtn.Enabled = false;
                 this.stopAppBtn.Enabled = false;
+                this.EditConfigBtn.Enabled = false;
             }
             catch (Exception e)
             {
@@ -77,8 +77,10 @@ namespace Personal_Keyboard_Mapper
             {
                 CollectExistingConfigs();
             }
-            ExistingConfigsComboBox.DataSource = existingConfigs.ToArray();
-            ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName);
+            ExistingConfigsComboBox.DataSource = existingConfigs
+                .ToArray();
+            ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName
+                .Split('.')[0]);
             try
             {
                 if (config != null)
@@ -103,7 +105,7 @@ namespace Personal_Keyboard_Mapper
             {
                 if (file.Split('.')[1] == "keysconfig")
                 {
-                    existingConfigs.Add(file.Split('\\').LastOrDefault());
+                    existingConfigs.Add(file.Split('\\').LastOrDefault()?.Split('.')[0]);
                 }
             }
         }
@@ -121,25 +123,37 @@ namespace Personal_Keyboard_Mapper
                 configFileName = config.ConfigFilePath;
                 if (hookService != null)
                 {
-                    hookService.StopHookService(); 
+                    hookService.StopHookService();
+                    hookService.LoadCombinationsConfiguration(config);
                 }
                 else
                 {
                     hookService = new GlobalHookService(logger, config, keysSounds, true);
+                    hookService.LoadCombinationsConfiguration();
                 }
                 if (hookService.combinationsConfig != null && hookService.combinationsConfig.Combinations.Any())
                 {
                     hookService.StartHookService(config, helperWindow);
                     Helper.FillCombinationsTable(logger, this.combinationsTable, hookService.combinationsConfig);
                     AddUpdateAppSettings("DefaultConfigFileName", config.ConfigFilePath);
-                    ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName);
-                    logger.Info("CONFIG RELOAD SUCCESSFULLY ENDS");
-                    if (!existingConfigs.Any())
+                    if (existingConfigs.All(x => x != configFileName))
                     {
                         CollectExistingConfigs();
+                        if (!existingConfigs.Any())
+                        {
+                            this.EditConfigBtn.Enabled = false;
+                        }
+                        else
+                        {
+                            this.EditConfigBtn.Enabled = true;
+                        }
                     }
-                    ExistingConfigsComboBox.DataSource = existingConfigs.ToArray();
-                    ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName);
+
+                    existingConfigs = existingConfigs.Distinct().ToList();
+                    ExistingConfigsComboBox.DataSource = existingConfigs
+                        .ToArray();
+                    ExistingConfigsComboBox.SelectedIndex = existingConfigs.FindIndex(x => x == configFileName
+                        .Split('.')[0]); 
                     this.startAppBtn.Enabled = false;
                     this.stopAppBtn.Enabled = true; 
                 }
@@ -148,6 +162,7 @@ namespace Personal_Keyboard_Mapper
                     this.startAppBtn.Enabled = false;
                     this.stopAppBtn.Enabled = false;
                 }
+                logger.Info("CONFIG RELOAD SUCCESSFULLY ENDS"); 
             }
             catch (Exception e)
             {

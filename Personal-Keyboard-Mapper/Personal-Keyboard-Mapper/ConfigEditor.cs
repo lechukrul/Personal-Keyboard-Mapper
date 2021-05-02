@@ -156,7 +156,7 @@ namespace Personal_Keyboard_Mapper
         {
             if (ConfigNameTxtBox.Text != String.Empty)
             {
-                newConfigName = ConfigNameTxtBox.Text + ".keysconfig";
+                newConfigName = ConfigNameTxtBox.Text;
             }
         }
 
@@ -470,11 +470,7 @@ namespace Personal_Keyboard_Mapper
                 combinationsConfiguration.Combinations = newCombinations;
                 try
                 {
-                    var newConfigFileName = newConfigName;
-                    if (!newConfigFileName.Contains("keysconfig"))
-                    {
-                        newConfigFileName += ".keysconfig";
-                    }
+                    var newConfigFileName = newConfigName; 
                      
                     var configSource = new JsonConfigSource(logger);
                     configSource.WriteConfigToFile(combinationsConfiguration, newConfigFileName);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.IO;
 using log4net;
@@ -13,7 +14,7 @@ namespace Personal_Keyboard_Mapper.Lib.Model
     public class JsonConfigSource : IConfigSource
     {
         public ILog logger { get; set; }
-        public string ConfigString { get; set; }
+        public string ConfigString { get; set; } 
 
         public string ConfigFilePath { get; set; }
         public JsonConfigSource(ILog log)
@@ -23,7 +24,11 @@ namespace Personal_Keyboard_Mapper.Lib.Model
 
         public JsonConfigSource(ILog log, string path)
         {
-            logger = log; 
+            logger = log;
+            if (!path.Contains(ConfigurationManager.AppSettings["DefaultConfigFileExtension"]))
+            {
+                path += $".{ConfigurationManager.AppSettings["DefaultConfigFileExtension"]}";
+            }
             ReadConfigFromFile(path);
         }
 
@@ -77,6 +82,10 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         {
             if (!string.IsNullOrEmpty(configFileName))
             {
+                if (!configFileName.Contains(ConfigurationManager.AppSettings["DefaultConfigFileExtension"]))
+                {
+                    configFileName += $".{ConfigurationManager.AppSettings["DefaultConfigFileExtension"]}";
+                }
                 ConfigFilePath = configFileName; 
             }
 
@@ -87,9 +96,12 @@ namespace Personal_Keyboard_Mapper.Lib.Model
                 PreserveReferencesHandling = PreserveReferencesHandling.All
 
             });
-            using (var file = File.CreateText(configFileName))
+            if (!string.IsNullOrEmpty(ConfigFilePath))
             {
-                file.Write(result.ToCharArray());
+                using (var file = File.CreateText(ConfigFilePath))
+                {
+                    file.Write(result.ToCharArray());
+                }
             }
         }
 

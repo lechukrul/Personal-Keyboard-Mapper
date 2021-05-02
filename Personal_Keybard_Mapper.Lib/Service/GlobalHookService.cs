@@ -49,7 +49,10 @@ namespace Personal_Keyboard_Mapper.Lib.Service
         public void StartHookService(IConfigSource config = null, HelpWindow helpWindow = null, 
             ActionType actionHookType = ActionType.Both)
         {
-            LoadCombinationsConfiguration(config);
+            if (combinationsConfig == null)
+            {
+                LoadCombinationsConfiguration(config);
+            }
 
             switch (actionHookType)
             {

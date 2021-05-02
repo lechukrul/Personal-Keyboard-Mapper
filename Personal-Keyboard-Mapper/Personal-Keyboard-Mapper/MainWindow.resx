@@ -136,7 +136,7 @@
     <value>1</value>
   </data>
   <data name="HelpWndChckBox.Text" xml:space="preserve">
-    <value>Okno pomocy</value>
+    <value>Okno podpowiedzi</value>
   </data>
   <data name="&gt;&gt;HelpWndChckBox.Name" xml:space="preserve">
     <value>HelpWndChckBox</value>
