@@ -211,6 +211,19 @@ namespace Personal_Keyboard_Mapper.Lib
             };
         }
 
+        public static List<bool> GetModKeysToPressOnceFlags()
+        {
+            return new List<bool>
+            {
+                IsCtrlPressedOnce,
+                IsShiftPressedOnce,
+                IsLeftAltPressedOnce,
+                IsRightAltPressedOnce,
+                IsLeftWinPressedOnce,
+                IsRightWinPressedOnce
+            };
+        }
+
         /// <summary>
         /// Gets the mod keys to press once.
         /// </summary>
@@ -335,6 +348,16 @@ namespace Personal_Keyboard_Mapper.Lib
             IsLeftAltHoldDown = false;
             IsRightWinHoldDown = false;
             IsLeftWinHoldDown = false;
+        }
+
+        public static void ResetModKeysPressedOnceFlags()
+        {
+            IsShiftPressedOnce = false;
+            IsCtrlPressedOnce = false;
+            IsLeftAltPressedOnce = false;
+            IsRightAltPressedOnce = false;
+            IsRightWinPressedOnce = false;
+            IsLeftWinPressedOnce = false;
         }
     }
 }

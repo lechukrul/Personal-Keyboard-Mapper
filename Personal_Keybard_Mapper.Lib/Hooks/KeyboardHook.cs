@@ -129,7 +129,8 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                         if (temp != null)
                         {
                             DebugKey(wParam, vk, sk);
-                            if (Globals.ModKeysVirtualKeyCodes.Contains((VirtualKeyCode)vk) && Globals.KeyCombinationPositionCounter >= 2)
+                            if (Globals.ModKeysVirtualKeyCodes.Contains((VirtualKeyCode)vk)
+                                && Globals.KeyCombinationPositionCounter >= 2)
                             {
                                 ResetPositionCounter();
                                 ConcatenatePosition();
@@ -225,7 +226,7 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                                     }
                                     if (lastUsedCombination.IsFullCombination())
                                     {
-                                        ReleasePressedOnceModKey();
+                                        Globals.ResetModKeysPressedOnceFlags();
                                     }
                                 }
                                 try
@@ -400,7 +401,7 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                                     var onlyModKeyAction = combinationAction.Run();
                                     if (!onlyModKeyAction)
                                     {
-                                        ReleasePressedOnceModKey();
+                                        Globals.ResetModKeysPressedOnceFlags();
                                     }
                                     currentCombination.Clear();
                                     helperWindow.ClearHelperRow();
@@ -457,46 +458,6 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
             if (Globals.KeyCombinationPositionCounter >= combinationSize)
             {
                 Globals.KeyCombinationPositionCounter = -1;
-            }
-        }
-
-        /// <summary>
-        /// Releases the pressed once mod key.
-        /// </summary>
-        private void ReleasePressedOnceModKey()
-        {
-            if (lastUsedCombination.Action == null)
-            {
-                currentCombination.CopyTo(lastUsedCombination);
-            }
-            if (lastUsedCombination.Action.IsCrtlAction() && Globals.IsCtrlPressedOnce)
-            {
-                Globals.IsCtrlPressedOnce = false;
-            }
-
-            if (lastUsedCombination.Action.IsShiftAction() && Globals.IsShiftPressedOnce)
-            {
-                Globals.IsShiftPressedOnce = false;
-            }
-
-            if (lastUsedCombination.Action.IsLeftAltAction() && Globals.IsLeftAltPressedOnce)
-            {
-                Globals.IsLeftAltPressedOnce = false;
-            }
-
-            if (lastUsedCombination.Action.IsRightAltAction() && Globals.IsRightAltPressedOnce)
-            {
-                Globals.IsRightAltPressedOnce = false;
-            }
-
-            if (lastUsedCombination.Action.IsLeftWinAction() && Globals.IsLeftWinPressedOnce)
-            {
-                Globals.IsLeftWinPressedOnce = false;
-            }
-
-            if (lastUsedCombination.Action.IsRightWinAction() && Globals.IsRightWinPressedOnce)
-            {
-                Globals.IsRightWinPressedOnce = false;
             }
         }
 
