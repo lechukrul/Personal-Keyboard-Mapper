@@ -11,12 +11,12 @@ namespace Personal_Keyboard_Mapper.Lib.Model.KeyboardLayout
         {
             this.currentLayout = KeyboardLayout.GetCurrent();
             var layout = KeyboardLayout.Load(culture);
-            layout.Activate();
+            //layout.Activate();
         }
 
         public void Dispose()
-        {
-            this.currentLayout.Activate();
+        { 
+            //this.currentLayout.Activate();
         }
     }
 }

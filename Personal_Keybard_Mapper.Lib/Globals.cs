@@ -155,6 +155,26 @@ namespace Personal_Keyboard_Mapper.Lib
             ";"
         };
 
+        public static IEnumerable<string> PolishSigns { get; } = new List<string>
+        {
+            "ą",
+            "Ą",
+            "ć",
+            "Ć",
+            "ę",
+            "Ę",
+            "ł",
+            "Ł",
+            "ó",
+            "Ó",
+            "ś",
+            "Ś",
+            "ż",
+            "Ż",
+            "ź",
+            "Ź"
+        };
+
         public static List<(string sign, VirtualKeyCode[] keys)> BracketsKeyCodes { get; } = new List<(string sign, VirtualKeyCode[] keys)>()
         {
             ("(", new[] {VirtualKeyCode.SHIFT, VirtualKeyCode.VK_9}),

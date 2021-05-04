@@ -364,6 +364,11 @@ namespace Personal_Keyboard_Mapper.Lib.Model
             return string.Join("", ActionStringKeys) == "=";
         }
 
+        public bool IsActionWithPolishSigns()
+        {
+            return ActionStringKeys.Any(x => Globals.PolishSigns.Contains(x));
+        }
+
         public bool IsMouseAction()
         {
             return Type == ActionType.Mouse;
@@ -409,7 +414,8 @@ namespace Personal_Keyboard_Mapper.Lib.Model
 
             var copyActionList = ActionStringKeys.ToList();
             if (Globals.ModKeysVirtualKeyCodes.Any(x => VirtualKeys.Contains(x))
-                && VirtualKeys.Count > 1 && !Globals.ModKeysVirtualKeyCodes.Contains(VirtualKeys[0]))
+                && VirtualKeys.Count > 1 && !Globals.ModKeysVirtualKeyCodes.Contains(VirtualKeys[0])
+                && ActionStringKeys.All(x => !Globals.PolishSigns.Contains(x)))
             {
                 copyActionList.Reverse();
             }
@@ -425,7 +431,8 @@ namespace Personal_Keyboard_Mapper.Lib.Model
             }
             var result = (VirtualKeys
                                .Any(x => Globals.ModKeysVirtualKeyCodes.Any(y => y == x))
-                           && !IsActionWithLeftArrowAdded())
+                           && !IsActionWithLeftArrowAdded()
+                           && ActionStringKeys.All(x => !Globals.PolishSigns.Contains(x)))
                 ? String.Join(" + ", copyActionList).Replace("-", "")
                     .Replace(spacebarAlias, " ") 
                 :string.Join("", ActionStringKeys)

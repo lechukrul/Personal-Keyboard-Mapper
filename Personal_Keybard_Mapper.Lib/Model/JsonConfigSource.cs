@@ -25,11 +25,11 @@ namespace Personal_Keyboard_Mapper.Lib.Model
         public JsonConfigSource(ILog log, string path)
         {
             logger = log;
-            if (!path.Contains(ConfigurationManager.AppSettings["DefaultConfigFileExtension"]))
+            ConfigFilePath = path;
+            if (!ConfigFilePath.Contains(ConfigurationManager.AppSettings["DefaultConfigFileExtension"]))
             {
-                path += $".{ConfigurationManager.AppSettings["DefaultConfigFileExtension"]}";
-            }
-            ReadConfigFromFile(path);
+                ConfigFilePath += $".{ConfigurationManager.AppSettings["DefaultConfigFileExtension"]}";
+            } 
         }
 
         public KeyCombinationsConfiguration ReadConfigFromFile(string path = "")
