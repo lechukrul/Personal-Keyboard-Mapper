@@ -130,6 +130,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="default.keysconfig">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -192,6 +195,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)Properties\Resources" "$(TargetDir)Resources" /i</PostBuildEvent>
+    <PostBuildEvent>echo D|xcopy "$(TargetDir)Properties\Resources" "$(TargetDir)Resources" /i /y
+xcopy "$(ProjectDir)default.keysconfig" "$(TargetDir)" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
