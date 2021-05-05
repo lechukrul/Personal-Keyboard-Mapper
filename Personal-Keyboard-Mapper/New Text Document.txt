@@ -1,0 +1,11 @@
+bin/
+Bin/
+obj/
+log/
+Log/
+*.log
+*.suo
+*.pdb
+:*.sln.cache
+:*.tmp
+.git

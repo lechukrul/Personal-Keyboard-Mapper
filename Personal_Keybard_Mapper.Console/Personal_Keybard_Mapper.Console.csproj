@@ -65,7 +65,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Personal-Keyboard-Mapper\Personal-Keyboard-Mapper.Gui\Personal-Keyboard-Mapper.Gui.csproj">
+    <ProjectReference Include="..\Personal-Keyboard-Mapper.Gui\Personal-Keyboard-Mapper.Gui.csproj">
       <Project>{64A7FCD3-BBC3-4236-A124-B0041A99F1BD}</Project>
       <Name>Personal-Keyboard-Mapper.Gui</Name>
     </ProjectReference>
