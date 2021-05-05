@@ -191,4 +191,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)Properties\Resources" "$(TargetDir)Resources" /i</PostBuildEvent>
+  </PropertyGroup>
 </Project>
