@@ -164,7 +164,7 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                         if (Globals.IsSoundOn)
                         {
                             try
-                            { 
+                            {
                                 switch (key.CombinationPosition)
                                 {
                                     case KeyCombinationPosition.First:
@@ -173,23 +173,31 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                                         if (Globals.IsHelpWindowOn)
                                         {
                                             var possibleOutputActions = configCombinations
-                                                                .Where(x => x.Keys[0].KeyCode.ConvertNumericKeyCodeToNumericKeypadKeyCode() == key.KeyCode)
-                                                                .Select(x => x.Action.ToString()) 
-                                                                .ToList();
+                                                .Where(x => x.Keys[0].KeyCode
+                                                                .ConvertNumericKeyCodeToNumericKeypadKeyCode() ==
+                                                            key.KeyCode)
+                                                .Select(x => x.Action.ToString())
+                                                .ToList();
                                             helperWindow.FillHelperRow(possibleOutputActions);
                                             helperWindow.TopMost = true;
                                             helperWindow.Show();
                                         }
+
                                         break;
 
                                     case KeyCombinationPosition.Second:
-                                        soundEffects.PlaySound(SoundAction.SecondKey); 
+                                        soundEffects.PlaySound(SoundAction.SecondKey);
                                         break;
 
                                     case KeyCombinationPosition.Third:
                                         soundEffects.PlaySound(SoundAction.ThirdKey);
                                         break;
                                 }
+                            }
+                            catch (NullReferenceException ne)
+                            {
+                                logger.Warn(ne.Message);
+                                return ApiFunctions.CallNextHookEx(hookInstance, -1, wp, ref lParam);
                             }
                             catch (Exception ex)
                             {
@@ -386,7 +394,8 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                                 }
                                 catch (Exception e)
                                 {
-                                    logger.Error(e.StackTrace);
+                                    logger.Error(e.Message);
+                                    return ApiFunctions.CallNextHookEx(hookInstance, -1, wp, ref lParam);
                                 }
 
                                 var combinationAction = currentCombination.Action;

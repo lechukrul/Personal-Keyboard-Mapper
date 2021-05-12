@@ -95,8 +95,7 @@ namespace Personal_Keyboard_Mapper.Lib
                     case SoundAction.FirstKey:
                         if (FirstKeySound == null)
                         {
-                            logger.Warn($"{nameof(FirstKeySound)} is null");
-                            break;
+                            throw new NullReferenceException($"{nameof(FirstKeySound)} is null");
                         }
                         FirstKeySound.Position = 0;
                         soundPlayer.Stream = FirstKeySound;
@@ -106,8 +105,7 @@ namespace Personal_Keyboard_Mapper.Lib
                     case SoundAction.SecondKey:
                         if (SecondKeySound == null)
                         {
-                            logger.Warn($"{nameof(SecondKeySound)} is null");
-                            break;
+                            throw new NullReferenceException($"{nameof(SecondKeySound)} is null");
                         }
                         SecondKeySound.Position = 0;
                         soundPlayer.Stream = SecondKeySound;
@@ -117,8 +115,7 @@ namespace Personal_Keyboard_Mapper.Lib
                     case SoundAction.ThirdKey:
                         if (ThirdKeySound == null)
                         {
-                            logger.Warn($"{nameof(ThirdKeySound)} is null");
-                            break;
+                            throw new NullReferenceException($"{nameof(ThirdKeySound)} is null");
                         }
                         ThirdKeySound.Position = 0;
                         soundPlayer.Stream = ThirdKeySound;
@@ -128,8 +125,7 @@ namespace Personal_Keyboard_Mapper.Lib
                     case SoundAction.Shift:
                         if (ShiftActionSound == null)
                         {
-                            logger.Warn($"{nameof(ShiftActionSound)} is null");
-                            break;
+                            throw new NullReferenceException($"{nameof(ShiftActionSound)} is null");
                         }
                         ShiftActionSound.Position = 0;
                         soundPlayer.Stream = ShiftActionSound;
@@ -139,8 +135,7 @@ namespace Personal_Keyboard_Mapper.Lib
                     case SoundAction.Crtl:
                         if (CrtlActionSound == null)
                         {
-                            logger.Warn($"{nameof(CrtlActionSound)} is null");
-                            break;
+                            throw new NullReferenceException($"{nameof(CrtlActionSound)} is null");
                         }
                         CrtlActionSound.Position = 0;
                         soundPlayer.Stream = CrtlActionSound;
@@ -150,8 +145,7 @@ namespace Personal_Keyboard_Mapper.Lib
                     case SoundAction.Alt:
                         if (AltActionSound == null)
                         {
-                            logger.Warn($"{nameof(AltActionSound)} is null");
-                            break;
+                            throw new NullReferenceException($"{nameof(AltActionSound)} is null");
                         }
                         AltActionSound.Position = 0;
                         soundPlayer.Stream = AltActionSound;
@@ -161,8 +155,7 @@ namespace Personal_Keyboard_Mapper.Lib
                     case SoundAction.Win:
                         if (WinActionSound == null)
                         {
-                            logger.Warn($"{nameof(WinActionSound)} is null");
-                            break;
+                            throw new NullReferenceException($"{nameof(WinActionSound)} is null");
                         }
                         WinActionSound.Position = 0;
                         soundPlayer.Stream = WinActionSound;
