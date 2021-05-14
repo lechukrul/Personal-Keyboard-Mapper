@@ -391,35 +391,34 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                                             }
                                         } 
                                     } 
+                                    var combinationAction = currentCombination.Action;
+                                    if (combinationAction == null)
+                                    {
+                                        currentCombination?.Clear();
+                                        logger.Warn("No action defined");
+                                    }
+
+                                    else
+                                    {
+                                        var onlyModKeyAction = combinationAction.Run();
+                                        if (!onlyModKeyAction)
+                                        {
+                                            Globals.ResetModKeysPressedOnceFlags();
+                                        }
+                                        currentCombination.Clear();
+                                        helperWindow?.ClearHelperRow();
+                                        helperWindow?.Hide();
+                                        configCombinations = baseConfiguration.Combinations;
+
+                                    }
+
+                                    break;
                                 }
                                 catch (Exception e)
                                 {
                                     logger.Error(e.Message);
                                     return ApiFunctions.CallNextHookEx(hookInstance, -1, wp, ref lParam);
                                 }
-
-                                var combinationAction = currentCombination.Action;
-                                if (combinationAction == null)
-                                {
-                                    currentCombination?.Clear();
-                                    logger.Warn("No action defined");
-                                }
-
-                                else
-                                {
-                                    var onlyModKeyAction = combinationAction.Run();
-                                    if (!onlyModKeyAction)
-                                    {
-                                        Globals.ResetModKeysPressedOnceFlags();
-                                    }
-                                    currentCombination.Clear();
-                                    helperWindow.ClearHelperRow();
-                                    helperWindow.Hide();
-                                    configCombinations = baseConfiguration.Combinations;
-
-                                }
-
-                                break;
                             }
                             case 3: 
                                 // TODO
