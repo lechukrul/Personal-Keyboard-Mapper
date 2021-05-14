@@ -210,7 +210,7 @@ namespace Personal_Keyboard_Mapper
         {
             try
             {
-                hookService.StartHookService();
+                hookService.StartHookService(config, helperWindow);
                 stopAppBtn.Enabled = true;
                 startAppBtn.Enabled = false;
             }
