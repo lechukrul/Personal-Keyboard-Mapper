@@ -5,4 +5,10 @@
 packages
 bin
 obj
-/Personal-Keyboard-Mapper/.vs
+screeny
+PKM_python
+.vs
+*.pdf
+*.doc
+*.sln
+.gitignore

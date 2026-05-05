@@ -87,6 +87,11 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                 //and return the value returned by CallNextHookEx
                 return ApiFunctions.CallNextHookEx(hookInstance, code, wp, ref lParam);
             }
+
+            if (wParam == 260 && vk == 164)
+            {
+                return (IntPtr)1;
+            }
             if (inputSimulator.InputDeviceState.IsKeyDown(VirtualKeyCode.SHIFT))
             {
                 logger.Debug($"vk={vk:X}");

@@ -122,6 +122,15 @@ namespace Personal_Keyboard_Mapper.Lib.Converters
             using (var keyboardLayout = new KeyboardLayoutScope(culture))
             {
                 var virtKeyHelper = new VKeyScanHelper() { Value = ApiFunctions.VkKeyScanEx(charKey, keyboardLayout.currentLayout.Handle) };
+                if (charKey == '\"' || charKey == '\'')
+                {
+                    virtKeyHelper.LowByte = 222;
+                }
+
+                if (charKey == '`')
+                {
+                    virtKeyHelper.LowByte = 192;
+                }
                 switch ((int)virtKeyHelper.HighByte)
                 {
                     case 0:
