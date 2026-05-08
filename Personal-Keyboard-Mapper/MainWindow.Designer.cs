@@ -43,6 +43,9 @@ namespace Personal_Keyboard_Mapper
             this.OptionsGroup = new System.Windows.Forms.GroupBox();
             this.HelpWndChckBox = new System.Windows.Forms.CheckBox();
             this.SoundChckBox = new System.Windows.Forms.CheckBox();
+            this.predictionCombinationLabel = new System.Windows.Forms.Label();
+            this.predictionCombinationComboBox = new System.Windows.Forms.ComboBox();
+            this.predictionChkBox = new System.Windows.Forms.CheckBox();
             this.CombinationsPanel = new System.Windows.Forms.GroupBox();
             this.EditConfigBtn = new System.Windows.Forms.Button();
             this.NewConfigBtn = new System.Windows.Forms.Button();
@@ -71,9 +74,13 @@ namespace Personal_Keyboard_Mapper
             // 
             this.OptionsGroup.Controls.Add(this.HelpWndChckBox);
             this.OptionsGroup.Controls.Add(this.SoundChckBox);
+            this.OptionsGroup.Controls.Add(this.predictionChkBox);
+            this.OptionsGroup.Controls.Add(this.predictionCombinationLabel);
+            this.OptionsGroup.Controls.Add(this.predictionCombinationComboBox);
             resources.ApplyResources(this.OptionsGroup, "OptionsGroup");
             this.OptionsGroup.Name = "OptionsGroup";
             this.OptionsGroup.TabStop = false;
+            this.OptionsGroup.Enter += new System.EventHandler(this.OptionsGroup_Enter);
             // 
             // HelpWndChckBox
             // 
@@ -90,6 +97,26 @@ namespace Personal_Keyboard_Mapper
             this.SoundChckBox.Name = "SoundChckBox";
             this.SoundChckBox.UseVisualStyleBackColor = true;
             this.SoundChckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // predictionCombinationLabel
+            // 
+            resources.ApplyResources(this.predictionCombinationLabel, "predictionCombinationLabel");
+            this.predictionCombinationLabel.Name = "predictionCombinationLabel";
+            // 
+            // predictionCombinationComboBox
+            // 
+            this.predictionCombinationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.predictionCombinationComboBox, "predictionCombinationComboBox");
+            this.predictionCombinationComboBox.FormattingEnabled = true;
+            this.predictionCombinationComboBox.Name = "predictionCombinationComboBox";
+            this.predictionCombinationComboBox.SelectedIndexChanged += new System.EventHandler(this.PredictionCombinationComboBox_SelectedIndexChanged);
+            // 
+            // predictionChkBox
+            // 
+            resources.ApplyResources(this.predictionChkBox, "predictionChkBox");
+            this.predictionChkBox.Name = "predictionChkBox";
+            this.predictionChkBox.UseVisualStyleBackColor = true;
+            this.predictionChkBox.CheckedChanged += new System.EventHandler(this.PredictionChkBox_CheckedChanged);
             // 
             // CombinationsPanel
             // 
@@ -280,6 +307,9 @@ namespace Personal_Keyboard_Mapper
 
         private ComboBox ExistingConfigsComboBox;
         private Label avaliableConfigLabel;
+        private System.Windows.Forms.CheckBox predictionChkBox;
+        private System.Windows.Forms.Label predictionCombinationLabel;
+        private System.Windows.Forms.ComboBox predictionCombinationComboBox;
     }
 }
 

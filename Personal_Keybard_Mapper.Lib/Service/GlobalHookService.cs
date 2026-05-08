@@ -6,6 +6,7 @@ using Personal_Keyboard_Mapper.Lib.Enums;
 using Personal_Keyboard_Mapper.Lib.Hooks;
 using Personal_Keyboard_Mapper.Lib.Interfaces;
 using Personal_Keyboard_Mapper.Lib.Model;
+using Personal_Keyboard_Mapper.Lib.Prediction;
 
 namespace Personal_Keyboard_Mapper.Lib.Service
 {
@@ -19,7 +20,8 @@ namespace Personal_Keyboard_Mapper.Lib.Service
         private IHook KeyboardHook;
         private IHook MouseHook;
         private IConfigSource configSource;
-        private KeysSoundEffects keysSounds; 
+        private KeysSoundEffects keysSounds;
+        public WordPredictionService PredictionService { get; set; }
 
         public GlobalHookService(ILog log, IConfigSource config, KeysSoundEffects soundEffects, bool keySoundOn = false)
         {
@@ -57,13 +59,13 @@ namespace Personal_Keyboard_Mapper.Lib.Service
             switch (actionHookType)
             {
                 case ActionType.Keyboard:
-                    KeyboardHook = new KeyboardHook(logger, combinationsConfig, keysSounds, helpWindow);
+                    KeyboardHook = new KeyboardHook(logger, combinationsConfig, keysSounds, helpWindow, PredictionService);
                     break;
                 case ActionType.Mouse:
                     MouseHook = new MouseHook(logger);
                     break;
                 default:
-                    KeyboardHook = new KeyboardHook(logger, combinationsConfig, keysSounds, helpWindow);
+                    KeyboardHook = new KeyboardHook(logger, combinationsConfig, keysSounds, helpWindow, PredictionService);
                     MouseHook = new MouseHook(logger);
                     break;
             }

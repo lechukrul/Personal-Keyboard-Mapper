@@ -88,3 +88,27 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 ### 2026-05-06 18:29
 
 - .gitignore
+
+### 2026-05-08 17:45
+
+- Personal-Keyboard-Mapper.Gui/Personal-Keyboard-Mapper.Gui.csproj
+- Personal-Keyboard-Mapper.Gui/PredictionOverlayWindow.Designer.cs
+- Personal-Keyboard-Mapper.Gui/PredictionOverlayWindow.cs
+- Personal-Keyboard-Mapper/App.config
+- Personal-Keyboard-Mapper/ConfigEditor.cs
+- Personal-Keyboard-Mapper/MainWindow.Designer.cs
+- Personal-Keyboard-Mapper/MainWindow.cs
+- Personal-Keyboard-Mapper/MainWindow.resx
+- Personal-Keyboard-Mapper/Personal-Keyboard-Mapper.csproj
+- Personal-Keyboard-Mapper/Properties/Resources.Designer.cs
+- Personal-Keyboard-Mapper/Properties/Settings.Designer.cs
+- Personal-Keyboard-Mapper/Properties/aliases.Designer.cs
+- Personal_Keybard_Mapper.Lib/App.config
+- Personal_Keybard_Mapper.Lib/Globals.cs
+- Personal_Keybard_Mapper.Lib/Hooks/KeyboardHook.cs
+- Personal_Keybard_Mapper.Lib/Hooks/MouseHook.cs
+- Personal_Keybard_Mapper.Lib/Personal_Keyboard_Mapper.Lib.csproj
+- Personal_Keybard_Mapper.Lib/Prediction/WordFrequencyModel.cs
+- Personal_Keybard_Mapper.Lib/Prediction/WordPredictionService.cs
+- Personal_Keybard_Mapper.Lib/Service/GlobalHookService.cs
+- README.md

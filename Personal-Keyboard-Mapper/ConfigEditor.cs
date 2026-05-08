@@ -39,6 +39,9 @@ namespace Personal_Keyboard_Mapper
         private int currentColumnIndex;
         private bool keyActionPanelVisible = true;
         private ComponentResourceManager resources;
+
+        public KeyCombinationsConfiguration CombinationsConfiguration { get => combinationsConfiguration; set => combinationsConfiguration = value; }
+
         public ConfigEditor(ILog log, MainWindow form)
         {
             logger = log;
@@ -49,8 +52,8 @@ namespace Personal_Keyboard_Mapper
             actionItems = ActionComboBoxKeys();
             mouseActionItems = MouseActionsComboBoxItems(); 
             currentCombination = new TwoKeysCombination();
-            combinationsConfiguration = new KeyCombinationsConfiguration();
-            combinationsConfiguration.CombinationSize = 2;
+            CombinationsConfiguration = new KeyCombinationsConfiguration();
+            CombinationsConfiguration.CombinationSize = 2;
             InitializeComponent();
         }
         public ConfigEditor(ILog log, MainWindow form, KeyCombinationsConfiguration configuration, string configFileName)
@@ -59,7 +62,7 @@ namespace Personal_Keyboard_Mapper
             mainWindow = form;
             resources = new ComponentResourceManager(typeof(ConfigEditor));
             aliasResources = Globals.AliasResources;
-            combinationsConfiguration = configuration;
+            CombinationsConfiguration = configuration;
             actionItems = ActionComboBoxKeys();
             mouseActionItems = MouseActionsComboBoxItems();
             currentCombination = new TwoKeysCombination();
@@ -113,7 +116,7 @@ namespace Personal_Keyboard_Mapper
             if (!string.IsNullOrEmpty(this.ConfigNameTxtBox.Text))
             {
                 logger.Info("Load combination for edit");
-                Helper.FillCombinationsTable(logger, this.ConfigGrid, combinationsConfiguration);
+                Helper.FillCombinationsTable(logger, this.ConfigGrid, CombinationsConfiguration);
             }
         }
          
@@ -454,9 +457,9 @@ namespace Personal_Keyboard_Mapper
 
         private void SaveConfigBtn_Click(object sender, EventArgs e)
         {
-            if (combinationsConfiguration == null)
+            if (CombinationsConfiguration == null)
             {
-                throw new NullReferenceException(nameof(combinationsConfiguration));
+                throw new NullReferenceException(nameof(CombinationsConfiguration));
             }
 
             if (string.IsNullOrEmpty(newConfigName))
@@ -467,13 +470,13 @@ namespace Personal_Keyboard_Mapper
             else
             {
                 UpdateMouseActionsOutputs(newCombinations.Where(x => x.Action.IsMouseAction()));
-                combinationsConfiguration.Combinations = newCombinations;
+                CombinationsConfiguration.Combinations = newCombinations;
                 try
                 {
                     var newConfigFileName = newConfigName; 
                      
                     var configSource = new JsonConfigSource(logger);
-                    configSource.WriteConfigToFile(combinationsConfiguration, newConfigFileName);
+                    configSource.WriteConfigToFile(CombinationsConfiguration, newConfigFileName);
                     mainWindow.ReloadConfig(configSource);
                     this.Close();
                 }

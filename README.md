@@ -58,6 +58,16 @@ Celem projektu jest:
 * Dźwięki informujące o akcjach (różne dla typów operacji).
 * Okno podpowiedzi dla rozpoczętych kombinacji.
 
+### 🔤 Predykcja słów
+
+* Aplikacja śledzi wpisywany tekst i przewiduje kontynuację bieżącego słowa na podstawie historii użycia.
+* Podpowiedź wyświetlana jest w pływającym okienku overlay po prawej stronie ekranu.
+* Predykcja uczy się słów na bieżąco — im więcej tekstu wpisanego za pomocą aplikacji, tym trafniejsze podpowiedzi.
+* Użytkownik wybiera **kombinację akceptacji** spośród wolnych (niezapisanych) kombinacji klawiszowych — jej naciśnięcie wpisuje brakującą część przewidywanego słowa i spację.
+* Słowo trafia do modelu predykcji po naciśnięciu spacji, entera lub znaku interpunkcyjnego (`.`, `,`, `;`, `:`).
+* Historia słów zapisywana jest lokalnie w pliku `word_frequencies.json` obok pliku wykonywalnego.
+* Funkcja włączana i wyłączana checkboxem **„Predykcja słów"** w panelu opcji.
+
 ### ⏯️ Kontrola działania
 
 * Możliwość wstrzymania i wznowienia działania programu (przywrócenie standardowej funkcji klawiatury numerycznej).

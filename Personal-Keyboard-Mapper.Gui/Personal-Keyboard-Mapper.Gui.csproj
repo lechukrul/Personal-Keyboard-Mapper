@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Personal_Keyboard_Mapper.Gui</RootNamespace>
     <AssemblyName>Personal-Keyboard-Mapper.Gui</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -59,6 +59,12 @@
     </Compile>
     <Compile Include="ModKeysNotyficationWindow.Designer.cs">
       <DependentUpon>ModKeysNotyficationWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PredictionOverlayWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PredictionOverlayWindow.Designer.cs">
+      <DependentUpon>PredictionOverlayWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />

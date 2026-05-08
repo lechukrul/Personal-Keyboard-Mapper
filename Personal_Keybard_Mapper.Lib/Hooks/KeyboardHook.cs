@@ -13,6 +13,7 @@ using Personal_Keyboard_Mapper.Lib.PInvokeApFunctions;
 using Personal_Keyboard_Mapper.Lib.Structures;
 using Personal_Keyboard_Mapper.Lib.Extensions;
 using Personal_Keyboard_Mapper.Lib.Model;
+using Personal_Keyboard_Mapper.Lib.Prediction;
 using Action = Personal_Keyboard_Mapper.Lib.Model.Action;
 
 namespace Personal_Keyboard_Mapper.Lib.Hooks
@@ -43,6 +44,7 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
         private KeysSoundEffects soundEffects;
         private KeyCombinationsConfiguration baseConfiguration;
         private HelpWindow helperWindow;
+        private WordPredictionService predictionService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyboardHook" /> class.
@@ -51,8 +53,8 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
         /// <param name="combinationsConfiguration">The combinations configuration.</param>
         /// <param name="effects">The sounds effects.</param>
         /// <param name="helpWindow">Gui helper window</param>
-        public KeyboardHook(ILog log, KeyCombinationsConfiguration combinationsConfiguration, KeysSoundEffects effects, 
-            HelpWindow helpWindow = null)
+        public KeyboardHook(ILog log, KeyCombinationsConfiguration combinationsConfiguration, KeysSoundEffects effects,
+            HelpWindow helpWindow = null, WordPredictionService prediction = null)
         {
             logger = log;
             hookInstance = LoadPInvokeKernel32Library("User32");
@@ -70,6 +72,7 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
             inputSimulator = new InputSimulator();
             soundEffects = effects;
             helperWindow = helpWindow;
+            predictionService = prediction;
         }
 
         public KeyboardHook()
@@ -231,6 +234,22 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                                     helperWindow.Hide();
                                     return (IntPtr)1;
                                 }
+                                if (Globals.IsPredictionOn && predictionService != null
+                                    && predictionService.IsAcceptanceCombination(currentCombination))
+                                {
+                                    var suffix = predictionService.AcceptPrediction();
+                                    if (!string.IsNullOrEmpty(suffix))
+                                    {
+                                        inputSimulator.Keyboard.TextEntry(suffix);
+                                        inputSimulator.Keyboard.KeyPress(VirtualKeyCode.SPACE); 
+                                        soundEffects.PlaySound(SoundAction.SecondKey);
+                                    }
+                                    currentCombination.Clear();
+                                    helperWindow?.ClearHelperRow();
+                                    helperWindow?.Hide();
+                                    configCombinations = baseConfiguration.Combinations;
+                                    break;
+                                }
                                 if (!currentCombination.IsNotEmptyActionCombination(logger))
                                 {
                                     if (lastUsedCombination.Action == null)
@@ -243,7 +262,7 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                                     }
                                 }
                                 try
-                                {
+                                 {
                                     if (!currentCombination.Action.IsModKeyAction())
                                     {
                                         PlayLastKeySound(key);
@@ -406,6 +425,8 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                                     else
                                     {
                                         var onlyModKeyAction = combinationAction.Run();
+                                        if (Globals.IsPredictionOn)
+                                            predictionService?.ProcessAction(combinationAction);
                                         if (!onlyModKeyAction)
                                         {
                                             Globals.ResetModKeysPressedOnceFlags();
@@ -447,6 +468,16 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
                 }
                 ResetPositionCounter();
                 return ApiFunctions.CallNextHookEx(hookInstance, -1, wp, ref lParam);
+            }
+            if (Globals.IsPredictionOn && predictionService != null
+                && wp == keyboardKeyDownCode
+                && Globals.StandaloneKeysVirtualKeyCodes.Contains((VirtualKeyCode)vk))
+            {
+                predictionService.ProcessAction(new Action
+                {
+                    Type = ActionType.Keyboard,
+                    VirtualKeys = new List<VirtualKeyCode> { (VirtualKeyCode)vk }
+                });
             }
             ResetPositionCounter();
             return ApiFunctions.CallNextHookEx(hookInstance, code, wp, ref lParam);

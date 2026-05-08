@@ -14,8 +14,10 @@ using log4net;
 using Personal_Keyboard_Mapper.Gui;
 using Personal_Keyboard_Mapper.Lib;
 using Personal_Keyboard_Mapper.Lib.Enums;
+using Personal_Keyboard_Mapper.Lib.Extensions;
 using Personal_Keyboard_Mapper.Lib.Interfaces;
 using Personal_Keyboard_Mapper.Lib.Model;
+using Personal_Keyboard_Mapper.Lib.Prediction;
 using Personal_Keyboard_Mapper.Lib.Service;
 
 namespace Personal_Keyboard_Mapper
@@ -28,12 +30,19 @@ namespace Personal_Keyboard_Mapper
         static private KeysSoundEffects keysSounds;
         static private GlobalHookService hookService;
         static private List<string> existingConfigs;
-        static private HelpWindow helperWindow; 
+        static private HelpWindow helperWindow;
+        private PredictionOverlayWindow predictionOverlayWindow;
+        private WordPredictionService predictionService;
+
         public MainWindow(ILog log)
         {
             InitializeComponent();
             logger = log;
-            helperWindow = new HelpWindow(logger); 
+            helperWindow = new HelpWindow(logger);
+            predictionOverlayWindow = new PredictionOverlayWindow(logger);
+            predictionService = new WordPredictionService(
+                System.IO.Path.Combine(Application.StartupPath, "word_frequencies.json"));
+            predictionService.PredictionChanged += word => predictionOverlayWindow.SafeUpdatePrediction(word);
             configFileName = ConfigurationManager.AppSettings["DefaultConfigFileName"];
             Globals.AliasResources = new ResXResourceSet(ConfigurationManager.AppSettings["KeyAliasesResxFileName"]);
             Globals.GlobalResources = new ResXResourceSet(ConfigurationManager.AppSettings["GlobalResxFileName"]);
@@ -54,7 +63,8 @@ namespace Personal_Keyboard_Mapper
                 {
                     config = new JsonConfigSource(logger, configFileName);
                     hookService = new GlobalHookService(logger, config, keysSounds, true);
-                } 
+                    hookService.PredictionService = predictionService;
+                }
                 Helper.AddNumericRowsToGrid(combinationsTable);
             }
             catch (ArgumentOutOfRangeException outRangeException)
@@ -73,6 +83,8 @@ namespace Personal_Keyboard_Mapper
 
         private void On_Load(object sender, EventArgs args)
         {
+            this.CombinationsPanel.Width = this.Width;
+            this.combinationsTable.Width = this.Width;
             if (!existingConfigs.Any())
             {
                 CollectExistingConfigs();
@@ -85,15 +97,74 @@ namespace Personal_Keyboard_Mapper
             {
                 if (config != null)
                 {
-                    hookService.StartHookService(config, helperWindow); 
+                    hookService.StartHookService(config, helperWindow);
                     startAppBtn.Enabled = false;
                 }
                 Helper.FillCombinationsTable(logger, this.combinationsTable, hookService?.combinationsConfig);
+                RefreshPredictionComboBox();
             }
             catch (Exception e)
             {
                 logger.Error(e.StackTrace);
             }
+        }
+
+        private void RefreshPredictionComboBox()
+        {
+            if (predictionCombinationComboBox == null) return;
+            predictionCombinationComboBox.Items.Clear();
+
+            if (hookService?.combinationsConfig?.Combinations == null) return;
+
+            foreach (var combo in hookService.combinationsConfig.Combinations
+                .Where(c => !c.IsNotEmptyActionCombination(logger))
+                .OfType<TwoKeysCombination>())
+            {
+                predictionCombinationComboBox.Items.Add(
+                    new EmptyCombinationItem(combo.FirstKeyVirtualCode, combo.SecondKeyVirtualCode));
+            }
+
+            if (predictionCombinationComboBox.Items.Count > 0)
+            {
+                predictionCombinationComboBox.SelectedIndex = 0;
+                UpdateAcceptanceCombination();
+            }
+        }
+
+        private void UpdateAcceptanceCombination()
+        {
+            if (predictionCombinationComboBox.SelectedItem is EmptyCombinationItem item)
+                predictionService?.SetAcceptanceCombination(item.FirstKey, item.SecondKey);
+        }
+
+        private void PredictionChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Globals.IsPredictionOn = predictionChkBox.Checked;
+            predictionCombinationComboBox.Enabled = predictionChkBox.Checked;
+            if (!predictionChkBox.Checked)
+            {
+                predictionService?.ClearBuffer();
+                predictionOverlayWindow?.SafeUpdatePrediction(null);
+            }
+        }
+
+        private void PredictionCombinationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateAcceptanceCombination();
+        }
+
+        private class EmptyCombinationItem
+        {
+            public string FirstKey { get; }
+            public string SecondKey { get; }
+
+            public EmptyCombinationItem(string firstKey, string secondKey)
+            {
+                FirstKey = firstKey;
+                SecondKey = secondKey;
+            }
+
+            public override string ToString() => $"{FirstKey} + {SecondKey}";
         }
 
         /// <summary>
@@ -129,12 +200,14 @@ namespace Personal_Keyboard_Mapper
                 else
                 {
                     hookService = new GlobalHookService(logger, config, keysSounds, true);
+                    hookService.PredictionService = predictionService;
                     hookService.LoadCombinationsConfiguration();
                 }
                 if (hookService.combinationsConfig != null && hookService.combinationsConfig.Combinations.Any())
                 {
                     hookService.StartHookService(config, helperWindow);
                     Helper.FillCombinationsTable(logger, this.combinationsTable, hookService.combinationsConfig);
+                    RefreshPredictionComboBox();
                     AddUpdateAppSettings("DefaultConfigFileName", config.ConfigFilePath);
                     if (existingConfigs.All(x => x != configFileName))
                     {
@@ -265,12 +338,18 @@ namespace Personal_Keyboard_Mapper
         private void OnClosing(object sender, CancelEventArgs e)
         {
             helperWindow.Close();
+            predictionOverlayWindow?.Close();
         }
 
         private void MainWindow_Resize(object sender, EventArgs e)
         {
             this.CombinationsPanel.Width = this.Width;
             this.combinationsTable.Width = this.Width;
+        }
+
+        private void OptionsGroup_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

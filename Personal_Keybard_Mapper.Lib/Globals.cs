@@ -22,6 +22,7 @@ namespace Personal_Keyboard_Mapper.Lib
 
         public static bool IsSoundOn { get; set; }
         public static bool IsHelpWindowOn { get; set; }
+        public static bool IsPredictionOn { get; set; }
 
         public static bool IsShiftPressedOnce { get; set; }
 
@@ -121,6 +122,16 @@ namespace Personal_Keyboard_Mapper.Lib
             VirtualKeyCode.VK_7,
             VirtualKeyCode.VK_8,
             VirtualKeyCode.VK_9
+        };
+
+        public static IEnumerable<VirtualKeyCode> StandaloneKeysVirtualKeyCodes { get; } = new List<VirtualKeyCode>()
+        {
+            VirtualKeyCode.RETURN,
+            VirtualKeyCode.BACK,
+            VirtualKeyCode.DIVIDE,
+            VirtualKeyCode.ESCAPE,
+            VirtualKeyCode.ADD,
+            VirtualKeyCode.MULTIPLY
         };
 
         public static IEnumerable<string> OpeningBraces { get; } = new List<string>

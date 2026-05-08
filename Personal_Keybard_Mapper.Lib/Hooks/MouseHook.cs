@@ -34,7 +34,7 @@ namespace Personal_Keyboard_Mapper.Lib.Hooks
             hInstance = ApiFunctions.LoadLibrary("User32");
         } 
 
-        /// <summary>
+        /// <summary>a
         /// Global mouse hook procedure
         /// </summary>
         /// <param name="code"></param>
