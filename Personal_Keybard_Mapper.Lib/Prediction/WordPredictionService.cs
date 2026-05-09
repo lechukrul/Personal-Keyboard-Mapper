@@ -42,11 +42,25 @@ namespace Personal_Keyboard_Mapper.Lib.Prediction
             (WindowsInput.Native.VirtualKeyCode)0xBA,  // ; :
         };
 
+        private static readonly System.Collections.Generic.Dictionary<int, char> _polishLowerMap =
+            new System.Collections.Generic.Dictionary<int, char>
+            {
+                { 0x41, 'ą' },
+                { 0x43, 'ć' },
+                { 0x45, 'ę' },
+                { 0x4C, 'ł' },
+                { 0x4F, 'ó' },
+                { 0x53, 'ś' },
+                { 0x58, 'ź' },
+                { 0x5A, 'ż' },
+            };
+
         public void ProcessAction(Action action)
         {
             if (action == null) return;
             if (action.Type == ActionType.Mouse) return;
             if (action.IsModKeyAction()) return;
+
             if (action.VirtualKeys == null || !action.VirtualKeys.Any()) return;
 
             if (action.VirtualKeys.Any(v => v == WindowsInput.Native.VirtualKeyCode.SPACE
@@ -70,6 +84,16 @@ namespace Personal_Keyboard_Mapper.Lib.Prediction
                 var vkInt = (int)action.VirtualKeys[0];
                 if (vkInt >= 0x41 && vkInt <= 0x5A)
                 {
+                    bool altActive = Globals.IsRightAltPressedOnce || Globals.IsRightAltHoldDown
+                                  || Globals.IsLeftAltPressedOnce || Globals.IsLeftAltHoldDown;
+                    if (altActive && _polishLowerMap.TryGetValue(vkInt, out var polishLower))
+                    {
+                        bool upper = Globals.IsShiftPressedOnce || Globals.IsShiftHoldDown;
+                        _currentWord.Append(upper ? char.ToUpperInvariant(polishLower) : polishLower);
+                        NotifyPredictionChanged();
+                        return;
+                    }
+
                     var ch = (char)('a' + vkInt - 0x41);
                     if (Globals.IsShiftPressedOnce || Globals.IsShiftHoldDown)
                         ch = char.ToUpperInvariant(ch);

@@ -112,3 +112,10 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 - Personal_Keybard_Mapper.Lib/Prediction/WordPredictionService.cs
 - Personal_Keybard_Mapper.Lib/Service/GlobalHookService.cs
 - README.md
+
+### 2026-05-09 13:26
+
+- Personal-Keyboard-Mapper/MainWindow.Designer.cs
+- Personal-Keyboard-Mapper/MainWindow.cs
+- Personal_Keybard_Mapper.Lib/Model/Action.cs
+- Personal_Keybard_Mapper.Lib/Prediction/WordPredictionService.cs

@@ -340,16 +340,5 @@ namespace Personal_Keyboard_Mapper
             helperWindow.Close();
             predictionOverlayWindow?.Close();
         }
-
-        private void MainWindow_Resize(object sender, EventArgs e)
-        {
-            this.CombinationsPanel.Width = this.Width;
-            this.combinationsTable.Width = this.Width;
-        }
-
-        private void OptionsGroup_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }

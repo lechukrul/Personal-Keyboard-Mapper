@@ -80,7 +80,6 @@ namespace Personal_Keyboard_Mapper
             resources.ApplyResources(this.OptionsGroup, "OptionsGroup");
             this.OptionsGroup.Name = "OptionsGroup";
             this.OptionsGroup.TabStop = false;
-            this.OptionsGroup.Enter += new System.EventHandler(this.OptionsGroup_Enter);
             // 
             // HelpWndChckBox
             // 
@@ -270,7 +269,6 @@ namespace Personal_Keyboard_Mapper
             this.Controls.Add(this.OptionsGroup);
             this.Name = "MainWindow";
             this.Load += new System.EventHandler(this.On_Load);
-            this.Resize += new System.EventHandler(this.MainWindow_Resize);
             this.OptionsGroup.ResumeLayout(false);
             this.OptionsGroup.PerformLayout();
             this.CombinationsPanel.ResumeLayout(false);

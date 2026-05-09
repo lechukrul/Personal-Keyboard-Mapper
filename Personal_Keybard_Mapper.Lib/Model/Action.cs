@@ -366,7 +366,7 @@ namespace Personal_Keyboard_Mapper.Lib.Model
 
         public bool IsActionWithPolishSigns()
         {
-            return ActionStringKeys.Any(x => Globals.PolishSigns.Contains(x));
+            return ActionStringKeys != null && ActionStringKeys.Any(x => Globals.PolishSigns.Contains(x));
         }
 
         public bool IsMouseAction()
@@ -389,8 +389,9 @@ namespace Personal_Keyboard_Mapper.Lib.Model
             return new Action()
             {
                 log = this.log,
-                Type = this.Type, 
-                VirtualKeys = this.VirtualKeys.ToList()
+                Type = this.Type,
+                VirtualKeys = this.VirtualKeys?.ToList(),
+                ActionStringKeys = this.ActionStringKeys?.ToList()
             };
         }
 
