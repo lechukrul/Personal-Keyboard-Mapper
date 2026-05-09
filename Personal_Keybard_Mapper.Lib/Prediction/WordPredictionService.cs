@@ -63,9 +63,18 @@ namespace Personal_Keyboard_Mapper.Lib.Prediction
 
             if (action.VirtualKeys == null || !action.VirtualKeys.Any()) return;
 
-            if (action.VirtualKeys.Any(v => v == WindowsInput.Native.VirtualKeyCode.SPACE
-                                         || v == WindowsInput.Native.VirtualKeyCode.RETURN
-                                         || _wordBoundaryKeys.Contains(v)))
+
+            bool shiftActive = Globals.IsShiftPressedOnce || Globals.IsShiftHoldDown;
+
+            bool isExclamationMark = shiftActive && action.VirtualKeys.Any(v => v == WindowsInput.Native.VirtualKeyCode.VK_1);
+
+            bool isBoundaryStringKey = action.ActionStringKeys != null
+                && (action.ActionStringKeys.Any(k => k == "?") || isExclamationMark);
+
+            if (isBoundaryStringKey
+                || action.VirtualKeys.Any(v => v == WindowsInput.Native.VirtualKeyCode.SPACE
+                                            || v == WindowsInput.Native.VirtualKeyCode.RETURN
+                                            || _wordBoundaryKeys.Contains(v)))
             {
                 FinalizeCurrentWord();
                 return;
@@ -102,7 +111,6 @@ namespace Personal_Keyboard_Mapper.Lib.Prediction
                     return;
                 }
             }
-
             ClearBuffer();
         }
 
