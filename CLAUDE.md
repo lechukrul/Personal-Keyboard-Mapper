@@ -127,3 +127,11 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 ### 2026-05-09 14:56
 
 - Personal_Keybard_Mapper.Lib/Prediction/WordPredictionService.cs
+
+### 2026-06-10
+
+- Personal_Keybard_Mapper.Lib/Prediction/WordFrequencyModel.cs
+
+### 2026-06-10 12:12
+
+- Personal_Keybard_Mapper.Lib/Prediction/WordFrequencyModel.cs

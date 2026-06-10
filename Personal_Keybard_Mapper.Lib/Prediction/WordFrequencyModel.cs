@@ -55,8 +55,18 @@ namespace Personal_Keyboard_Mapper.Lib.Prediction
                 var json = File.ReadAllText(_dataFilePath);
                 _frequencies = JsonConvert.DeserializeObject<Dictionary<string, int>>(json)
                     ?? new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                PurgeRareWords();
             }
             catch { }
+        }
+
+        private void PurgeRareWords()
+        {
+            var rare = _frequencies.Where(kv => kv.Value <= 1).Select(kv => kv.Key).ToList();
+            if (rare.Count == 0) return;
+            foreach (var word in rare)
+                _frequencies.Remove(word);
+            Save();
         }
     }
 }
