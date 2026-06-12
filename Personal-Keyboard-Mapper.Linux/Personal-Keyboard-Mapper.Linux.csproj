@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Personal_Keyboard_Mapper.Linux</RootNamespace>
+    <AssemblyName>Personal_Keyboard_Mapper.Linux</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Personal-Keyboard-Mapper.Core\Personal-Keyboard-Mapper.Core.csproj" />
+  </ItemGroup>
+</Project>

@@ -135,3 +135,23 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 ### 2026-06-10 12:12
 
 - Personal_Keybard_Mapper.Lib/Prediction/WordFrequencyModel.cs
+
+### 2026-06-12 19:28
+
+- Linux.Evdev.PoC/Linux.Evdev.PoC.csproj
+- Linux.Evdev.PoC/Program.cs
+- Personal-Keyboard-Mapper.Core/Enums/ActionType.cs
+- Personal-Keyboard-Mapper.Core/Enums/KeyCombinationPosition.cs
+- Personal-Keyboard-Mapper.Core/Enums/KeyState.cs
+- Personal-Keyboard-Mapper.Core/Enums/VirtualKeyCode.cs
+- Personal-Keyboard-Mapper.Core/Interfaces/IInputSimulator.cs
+- Personal-Keyboard-Mapper.Core/Interfaces/IKeyboardHook.cs
+- Personal-Keyboard-Mapper.Core/Model/KeyEvent.cs
+- Personal-Keyboard-Mapper.Core/Personal-Keyboard-Mapper.Core.csproj
+- Personal-Keyboard-Mapper.Linux/EvdevKeyboardHook.cs
+- Personal-Keyboard-Mapper.Linux/KeyCodeMap.cs
+- Personal-Keyboard-Mapper.Linux/Native/Libc.cs
+- Personal-Keyboard-Mapper.Linux/Native/UinputDevice.cs
+- Personal-Keyboard-Mapper.Linux/Personal-Keyboard-Mapper.Linux.csproj
+- Personal-Keyboard-Mapper.Linux/Program.cs
+- Personal-Keyboard-Mapper.Linux/UinputInputSimulator.cs
