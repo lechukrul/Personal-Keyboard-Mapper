@@ -1,0 +1,61 @@
+{
+  "CombinationSize": 2,
+  "Combinations": [
+    {
+      "FirstKey": 1,
+      "SecondKey": 1,
+      "Action": {
+        "Type": "Keyboard",
+        "OutputVirtualKeys": [ " " ]
+      }
+    },
+    {
+      "FirstKey": 1,
+      "SecondKey": 2,
+      "Action": {
+        "Type": "Keyboard",
+        "OutputVirtualKeys": [ "ctrl", "c" ]
+      }
+    },
+    {
+      "FirstKey": 1,
+      "SecondKey": 3,
+      "Action": {
+        "Type": "Keyboard",
+        "OutputVirtualKeys": [ "ctrl", "v" ]
+      }
+    },
+    {
+      "FirstKey": 1,
+      "SecondKey": 4,
+      "Action": {
+        "Type": "Keyboard",
+        "OutputVirtualKeys": [ "ctrl", "z" ]
+      }
+    },
+    {
+      "FirstKey": 2,
+      "SecondKey": 1,
+      "Action": {
+        "Type": "Mouse",
+        "OutputVirtualKeys": [ "lclick" ]
+      }
+    },
+    {
+      "FirstKey": 2,
+      "SecondKey": 2,
+      "Action": {
+        "Type": "Mouse",
+        "OutputVirtualKeys": [ "ldclick" ]
+      }
+    },
+    {
+      "FirstKey": 2,
+      "SecondKey": 3,
+      "Action": {
+        "Type": "Mouse",
+        "OutputVirtualKeys": [ "rclick" ]
+      }
+    }
+  ]
+}
