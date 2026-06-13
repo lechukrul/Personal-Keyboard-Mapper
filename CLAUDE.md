@@ -192,3 +192,10 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 ### 2026-06-13 16:49
 
 - Personal-Keyboard-Mapper.Core/Config/MappingEngine.cs
+
+### 2026-06-13 17:14
+
+- Personal-Keyboard-Mapper.Core/Config/KeyAliasResolver.cs
+- Personal-Keyboard-Mapper.Core/Config/MappingEngine.cs
+- Personal-Keyboard-Mapper.Core/Interfaces/IInputSimulator.cs
+- Personal-Keyboard-Mapper.Linux/UinputInputSimulator.cs

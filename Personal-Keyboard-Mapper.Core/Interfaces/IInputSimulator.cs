@@ -39,6 +39,10 @@ namespace Personal_Keyboard_Mapper.Core.Interfaces
 
         void MouseLeftButtonUp();
 
+        void MouseRightButtonDown();
+
+        void MouseRightButtonUp();
+
         void MouseMoveBy(int dx, int dy);
     }
 }

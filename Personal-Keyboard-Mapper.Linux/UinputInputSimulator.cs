@@ -111,13 +111,27 @@ namespace Personal_Keyboard_Mapper.Linux
             }
             switch (ch)
             {
-                case ' ': KeyPress(VirtualKeyCode.SPACE); break;
-                case '.': KeyPress(VirtualKeyCode.OEM_PERIOD); break;
-                case ',': KeyPress(VirtualKeyCode.OEM_COMMA); break;
-                case '-': KeyPress(VirtualKeyCode.OEM_MINUS); break;
+                case ' ':  KeyPress(VirtualKeyCode.SPACE); break;
+                case '.':  KeyPress(VirtualKeyCode.OEM_PERIOD); break;
+                case ',':  KeyPress(VirtualKeyCode.OEM_COMMA); break;
+                case '-':  KeyPress(VirtualKeyCode.OEM_MINUS); break;
                 case '\n': KeyPress(VirtualKeyCode.RETURN); break;
                 case '\t': KeyPress(VirtualKeyCode.TAB); break;
-                // TODO: full punctuation coverage (layout-dependent)
+                case ';':  KeyPress(VirtualKeyCode.OEM_1); break;
+                case '=':  KeyPress(VirtualKeyCode.OEM_PLUS); break;
+                case '`':  KeyPress(VirtualKeyCode.OEM_3); break;
+                case '[':  KeyPress(VirtualKeyCode.OEM_4); break;
+                case ']':  KeyPress(VirtualKeyCode.OEM_6); break;
+                case '\'': KeyPress(VirtualKeyCode.OEM_7); break;
+                case '_':  ModifiedKeyStroke(new[] { VirtualKeyCode.SHIFT }, new[] { VirtualKeyCode.OEM_MINUS }); break;
+                case '?':  ModifiedKeyStroke(new[] { VirtualKeyCode.SHIFT }, new[] { VirtualKeyCode.OEM_2 }); break;
+                case '"':  ModifiedKeyStroke(new[] { VirtualKeyCode.SHIFT }, new[] { VirtualKeyCode.OEM_7 }); break;
+                case '(':  ModifiedKeyStroke(new[] { VirtualKeyCode.SHIFT }, new[] { VirtualKeyCode.VK_9 }); break;
+                case ')':  ModifiedKeyStroke(new[] { VirtualKeyCode.SHIFT }, new[] { VirtualKeyCode.VK_0 }); break;
+                case '{':  ModifiedKeyStroke(new[] { VirtualKeyCode.SHIFT }, new[] { VirtualKeyCode.OEM_4 }); break;
+                case '}':  ModifiedKeyStroke(new[] { VirtualKeyCode.SHIFT }, new[] { VirtualKeyCode.OEM_6 }); break;
+                case '<':  ModifiedKeyStroke(new[] { VirtualKeyCode.SHIFT }, new[] { VirtualKeyCode.OEM_COMMA }); break;
+                case '>':  ModifiedKeyStroke(new[] { VirtualKeyCode.SHIFT }, new[] { VirtualKeyCode.OEM_PERIOD }); break;
             }
         }
 
@@ -145,6 +159,10 @@ namespace Personal_Keyboard_Mapper.Linux
         public void MouseLeftButtonDown() => device.EmitKey(Libc.BTN_LEFT, Libc.KEY_PRESS);
 
         public void MouseLeftButtonUp() => device.EmitKey(Libc.BTN_LEFT, Libc.KEY_RELEASE);
+
+        public void MouseRightButtonDown() => device.EmitKey(Libc.BTN_RIGHT, Libc.KEY_PRESS);
+
+        public void MouseRightButtonUp() => device.EmitKey(Libc.BTN_RIGHT, Libc.KEY_RELEASE);
 
         public void MouseMoveBy(int dx, int dy)
         {

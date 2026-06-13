@@ -52,6 +52,21 @@ namespace Personal_Keyboard_Mapper.Core.Config
                     key = VirtualKeyCode.UP; return true;
                 case "down":
                     key = VirtualKeyCode.DOWN; return true;
+                case "end":
+                    key = VirtualKeyCode.END; return true;
+                case "home":
+                    key = VirtualKeyCode.HOME; return true;
+                case "ins":
+                case "insert":
+                    key = VirtualKeyCode.INSERT; return true;
+                case "pgup":
+                case "pageup":
+                    key = VirtualKeyCode.PRIOR; return true;
+                case "pgdn":
+                case "pagedown":
+                    key = VirtualKeyCode.NEXT; return true;
+                case "backslash":
+                    key = VirtualKeyCode.OEM_5; return true;
             }
 
             if (alias.Length == 1)
@@ -71,7 +86,6 @@ namespace Personal_Keyboard_Mapper.Core.Config
                 }
             }
 
-            Console.WriteLine($"[warn] Unknown key alias: '{alias}'");
             return false;
         }
 

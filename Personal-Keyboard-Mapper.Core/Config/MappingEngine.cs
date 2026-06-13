@@ -102,6 +102,8 @@ namespace Personal_Keyboard_Mapper.Core.Config
             {
                 if (KeyAliasResolver.TryResolve(alias, out var vk))
                     resolved.Add(vk);
+                else
+                    _simulator.TextEntry(alias);
             }
 
             if (resolved.Count == 0) return;
@@ -135,6 +137,8 @@ namespace Personal_Keyboard_Mapper.Core.Config
                     case "rclick":  _simulator.MouseRightClick();       break;
                     case "ldclick": _simulator.MouseLeftDoubleClick();  break;
                     case "rdclick": _simulator.MouseRightDoubleClick(); break;
+                    case "lhclick": _simulator.MouseLeftButtonDown();   break;
+                    case "rhclick": _simulator.MouseRightButtonDown();  break;
                     default:
                         Console.WriteLine($"[warn] Unknown mouse action: '{alias}'"); break;
                 }
