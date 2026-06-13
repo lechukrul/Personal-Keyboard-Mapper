@@ -167,3 +167,7 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 ### 2026-06-13 16:09
 
 - Personal-Keyboard-Mapper.Core/Config/MappingConfig.cs
+
+### 2026-06-13 16:11
+
+- Personal-Keyboard-Mapper.Core/Config/MappingConfigLoader.cs
