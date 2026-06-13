@@ -155,3 +155,7 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 - Personal-Keyboard-Mapper.Linux/Personal-Keyboard-Mapper.Linux.csproj
 - Personal-Keyboard-Mapper.Linux/Program.cs
 - Personal-Keyboard-Mapper.Linux/UinputInputSimulator.cs
+
+### 2026-06-13 15:56
+
+- docs/superpowers/specs/2026-06-13-linux-mapping-config-design.md
