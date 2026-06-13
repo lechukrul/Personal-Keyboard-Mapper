@@ -199,3 +199,7 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 - Personal-Keyboard-Mapper.Core/Config/MappingEngine.cs
 - Personal-Keyboard-Mapper.Core/Interfaces/IInputSimulator.cs
 - Personal-Keyboard-Mapper.Linux/UinputInputSimulator.cs
+
+### 2026-06-13 17:18
+
+- Personal-Keyboard-Mapper.Linux/default.keysconfig
