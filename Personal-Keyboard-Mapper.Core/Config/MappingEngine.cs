@@ -9,11 +9,14 @@ namespace Personal_Keyboard_Mapper.Core.Config
 {
     public class MappingEngine
     {
+        private enum ModifierState { Inactive, SingleUse, Locked }
+
         private readonly MappingConfig _config;
         private readonly IInputSimulator _simulator;
 
         private VirtualKeyCode? _pendingFirstKey;
         private readonly HashSet<VirtualKeyCode> _suppressedKeys = new HashSet<VirtualKeyCode>();
+        private readonly Dictionary<VirtualKeyCode, ModifierState> _modifierStates = new Dictionary<VirtualKeyCode, ModifierState>();
 
         public Action OnExitRequested { get; set; }
 
@@ -89,41 +92,101 @@ namespace Personal_Keyboard_Mapper.Core.Config
         private static VirtualKeyCode NumpadToVk(int index)
             => VirtualKeyCode.NUMPAD0 + index;
 
+        private void UpdateModifierState(VirtualKeyCode mod)
+        {
+            if (!_modifierStates.TryGetValue(mod, out var state))
+                state = ModifierState.Inactive;
+
+            bool winOnly = (mod == VirtualKeyCode.LWIN || mod == VirtualKeyCode.RWIN);
+
+            switch (state)
+            {
+                case ModifierState.Inactive:
+                    _modifierStates[mod] = ModifierState.SingleUse;
+                    break;
+                case ModifierState.SingleUse:
+                    _modifierStates[mod] = winOnly ? ModifierState.Inactive : ModifierState.Locked;
+                    break;
+                case ModifierState.Locked:
+                    _modifierStates[mod] = ModifierState.Inactive;
+                    break;
+            }
+        }
+
+        private List<VirtualKeyCode> GetAndConsumeActiveModifiers()
+        {
+            var active = new List<VirtualKeyCode>();
+            var toDeactivate = new List<VirtualKeyCode>();
+
+            foreach (var kvp in _modifierStates)
+            {
+                if (kvp.Value == ModifierState.Inactive) continue;
+                active.Add(kvp.Key);
+                if (kvp.Value == ModifierState.SingleUse)
+                    toDeactivate.Add(kvp.Key);
+            }
+
+            foreach (var key in toDeactivate)
+                _modifierStates[key] = ModifierState.Inactive;
+
+            return active;
+        }
+
         private void ExecuteAction(ActionEntry action)
         {
             if (string.Equals(action.Type, "Mouse", StringComparison.OrdinalIgnoreCase))
             {
+                // Ctrl (locked) works with mouse clicks per the user manual
+                var activeMods = GetAndConsumeActiveModifiers();
+                foreach (var mod in activeMods) _simulator.KeyDown(mod);
                 ExecuteMouseAction(action);
+                foreach (var mod in activeMods) _simulator.KeyUp(mod);
                 return;
             }
 
             var resolved = new List<VirtualKeyCode>();
+            var textEntries = new List<string>();
             foreach (var alias in action.OutputVirtualKeys ?? Enumerable.Empty<string>())
             {
                 if (KeyAliasResolver.TryResolve(alias, out var vk))
                     resolved.Add(vk);
                 else
-                    _simulator.TextEntry(alias);
+                    textEntries.Add(alias);
             }
 
-            if (resolved.Count == 0) return;
+            if (resolved.Count == 0 && textEntries.Count == 0) return;
 
-            var modKeys     = resolved.Where(KeyAliasResolver.IsModifier).ToList();
-            var regularKeys = resolved.Where(k => !KeyAliasResolver.IsModifier(k)).ToList();
+            var configModKeys = resolved.Where(KeyAliasResolver.IsModifier).ToList();
+            var regularKeys   = resolved.Where(k => !KeyAliasResolver.IsModifier(k)).ToList();
 
-            if (regularKeys.Count == 0)
+            // Modifier-only action (e.g. shift, ctrl, alt alone) → advance state machine
+            if (textEntries.Count == 0 && regularKeys.Count == 0)
             {
-                foreach (var mod in modKeys)
-                    _simulator.KeyPress(mod);
+                foreach (var mod in configModKeys)
+                    UpdateModifierState(mod);
+                return;
             }
-            else if (modKeys.Count == 0)
+
+            // Self-contained chord defined inline (e.g. ["ctrl","c"]) → execute directly,
+            // leave the state machine untouched
+            if (configModKeys.Count > 0 && regularKeys.Count > 0)
             {
-                foreach (var k in regularKeys)
-                    _simulator.KeyPress(k);
+                _simulator.ModifiedKeyStroke(configModKeys, regularKeys);
+                return;
             }
-            else
+
+            // Pure regular-key or TextEntry action → apply and consume pending modifiers
+            var activeMods = GetAndConsumeActiveModifiers();
+
+            foreach (var text in textEntries)
+                _simulator.TextEntry(text);
+
+            if (regularKeys.Count > 0)
             {
-                _simulator.ModifiedKeyStroke(modKeys, regularKeys);
+                if (activeMods.Count == 0)
+                    foreach (var k in regularKeys) _simulator.KeyPress(k);
+                else
+                    _simulator.ModifiedKeyStroke(activeMods, regularKeys);
             }
         }
 

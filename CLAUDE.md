@@ -203,3 +203,7 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 ### 2026-06-13 17:18
 
 - Personal-Keyboard-Mapper.Linux/default.keysconfig
+
+### 2026-06-13 17:42
+
+- Personal-Keyboard-Mapper.Core/Config/MappingEngine.cs
