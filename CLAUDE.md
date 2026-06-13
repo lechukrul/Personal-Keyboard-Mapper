@@ -163,3 +163,7 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 ### 2026-06-13 16:06
 
 - docs/superpowers/plans/2026-06-13-linux-mapping-config.md
+
+### 2026-06-13 16:09
+
+- Personal-Keyboard-Mapper.Core/Config/MappingConfig.cs
