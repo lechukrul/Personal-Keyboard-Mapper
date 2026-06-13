@@ -64,7 +64,8 @@ namespace Personal_Keyboard_Mapper.Core.Config
                 }
 
                 _pendingFirstKey = null;
-                return false;
+                _suppressedKeys.Add(ev.Key);
+                return true;
             }
 
             if (isFirstKey)

@@ -188,3 +188,7 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 ### 2026-06-13 16:21
 
 - Personal-Keyboard-Mapper.Linux/Program.cs
+
+### 2026-06-13 16:49
+
+- Personal-Keyboard-Mapper.Core/Config/MappingEngine.cs
