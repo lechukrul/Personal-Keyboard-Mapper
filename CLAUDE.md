@@ -159,3 +159,7 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 ### 2026-06-13 15:56
 
 - docs/superpowers/specs/2026-06-13-linux-mapping-config-design.md
+
+### 2026-06-13 16:06
+
+- docs/superpowers/plans/2026-06-13-linux-mapping-config.md
