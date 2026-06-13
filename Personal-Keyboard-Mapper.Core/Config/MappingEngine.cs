@@ -176,17 +176,17 @@ namespace Personal_Keyboard_Mapper.Core.Config
             }
 
             // Pure regular-key or TextEntry action → apply and consume pending modifiers
-            var activeMods = GetAndConsumeActiveModifiers();
+            var pendingMods = GetAndConsumeActiveModifiers();
 
             foreach (var text in textEntries)
                 _simulator.TextEntry(text);
 
             if (regularKeys.Count > 0)
             {
-                if (activeMods.Count == 0)
+                if (pendingMods.Count == 0)
                     foreach (var k in regularKeys) _simulator.KeyPress(k);
                 else
-                    _simulator.ModifiedKeyStroke(activeMods, regularKeys);
+                    _simulator.ModifiedKeyStroke(pendingMods, regularKeys);
             }
         }
 
