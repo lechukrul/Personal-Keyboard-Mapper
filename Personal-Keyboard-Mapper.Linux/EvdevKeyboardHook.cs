@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using System.Threading;
 using Personal_Keyboard_Mapper.Core.Enums;
 using Personal_Keyboard_Mapper.Core.Interfaces;
@@ -39,9 +40,15 @@ namespace Personal_Keyboard_Mapper.Linux
             }
             if (Libc.ioctl(fd, Libc.EVIOCGRAB, 1) < 0)
             {
+                int err = Marshal.GetLastWin32Error();
                 Libc.close(fd);
                 fd = -1;
-                throw new InvalidOperationException($"EVIOCGRAB failed on {devicePath}.");
+                string hint = err == 16 /* EBUSY */
+                    ? " Device already grabbed by another process (X11/Wayland). Run in a TTY (Ctrl+Alt+F2) or as root."
+                    : err == 1 /* EPERM */ || err == 13 /* EACCES */
+                        ? " Permission denied. Add user to 'input' group: sudo usermod -aG input $USER"
+                        : "";
+                throw new InvalidOperationException($"EVIOCGRAB failed on {devicePath} (errno={err}).{hint}");
             }
 
             running = true;
