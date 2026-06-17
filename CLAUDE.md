@@ -219,3 +219,8 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 ### 2026-06-16 19:58
 
 - docs/superpowers/specs/2026-06-16-linux-sound-design.md
+
+### 2026-06-17 13:23
+
+- Personal-Keyboard-Mapper.Core/Enums/SoundEvent.cs
+- Personal-Keyboard-Mapper.Core/Interfaces/ISoundPlayer.cs
