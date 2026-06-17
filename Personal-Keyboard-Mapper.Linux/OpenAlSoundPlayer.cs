@@ -35,13 +35,21 @@ namespace Personal_Keyboard_Mapper.Linux
             _buffers = _al.GenBuffers(FileNames.Length);
             _sources = _al.GenSources(FileNames.Length);
 
-            for (int i = 0; i < FileNames.Length; i++)
+            try
             {
-                var path = Path.Combine(resourceDir, FileNames[i]);
-                var (pcm, channels, sampleRate, bits) = ParseWav(path);
-                var format = GetAlFormat(channels, bits);
-                _al.BufferData(_buffers[i], format, pcm, sampleRate);
-                _al.SetSourceProperty(_sources[i], SourceInteger.Buffer, _buffers[i]);
+                for (int i = 0; i < FileNames.Length; i++)
+                {
+                    var path = Path.Combine(resourceDir, FileNames[i]);
+                    var (pcm, channels, sampleRate, bits) = ParseWav(path);
+                    var format = GetAlFormat(channels, bits);
+                    _al.BufferData(_buffers[i], format, pcm, sampleRate);
+                    _al.SetSourceProperty(_sources[i], SourceInteger.Buffer, _buffers[i]);
+                }
+            }
+            catch
+            {
+                Dispose();
+                throw;
             }
         }
 
