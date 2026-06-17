@@ -13,6 +13,7 @@ namespace Personal_Keyboard_Mapper.Core.Config
 
         private readonly MappingConfig _config;
         private readonly IInputSimulator _simulator;
+        private readonly ISoundPlayer _sound;
 
         private VirtualKeyCode? _pendingFirstKey;
         private readonly HashSet<VirtualKeyCode> _suppressedKeys = new HashSet<VirtualKeyCode>();
@@ -20,10 +21,11 @@ namespace Personal_Keyboard_Mapper.Core.Config
 
         public Action OnExitRequested { get; set; }
 
-        public MappingEngine(MappingConfig config, IInputSimulator simulator)
+        public MappingEngine(MappingConfig config, IInputSimulator simulator, ISoundPlayer sound = null)
         {
             _config = config;
             _simulator = simulator;
+            _sound = sound;
         }
 
         public bool HandleKey(KeyEvent ev)
@@ -75,6 +77,7 @@ namespace Personal_Keyboard_Mapper.Core.Config
             {
                 _pendingFirstKey = ev.Key;
                 _suppressedKeys.Add(ev.Key);
+                _sound?.PlaySound(SoundEvent.FirstKey);
                 return true;
             }
 
@@ -98,6 +101,21 @@ namespace Personal_Keyboard_Mapper.Core.Config
                 state = ModifierState.Inactive;
 
             bool winOnly = (mod == VirtualKeyCode.LWIN || mod == VirtualKeyCode.RWIN);
+
+            var soundEvent = mod switch
+            {
+                VirtualKeyCode.SHIFT or VirtualKeyCode.LSHIFT or VirtualKeyCode.RSHIFT
+                    => (SoundEvent?)SoundEvent.Shift,
+                VirtualKeyCode.CONTROL or VirtualKeyCode.LCONTROL or VirtualKeyCode.RCONTROL
+                    => (SoundEvent?)SoundEvent.Ctrl,
+                VirtualKeyCode.LMENU or VirtualKeyCode.RMENU or VirtualKeyCode.MENU
+                    => (SoundEvent?)SoundEvent.Alt,
+                VirtualKeyCode.LWIN or VirtualKeyCode.RWIN
+                    => (SoundEvent?)SoundEvent.Win,
+                _ => (SoundEvent?)null
+            };
+            if (soundEvent.HasValue)
+                _sound?.PlaySound(soundEvent.Value);
 
             switch (state)
             {
@@ -134,6 +152,7 @@ namespace Personal_Keyboard_Mapper.Core.Config
 
         private void ExecuteAction(ActionEntry action)
         {
+            _sound?.PlaySound(SoundEvent.SecondKey);
             if (string.Equals(action.Type, "Mouse", StringComparison.OrdinalIgnoreCase))
             {
                 // Ctrl (locked) works with mouse clicks per the user manual

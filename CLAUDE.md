@@ -224,3 +224,7 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 
 - Personal-Keyboard-Mapper.Core/Enums/SoundEvent.cs
 - Personal-Keyboard-Mapper.Core/Interfaces/ISoundPlayer.cs
+
+### 2026-06-17 13:27
+
+- Personal-Keyboard-Mapper.Core/Config/MappingEngine.cs
