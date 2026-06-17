@@ -17,7 +17,7 @@ namespace Personal_Keyboard_Mapper.Linux
         private readonly uint[] _sources;
         private Device* _device;
         private Context* _context;
-        private bool _disposed;
+        private volatile bool _disposed;
 
         public OpenAlSoundPlayer(string resourceDir)
         {
@@ -57,6 +57,7 @@ namespace Personal_Keyboard_Mapper.Linux
         {
             if (_disposed) return;
             int i = (int)sound;
+            if (i < 0 || i >= _sources.Length) return;
             _al.GetSourceProperty(_sources[i], GetSourceInteger.SourceState, out int state);
             if ((SourceState)state == SourceState.Playing)
                 _al.SourceStop(_sources[i]);
@@ -92,7 +93,7 @@ namespace Personal_Keyboard_Mapper.Linux
             while (fs.Position <= fs.Length - 8)
             {
                 var id   = new string(br.ReadChars(4));
-                var size = br.ReadInt32();
+                var size = (int)br.ReadUInt32();
                 switch (id)
                 {
                     case "fmt ":

@@ -241,3 +241,7 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 ### 2026-06-17 13:41
 
 - Personal-Keyboard-Mapper.Linux/Program.cs
+
+### 2026-06-17 13:46
+
+- Personal-Keyboard-Mapper.Linux/OpenAlSoundPlayer.cs
