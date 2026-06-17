@@ -6,13 +6,41 @@
     <AssemblyName>Personal_Keyboard_Mapper.Linux</AssemblyName>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Personal-Keyboard-Mapper.Core\Personal-Keyboard-Mapper.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Silk.NET.OpenAL" Version="2.22.0" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="default.keysconfig">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Personal-Keyboard-Mapper\Properties\Resources\key1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>key1.wav</Link>
+    </Content>
+    <Content Include="..\Personal-Keyboard-Mapper\Properties\Resources\key2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>key2.wav</Link>
+    </Content>
+    <Content Include="..\Personal-Keyboard-Mapper\Properties\Resources\shift.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>shift.wav</Link>
+    </Content>
+    <Content Include="..\Personal-Keyboard-Mapper\Properties\Resources\ctrl.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>ctrl.wav</Link>
+    </Content>
+    <Content Include="..\Personal-Keyboard-Mapper\Properties\Resources\alt.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>alt.wav</Link>
+    </Content>
+    <Content Include="..\Personal-Keyboard-Mapper\Properties\Resources\win.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>win.wav</Link>
     </Content>
   </ItemGroup>
 </Project>
