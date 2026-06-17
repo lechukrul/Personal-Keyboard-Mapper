@@ -67,6 +67,8 @@ namespace Personal_Keyboard_Mapper.Core.Config
                     key = VirtualKeyCode.NEXT; return true;
                 case "backslash":
                     key = VirtualKeyCode.OEM_5; return true;
+                case ";":
+                    key = VirtualKeyCode.OEM_1; return true;
             }
 
             if (alias.Length == 1)

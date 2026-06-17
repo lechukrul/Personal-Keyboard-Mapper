@@ -249,3 +249,7 @@ Action types and key aliases are defined in `Personal-Keyboard-Mapper/App.config
 ### 2026-06-17 15:54
 
 - Personal-Keyboard-Mapper.Core/Config/MappingEngine.cs
+
+### 2026-06-17 19:39
+
+- Personal-Keyboard-Mapper.Core/Config/KeyAliasResolver.cs
