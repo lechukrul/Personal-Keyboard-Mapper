@@ -152,9 +152,9 @@ namespace Personal_Keyboard_Mapper.Core.Config
 
         private void ExecuteAction(ActionEntry action)
         {
-            _sound?.PlaySound(SoundEvent.SecondKey);
             if (string.Equals(action.Type, "Mouse", StringComparison.OrdinalIgnoreCase))
             {
+                _sound?.PlaySound(SoundEvent.SecondKey);
                 // Ctrl (locked) works with mouse clicks per the user manual
                 var activeMods = GetAndConsumeActiveModifiers();
                 foreach (var mod in activeMods) _simulator.KeyDown(mod);
@@ -179,12 +179,15 @@ namespace Personal_Keyboard_Mapper.Core.Config
             var regularKeys   = resolved.Where(k => !KeyAliasResolver.IsModifier(k)).ToList();
 
             // Modifier-only action (e.g. shift, ctrl, alt alone) → advance state machine
+            // No SecondKey sound — the modifier sound plays instead
             if (textEntries.Count == 0 && regularKeys.Count == 0)
             {
                 foreach (var mod in configModKeys)
                     UpdateModifierState(mod);
                 return;
             }
+
+            _sound?.PlaySound(SoundEvent.SecondKey);
 
             // Self-contained chord defined inline (e.g. ["ctrl","c"]) → execute directly,
             // leave the state machine untouched
